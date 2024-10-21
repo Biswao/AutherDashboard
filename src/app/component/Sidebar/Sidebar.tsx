@@ -16,8 +16,6 @@ export default function Sidebar({ children }: SidebarProps) {
                 className={`bg-gray-800 text-white h-screen transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-full md:w-2/5 lg:w-1/3' : 'w-0 overflow-hidden'
                     }`}
             >
-                {/* Header Component */}
-                <Header isOpen={isOpen} toggleSidebar={toggleSidebar} />
                 <div className="flex justify-between items-center p-4">
                     <h2 className={`text-xl font-bold transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
                         Sidebar

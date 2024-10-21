@@ -6,6 +6,6 @@ export interface SidebarProps {
 }
 
 export interface HeaderProps {
-    isOpen: boolean;
-    toggleSidebar: () => void;
+    isOpen?: boolean;
+    toggleSidebar?: () => void;
 }
