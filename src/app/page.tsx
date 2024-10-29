@@ -7,18 +7,21 @@ import "../../src/app/component/Header/Header.css";
 import { useState } from "react";
 import { faFileAlt, faFileInvoice, faFileSignature } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Table from "./component/Table/Table";
 
 export default function Home() {
+  const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
+  const data: string[][] = [];
   return (
     <Sidebar>
       <div className="container MainContent">
         {/* Header Buttons */}
-        <div className="row justify-content-around" style={{paddingTop:'40px'}}>
+        <div className="row justify-content-around" style={{ paddingTop: '40px' }}>
           {/* Submit New Manuscript Button */}
           <div className="col-lg-3 col-md-4 col-sm-6">
             <button
               className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{ backgroundColor: '#688bb2', borderRadius: '15px', color: '#fff' ,padding:'22px' }}
+              style={{ backgroundColor: '#688bb2', borderRadius: '15px', color: '#fff', padding: '22px' }}
             >
               <FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '10px' }} />
               Submit New Manuscript !
@@ -29,7 +32,7 @@ export default function Home() {
           <div className="col-lg-3 col-md-4 col-sm-6">
             <button
               className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{ backgroundColor: '#c7715d', borderRadius: '15px', color: '#fff', padding:'22px' }}
+              style={{ backgroundColor: '#c7715d', borderRadius: '15px', color: '#fff', padding: '22px' }}
             >
               <FontAwesomeIcon icon={faFileInvoice} style={{ marginRight: '10px' }} />
               Request A Quote !
@@ -40,7 +43,7 @@ export default function Home() {
           <div className="col-lg-3 col-md-4 col-sm-6">
             <button
               className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff' , padding:'22px' }}
+              style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff', padding: '22px' }}
             >
               <FontAwesomeIcon icon={faFileSignature} style={{ marginRight: '10px' }} />
               Request A Sample !
@@ -50,12 +53,12 @@ export default function Home() {
 
 
         {/* Testimonials and Discounts */}
-        <div className="row mt-4" style={{paddingTop:'40px' , paddingBottom:'40px'}}>
+        <div className="row mt-4" style={{ paddingTop: '40px', paddingBottom: '40px' }}>
           <div className="col-md-8">
-            <div className="card testiHeight p-3" style={{height:'191px' , justifyContent:'center' , lineHeight:'33px'}}>
-              <h5 style={{marginBottom:'20px'}}>Author Testimonials</h5>
+            <div className="card testiHeight p-3" style={{ height: '191px', justifyContent: 'center', lineHeight: '33px' }}>
+              <h5 style={{ marginBottom: '20px' }}>Author Testimonials</h5>
               <div className="d-flex">
-                <div className="me-3" style={{display:'flex' , alignItems:'center'}}>
+                <div className="me-3" style={{ display: 'flex', alignItems: 'center' }}>
                   <img
                     src="/assets/images/user.png"
                     alt="Author"
@@ -92,31 +95,7 @@ export default function Home() {
         </div>
 
         {/* Orders Table */}
-        <div className="row mt-4" >
-          <div className="col-12">
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Service Type</th>
-                  <th>Submit Date</th>
-                  <th>Delivery Date</th>
-                  <th>Payment Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Placeholder for dynamic content */}
-                <tr>
-                  <td>12345</td>
-                  <td>Proofreading</td>
-                  <td>2024-10-23</td>
-                  <td>2024-11-01</td>
-                  <td>Paid</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable"/>
       </div>
     </Sidebar>
   );

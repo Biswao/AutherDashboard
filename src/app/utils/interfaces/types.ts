@@ -9,3 +9,10 @@ export interface HeaderProps {
     isOpen?: boolean;
     toggleSidebar?: () => void;
 }
+
+export interface TableProps {
+    headers: string[];
+    data: string[][];
+    emptyMessage: string
+    mainHeader: string
+  }
