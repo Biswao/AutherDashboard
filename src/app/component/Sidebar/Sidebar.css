@@ -11,7 +11,7 @@ nav ul a{
 @media (max-width: 640px) {
   aside {
     position: fixed;
-    z-index: 50; /* Overlay the sidebar on mobile */
+    z-index: 50; 
   }
 
   main {

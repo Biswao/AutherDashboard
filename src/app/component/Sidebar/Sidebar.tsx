@@ -3,6 +3,7 @@ import { SidebarProps } from "@/app/utils/interfaces/types";
 import { useState } from "react";
 import Header from "../Header/Header";
 import "./Sidebar.css"
+import Link from "next/link";
 
 export default function Sidebar({ children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,28 +38,28 @@ export default function Sidebar({ children }: SidebarProps) {
                         <nav className="w-full">
                             <ul className="w-full ulListStyle">
                                 <li className="mb-2 w-full">
-                                    <a href="#" className="block py-2 px-4 text-left bg-teal-600 w-full">Dashboard</a>
+                                    <Link href="#" className="block py-2 px-4 text-left bg-teal-600 w-full">Dashboard</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Submit Manuscript</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Submit Manuscript</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Request a Quotation</a>
+                                    <Link href="/Quotation" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Request a Quotation</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">View Orders Submitted</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">View Orders Submitted</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Refer A Colleague</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Refer A Colleague</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Coupon Center</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Coupon Center</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Book a slot in Webinar</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Book a slot in Webinar</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <a href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Talk to an expert</a>
+                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Talk to an expert</Link>
                                 </li>
                             </ul>
                         </nav>
