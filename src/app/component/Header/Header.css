@@ -1,0 +1,24 @@
+.HeaderAuhtorLogo Img {
+    background-color: aliceblue;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.HeaderAuhtorLogo{
+    display: flex;
+    gap: 71px;
+}
+
+.centroid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:1075px){
+.testiHeight{
+    height: auto;
+}
+}
+
