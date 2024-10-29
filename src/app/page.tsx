@@ -7,8 +7,11 @@ import "../../src/app/component/Header/Header.css";
 import { useState } from "react";
 import { faFileAlt, faFileInvoice, faFileSignature } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Table from "./component/Table/Table";
 
 export default function Home() {
+  const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
+  const data: string[][] = [];
   return (
     <>
       <Sidebar>
@@ -92,39 +95,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Orders Table */}
-          <div className="row mt-4" >
-            <div className="col-12">
-              <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Service Type</th>
-                    <th>Submit Date</th>
-                    <th>Delivery Date</th>
-                    <th>Payment Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Placeholder for dynamic content */}
-                  <tr>
-                    <td>12345</td>
-                    <td>Proofreading</td>
-                    <td>2024-10-23</td>
-                    <td>2024-11-01</td>
-                    <td>Paid</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </Sidebar>
-
+        {/* Orders Table */}
+        <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable"/>
+      </div>
+    </Sidebar>
 
     </>
-
-
-
   );
 }

@@ -1,6 +1,9 @@
 import Sidebar from "@/app/component/Sidebar/Sidebar"
+import Table from "@/app/component/Table/Table"
 
 const Quotation = () => {
+    const headers: string[] = ['Quotation Id', 'Service Type', 'Submit Date', 'Delivery Date'];
+    const data: string[][] = [];
     return (
         <Sidebar>
             <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -77,6 +80,7 @@ const Quotation = () => {
                 <button style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Next</button>
             </div>
         </div>
+        <Table mainHeader="Your Quotation" headers={headers} data={data} emptyMessage="No Quotation Avilable"/>
         </Sidebar>
     )
 }

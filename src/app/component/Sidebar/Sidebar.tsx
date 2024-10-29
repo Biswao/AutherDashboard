@@ -1,12 +1,30 @@
 "use client";
 import { SidebarProps } from "@/app/utils/interfaces/types";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Header from "../Header/Header";
 import "./Sidebar.css"
 import Link from "next/link";
 
 export default function Sidebar({ children }: SidebarProps) {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+
+    useEffect(() => {
+        // Set initial sidebar state based on screen width
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setIsOpen(false);
+            } else {
+                setIsOpen(true);
+            }
+        };
+
+        // Check screen size on component mount
+        handleResize();
+
+        // Update sidebar state on window resize
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
