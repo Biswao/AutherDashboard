@@ -38,15 +38,15 @@ export default function Sidebar({ children }: SidebarProps) {
             <div className="SideabrAllign" style={{display:"flex"}}>
                 {/* Sidebar */}
                 <aside
-                    className={`bg-gray-800 text-white h-auto transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-full sm:w-1/2 md:w-2/5 lg:w-1/5' : 'w-0 overflow-hidden'
-                        }`}
+                    className={`text-white h-auto transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-full sm:w-1/2 md:w-2/5 lg:w-1/5' : 'w-0 overflow-hidden'
+                        }`} style={{background:'#364D60'}}
                 >
                     <div className="flex flex-col items-center p-4">
                        
                         {/* Profile Section */}
                         <div className="text-center mb-8 centroid">
                             <img src="./assets/images/user.png" alt="Profile" className="w-20 h-20 rounded-full mb-3" />
-                            <h3 className="text-xl font-semibold">Biswa Ranjan Pradhan</h3>
+                            <h3 className="text-xl font-semibold">Umesh Kumar Pradhan</h3>
                             <p className="text-green-500 text-sm flex items-center justify-center">
                                 <i className="fa fa-check-circle mr-1"></i> Author
                             </p>
@@ -65,7 +65,7 @@ export default function Sidebar({ children }: SidebarProps) {
                                     <Link href="/Quotation" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Request a Quotation</Link>
                                 </li>
                                 <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">View Orders Submitted</Link>
+                                    <Link href="/SubmitOrders" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">View Orders Submitted</Link>
                                 </li>
                                 <li className="mb-2">
                                     <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Refer A Colleague</Link>
