@@ -4,9 +4,15 @@ import { useState , useEffect } from "react";
 import Header from "../Header/Header";
 import "./Sidebar.css"
 import Link from "next/link";
+import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar({ children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
+
+    const {loading,error,authorDetails} = useFetchAuthor()
+    console.log({authorDetails})
 
     useEffect(() => {
         // Set initial sidebar state based on screen width
@@ -46,9 +52,9 @@ export default function Sidebar({ children }: SidebarProps) {
                         {/* Profile Section */}
                         <div className="text-center mb-8 centroid">
                             <img src="./assets/images/user.png" alt="Profile" className="w-20 h-20 rounded-full mb-3" />
-                            <h3 className="text-xl font-semibold">Umesh Kumar Pradhan</h3>
+                            <h3 className="text-xl font-semibold">{`${authorDetails?.first_name ?? "No"} ${authorDetails?.last_name ?? "Name"}`}</h3>
                             <p className="text-green-500 text-sm flex items-center justify-center">
-                                <i className="fa fa-check-circle mr-1"></i> Author
+                                <i className="fa fa-check-circle mr-1"></i> {authorDetails?.user_type}
                             </p>
                         </div>
 
@@ -56,28 +62,28 @@ export default function Sidebar({ children }: SidebarProps) {
                         <nav className="w-full">
                             <ul className="w-full ulListStyle">
                                 <li className="mb-2 w-full">
-                                    <Link href="#" className="block py-2 px-4 text-left bg-teal-600 w-full">Dashboard</Link>
+                                    <Link href="/" className="flex items-center py-2 px-4 text-left bg-teal-700 w-full"><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Submit Manuscript</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="/Quotation" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Request a Quotation</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="/SubmitOrders" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">View Orders Submitted</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/SubmitOrders" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Refer A Colleague</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faUserFriends} className="mr-2" /><span className="flex-grow">Refer A Colleague</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Coupon Center</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faGift} className="mr-2" /><span className="flex-grow">Coupon Center</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Book a slot in Webinar</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faCalendarAlt} className="mr-2" /><span className="flex-grow">Book a slot in Webinar</span></Link>
                                 </li>
-                                <li className="mb-2">
-                                    <Link href="#" className="block py-2 px-4 text-left hover:bg-gray-700 w-full">Talk to an expert</Link>
+                                <li className="mb-2 w-full">
+                                    <Link href="/Quotation" className="flex items-center py-2 px-4 text-left hover:bg-gray-700 w-full"><FontAwesomeIcon icon={faComments} className="mr-2" /><span className="flex-grow">Talk to an expert</span></Link>
                                 </li>
                             </ul>
                         </nav>
