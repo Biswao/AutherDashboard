@@ -1,0 +1,89 @@
+/* styles/Login.module.css */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leftSection, .rightSection {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftSection {
+    flex: 1;
+    background-color: #fff;
+    text-align: center;
+}
+
+.rightSection {
+    flex: 1;
+    background-color: #2b3a5b;
+    color: #fff;
+    text-align: center;
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.inputField {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.rememberForgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.forgotPassword {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.loginButton {
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signupButton {
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.goToHome {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+}
