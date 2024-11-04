@@ -1,0 +1,125 @@
+/* SignUpPage.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.leftSection {
+  width: 100%;
+}
+
+.leftSection h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input[type="email"],
+form input[type="text"],
+form input[type="password"],
+form input[type="tel"],
+form select,
+.captcha input {
+  width: 100%;
+  padding: 6px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+form select {
+  appearance: none;
+  color: #555;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.checkboxContainer label {
+  line-height: 1.4;
+}
+
+.checkboxContainer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.captcha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.captcha img {
+  width: 120px;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.rightSection {
+  padding: 20px;
+  text-align: center;
+}
+
+.rightSection h2 {
+  font-size: 22px;
+}
+
+.rightSection p {
+  margin: 10px 0;
+}
+
+.rightSection button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rightSection button:hover {
+  background-color: #0056b3;
+}
+
+.rightSection a {
+  display: block;
+  margin-top: 15px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.rightSection a:hover {
+  text-decoration: underline;
+}
