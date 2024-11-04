@@ -3,20 +3,15 @@ import { SidebarProps } from "@/app/utils/interfaces/types";
 import { useState , useEffect } from "react";
 import Header from "../Header/Header";
 import "./Sidebar.css"
-import Link from "next/link";
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from 'next/navigation'
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
-import { sidebarUrlMapper } from "@/app/utils/lib/lib";
 
-export default function Sidebar({ children }: SidebarProps) {
-    const pathName = usePathname()
+export default function Sidebar({ active, setActive,children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const [active, setActive] = useState<string>(sidebarUrlMapper[pathName])
     const {loading,error,authorDetails} = useFetchAuthor()
 
-    console.log({pathName,active})
 
     useEffect(() => {
         // Set initial sidebar state based on screen width
@@ -66,28 +61,28 @@ export default function Sidebar({ children }: SidebarProps) {
                         <nav className="w-full">
                             <ul className="w-full ulListStyle">
                                 <li className="mb-2 w-full" onClick={() => setActive('Dashboard')}>
-                                    <Link href="/" className={`flex items-center py-2 px-4 ${active === "Dashboard" && "bg-teal-700"} text-left w-full`}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></Link>
+                                    <span className={`flex items-center py-2 px-4 ${active === "Dashboard" && "bg-teal-700"} text-left w-full`}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Submit Manuscript')}>
-                                    <Link href="/Quotation" className={`flex items-center py-2 px-4 text-left ${active === "Submit Manuscript" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Submit Manuscript" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Request a Quotation')}>
-                                    <Link href="/Quotation" className={`flex items-center py-2 px-4 text-left ${active === "Request a Quotation" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Request a Quotation" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('View Orders Submitted')}>
-                                    <Link href="/SubmitOrders" className={`flex items-center py-2 px-4 text-left ${active === "View Orders Submitted" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "View Orders Submitted" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Refer A Colleague')}>
-                                    <Link href="/Quotation" className={`flex items-center py-2 px-4 text-left ${active === "Refer A Colleague" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faUserFriends} className="mr-2" /><span className="flex-grow">Refer A Colleague</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Refer A Colleague" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faUserFriends} className="mr-2" /><span className="flex-grow">Refer A Colleague</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Coupon Center')}>
-                                    <Link href="/Coupon" className={`flex items-center py-2 px-4 text-left ${active === "Coupon Center" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faGift} className="mr-2" /><span className="flex-grow">Coupon Center</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Coupon Center" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faGift} className="mr-2" /><span className="flex-grow">Coupon Center</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Book a slot in Webinar')}>
-                                    <Link href="/Webinar" className={`flex items-center py-2 px-4 text-left ${active === "Book a slot in Webinar" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faCalendarAlt} className="mr-2" /><span className="flex-grow">Book a slot in Webinar</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Book a slot in Webinar" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faCalendarAlt} className="mr-2" /><span className="flex-grow">Book a slot in Webinar</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Talk to an expert')}>
-                                    <Link href="/Quotation" className={`flex items-center py-2 px-4 text-left ${active === "Talk to an expert" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faComments} className="mr-2" /><span className="flex-grow">Talk to an expert</span></Link>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Talk to an expert" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faComments} className="mr-2" /><span className="flex-grow">Talk to an expert</span></span>
                                 </li>
                             </ul>
                         </nav>

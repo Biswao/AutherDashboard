@@ -6,9 +6,8 @@ const Quotation = () => {
     // const headers: string[] = ['Quotation Id', 'Service Type', 'Submit Date', 'Delivery Date'];
     // const data: string[][] = [];
     return (
-        <Sidebar>
-            <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-            <h2 style={{marginBottom:"20px"}}>Request a Quotation</h2>
+        <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+            <h2 style={{ marginBottom: "20px" }}>Request a Quotation</h2>
             <div className="QuotationDivide" style={{ display: 'flex', gap: '50px' }}>
                 {/* Left Side - Form Fields */}
                 <div style={{ flex: '1' }}>
@@ -63,8 +62,8 @@ const Quotation = () => {
 
                 {/* Right Side - Services */}
                 <div style={{ flex: '1' }}>
-                    <label style={{marginBottom:"20px"}}>Service Required*</label>
-                    <div className="LabelsService" style={{ display: 'flex', flexDirection: 'column' , gap: '18px' }}>
+                    <label style={{ marginBottom: "20px" }}>Service Required*</label>
+                    <div className="LabelsService" style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                         <label><input type="checkbox" /> Writing Manuscript/Thesis</label>
                         <label><input type="checkbox" /> Data Analysis for Manuscript/Thesis</label>
                         <label><input type="checkbox" /> Editing/Rewriting/Formatting/Proofreading</label>
@@ -81,8 +80,6 @@ const Quotation = () => {
                 <button style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Next</button>
             </div>
         </div>
-        {/* <Table mainHeader="Your Quotation" headers={headers} data={data} emptyMessage="No Quotation Avilable"/> */}
-        </Sidebar>
     )
 }
 

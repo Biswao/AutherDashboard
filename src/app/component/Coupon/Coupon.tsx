@@ -1,5 +1,4 @@
-// Coupon.js
-
+"use client"
 import Sidebar from "@/app/component/Sidebar/Sidebar";
 import "./Coupon.css";
 import Table from "@/app/component/Table/Table";
@@ -11,7 +10,6 @@ const Coupon = () => {
 
     return (
 
-        <Sidebar>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8">
@@ -38,7 +36,6 @@ const Coupon = () => {
                     </div>
                 </div>
             </div>
-        </Sidebar>
 
 
     );
