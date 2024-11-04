@@ -10,8 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "./component/Table/Table";
 
 export default function Home() {
+  const [active, setActive] = useState<string>("Dashboard")
   const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
   const data: string[][] = [];
+
+  console.log({active})
   return (
     <>
       <Sidebar>

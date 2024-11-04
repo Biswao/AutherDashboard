@@ -1,0 +1,36 @@
+/* InfoCard.css */
+
+.info-card {
+    background-color: #e6f4ff;
+    border-radius: 8px;
+    padding: 16px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-icon {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0px 14px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.info-card h5 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 0.9em;
+}

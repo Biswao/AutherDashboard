@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 export interface SidebarProps {
     children: ReactNode;
+    mapperObj?: string
 }
 
 export interface HeaderProps {
