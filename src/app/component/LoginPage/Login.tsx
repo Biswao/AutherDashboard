@@ -1,17 +1,25 @@
 // components/Login.js
 import Link from 'next/link';
 import './Login.css';
+import useSignin from '@/app/hooks/authorDashboard/useSignin';
+import { FormEvent, useState } from 'react';
 
 const Login = ({setAutho}:any) => {
-    // setAutho(true)
-    
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const { login, loading, error } = useSignin();
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        await login(email, password);
+    };
     return (
         <div className="container">
             <div className="leftSection">
                 <h2>Login</h2>
-                <form className="form">
-                    <input type="text" placeholder="UserName or Email" className="inputField" />
-                    <input type="password" placeholder="Password" className="inputField" />
+                <form className="form" onSubmit={handleSubmit}>
+                    <input type="text" placeholder="UserName or Email" className="inputField" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Password" className="inputField" onChange={(e) => setPassword(e.target.value)}/>
                     <div className="rememberForgot">
                         <label>
                             <input type="checkbox" /> Remember me
@@ -20,7 +28,8 @@ const Login = ({setAutho}:any) => {
                             Forgot Password?
                         </Link>
                     </div>
-                    <button type="submit" className="loginButton">LOG IN</button>
+                    <button type="submit" className="loginButton">{loading ? 'Logging in...' : 'LOG IN'}</button>
+                    {error && <p className="errorMessage">{error}</p>}
                 </form>
             </div>
             <div className="rightSection">

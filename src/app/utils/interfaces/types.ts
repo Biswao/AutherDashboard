@@ -44,3 +44,15 @@ export interface AuthorDetails {
     c_email: string | null;
     user_find: string;
 }
+
+export interface LoginResponse {
+    success?: boolean;
+    message?: string;
+    token?: string;
+}
+
+export interface UseAuthReturn {
+    login: (email: string, password: string) => Promise<void>;
+    loading: boolean;
+    error: string | null;
+}
