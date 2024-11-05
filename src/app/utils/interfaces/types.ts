@@ -56,3 +56,29 @@ export interface UseAuthReturn {
     loading: boolean;
     error: string | null;
 }
+
+export interface Service {
+    name: string;
+    price: number;
+}
+
+export interface ServiceCategory {
+    title: string;
+    services: Service[];
+}
+
+export interface SelectedServicesProps {
+    selectedServices: { name: string; price: number }[];
+    onRemove: (serviceName: string) => void;
+}
+
+export interface SelectedService {
+    name: string;
+    price: number;
+}
+
+export interface ServiceListProps {
+    title: string;
+    services: { name: string }[];
+    onAdd: (service: string,price: number) => void;
+}

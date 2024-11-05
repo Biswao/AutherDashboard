@@ -13,6 +13,7 @@ import Coupon from "./component/Coupon/Coupon";
 import Quotation from "./component/Quotation/Quotation";
 import SubmitOrders from "./component/SubmitOrders/SubmitOrders";
 import Webinar from "./component/Webinar/Webinar";
+import SubmitManuscript from "./component/SubmitManuscript/SubmitManuscript";
 
 export default function Home() {
   const [active, setActive] = useState<string>("Dashboard")
@@ -26,8 +27,9 @@ export default function Home() {
         {active && active === "Dashboard" && (<Dashboard />)}
         {active && active === "Coupon Center" && (<Coupon />)}
         {active && active === "Request a Quotation" && (<Quotation />)}
-        {active && active === "Submit Manuscript" && (<SubmitOrders />)}
+        {active && active === "View Orders Submitted" && (<SubmitOrders />)}
         {active && active === "Book a slot in Webinar" && (<Webinar />)}
+        {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
       </Sidebar>
     </>
   );
