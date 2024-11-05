@@ -1,0 +1,10 @@
+.webinar-cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.webinar-title{
+    margin-bottom: 40px;
+    margin-left: 40px;
+}
