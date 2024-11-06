@@ -1,42 +1,54 @@
-// pages/signup.js
+"use client"
+import { SignupData } from '@/app/utils/interfaces/types';
 import './SignUpPage.css';
+import { useState } from 'react';
+import { useSignup } from '@/app/hooks/authorDashboard/useSignup';
 
 export default function Signup({setAutho}:any) {
+  const [formData, setFormData] = useState<SignupData>({
+    email: '',
+    pswd: '',
+    country: '',
+    fname: '',
+    lname: '',
+    phone_no: '',
+    user_find: '',
+  });
+
+  const { signup, loading, error, data } = useSignup();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await signup(formData);
+  };
   return (
     <div className='container'>
       <div className='leftSection'>
         <h1>SIGN UP</h1>
-        <form>
-          <input type="email" placeholder="Enter your email address" />
-          <input type="text" placeholder="Enter your first name" />
-          <input type="text" placeholder="Enter your last name" />
-          <input type="password" placeholder="Enter your Password" />
-          <input type="password" placeholder="Confirm Password" />
-          <input type="tel" placeholder="Enter your Phone Number" />
-          <select>
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="Enter your email address" onChange={handleChange} />
+          <input type="text" name="fname" placeholder="Enter your first name" onChange={handleChange} />
+          <input type="text" name="lname" placeholder="Enter your last name" onChange={handleChange} />
+          <input type="password" name="pswd" placeholder="Enter your Password" onChange={handleChange} />
+          <input type="tel" name="phone_no" placeholder="Enter your Phone Number" onChange={handleChange} />
+          <select name="country" onChange={handleChange}>
             <option>-Select a Country-</option>
             {/* Add country options here */}
           </select>
-          <select>
+          <select name="user_find" onChange={handleChange}>
             <option>-How did you find us-</option>
             {/* Add options here */}
           </select>
-          <div className='checkboxContainer'>
-            <input type="checkbox" />
-            <label>
-              I have read and agreed to your <a href="#">Service Agreement</a>, <a href="#">Terms of Service</a>, and <a href="#">Privacy Policy</a>.
-            </label>
-          </div>
-          <div className='checkboxContainer'>
-            <input type="checkbox" />
-            <label>I want to subscribe to Manuscriptedit newsletter.</label>
-          </div>
-          <div className='captcha'>
-            <img src="/captcha.png" alt="Captcha" /> {/* Replace with actual captcha */}
-            <input type="text" placeholder="Security Code" />
-          </div>
-          <button type="submit">Register</button>
+          {/* Other form fields */}
+          <button type="submit" disabled={loading}>Register</button>
         </form>
+        {error && <p className='error'>{error}</p>}
+        {data && <p className='success'>{data.message}</p>}
       </div>
       <div className='rightSection'>
         <h2>Have an Account?</h2>

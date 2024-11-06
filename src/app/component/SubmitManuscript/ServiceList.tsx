@@ -1,12 +1,12 @@
 import { ServiceListProps } from "@/app/utils/interfaces/types";
 
 const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => (
-  <div className="bg-blue-900 text-white p-4 rounded-lg">
-    <h2 className="text-lg font-semibold mb-2">{title}</h2>
+  <div style={{ backgroundColor: '#E7F4FF' }} className="text-white p-4 rounded-lg">
+    <h2 style={{ backgroundColor: '#0C416B' }} className="flex justify-center bg-blue-100 p-2 mb-2 rounded-lg text-white-900 text-lg font-semibold">{title}</h2>
     {services.map((service) => (
-      <div key={service.name} className="flex justify-between items-center bg-blue-100 p-2 mb-2 rounded-lg text-blue-900">
+      <div key={service.name} style={{ backgroundColor: '#D1E7F9' }} className="flex justify-between items-center bg-blue-100 p-2 mb-2 rounded-lg text-blue-900">
         <span>{service.name}</span>
-        <button onClick={() => onAdd(service.name,service.price)} className="bg-blue-600 text-white px-4 py-1 rounded-lg">
+        <button style={{ backgroundColor: '#0D5086' }}  onClick={() => onAdd(service.name,service.price)} className="text-white px-4 py-1 rounded-lg">
           Add +
         </button>
       </div>

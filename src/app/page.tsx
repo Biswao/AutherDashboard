@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import Sidebar from "./component/Sidebar/Sidebar";
 import Header from "./component/Header/Header";
 import "../../src/app/component/Header/Header.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { faFileAlt, faFileInvoice, faFileSignature } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from "./component/Table/Table";
@@ -14,13 +14,22 @@ import Quotation from "./component/Quotation/Quotation";
 import SubmitOrders from "./component/SubmitOrders/SubmitOrders";
 import Webinar from "./component/Webinar/Webinar";
 import SubmitManuscript from "./component/SubmitManuscript/SubmitManuscript";
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const [active, setActive] = useState<string>("Dashboard")
+
+  const router = useRouter()
+
   const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
   const data: string[][] = [];
 
   console.log({ active })
+  useEffect(() => {
+    if (!localStorage.getItem('user_id')) {
+      router.push('/Auth');
+    }
+  }, [router]);
   return (
     <>
       <Sidebar active={active} setActive={setActive}>

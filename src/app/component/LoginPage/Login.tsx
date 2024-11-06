@@ -1,8 +1,8 @@
 // components/Login.js
 import Link from 'next/link';
-import './Login.css';
 import useSignin from '@/app/hooks/authorDashboard/useSignin';
 import { FormEvent, useState } from 'react';
+import './Login.css';
 
 const Login = ({setAutho}:any) => {
     const [email, setEmail] = useState<string>('');
@@ -14,7 +14,7 @@ const Login = ({setAutho}:any) => {
         await login(email, password);
     };
     return (
-        <div className="container">
+        <div className="containerLogin">
             <div className="leftSection">
                 <h2>Login</h2>
                 <form className="form" onSubmit={handleSubmit}>

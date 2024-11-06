@@ -25,6 +25,13 @@ nav ul a{
 
 
 }
+.children-component {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.children-component::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
 
 
   
