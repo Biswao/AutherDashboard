@@ -1,5 +1,7 @@
 "use client"
 import { SignupData } from '@/app/utils/interfaces/types';
+// pages/signup.js
+import Link from 'next/link';
 import './SignUpPage.css';
 import { useState } from 'react';
 import { useSignup } from '@/app/hooks/authorDashboard/useSignup';
@@ -27,7 +29,7 @@ export default function Signup({setAutho}:any) {
     await signup(formData);
   };
   return (
-    <div className='container'>
+    <div className='container SignUpContain'>
       <div className='leftSection'>
         <h1>SIGN UP</h1>
         <form onSubmit={handleSubmit}>
@@ -51,12 +53,12 @@ export default function Signup({setAutho}:any) {
         {data && <p className='success'>{data.Message}</p>}
       </div>
       <div className='rightSection'>
-        <h2>Have an Account?</h2>
-        <p>Log in with your e-mail address and your password.</p>
+        <h2>Don't have an Account?</h2>
+        <p>Sign up with your details</p>
         <button onClick={()=>{
           setAutho(false)
         }}>LOGIN</button>
-        <a href="#">Go to Home →</a>
+        <Link href="/" className="goToHome">Go to Home ➔</Link>
       </div>
     </div>
   );
