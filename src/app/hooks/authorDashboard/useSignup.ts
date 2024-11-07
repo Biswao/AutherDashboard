@@ -2,11 +2,14 @@
 
 import { SignupData, SignupResponse } from '@/app/utils/interfaces/types';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<SignupResponse | null>(null);
+
+  const router = useRouter()
 
   const signup = async (signupData: SignupData) => {
     setLoading(true);
@@ -27,6 +30,7 @@ export const useSignup = () => {
 
       const result: SignupResponse = await response.json();
       setData(result);
+      router.push("/Auth")
     } catch (err) {
       setError((err as Error).message);
     } finally {

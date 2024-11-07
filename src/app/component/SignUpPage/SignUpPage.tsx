@@ -48,7 +48,7 @@ export default function Signup({setAutho}:any) {
           <button type="submit" disabled={loading}>Register</button>
         </form>
         {error && <p className='error'>{error}</p>}
-        {data && <p className='success'>{data.message}</p>}
+        {data && <p className='success'>{data.Message}</p>}
       </div>
       <div className='rightSection'>
         <h2>Have an Account?</h2>

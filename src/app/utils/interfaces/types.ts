@@ -93,6 +93,5 @@ export interface SignupData {
 }
 
 export interface SignupResponse {
-    status: string;
-    message: string;
+    Message: string;
 }

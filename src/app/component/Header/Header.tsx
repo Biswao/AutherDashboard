@@ -63,3 +63,5 @@ export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
     </div>
   );
 }
+
+//{"Message":"Registered Successfully as a New Author"}
