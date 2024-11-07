@@ -6,7 +6,7 @@ const Login = ({setAutho}:any) => {
     // setAutho(true)
     
     return (
-        <div className="container">
+        <div className="container LoginContain">
             <div className="leftSection">
                 <h2>Login</h2>
                 <form className="form">

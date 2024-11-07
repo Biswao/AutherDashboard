@@ -1,9 +1,10 @@
 /* styles/Login.module.css */
-.container {
+.LoginContain {
     display: flex;
-    height: 100vh;
+    height: 80vh;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 73px;
 }
 
 .leftSection, .rightSection {
@@ -87,3 +88,19 @@ h2 {
     font-size: 1rem;
     text-decoration: none;
 }
+
+
+@media(max-width:768px){
+    .LoginContain{
+      flex-direction: column;
+    }
+
+    .rightSection{
+        clip-path: none;
+    }
+.LoginContain{
+    height: 100vh;
+    margin-top: 0px;
+}
+
+  }
