@@ -95,3 +95,8 @@ export interface SignupData {
 export interface SignupResponse {
     Message: string;
 }
+
+export interface CountryCodeApiResponse {
+    id: string,
+    country: string
+}

@@ -10,7 +10,8 @@ import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppi
 
 export default function Sidebar({ active, setActive,children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const {loading,error,authorDetails} = useFetchAuthor()
+    const email = localStorage.getItem('email')
+    const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
 
 
     useEffect(() => {

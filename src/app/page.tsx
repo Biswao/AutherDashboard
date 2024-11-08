@@ -24,22 +24,21 @@ export default function Home() {
   const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
   const data: string[][] = [];
 
-  console.log({ active })
-  useEffect(() => {
-    if (!localStorage.getItem('user_id')) {
-      router.push('/Auth');
-    }
-  }, [router]);
-  return (
-    <>
-      <Sidebar active={active} setActive={setActive}>
-        {active && active === "Dashboard" && (<Dashboard />)}
-        {active && active === "Coupon Center" && (<Coupon />)}
-        {active && active === "Request a Quotation" && (<Quotation />)}
-        {active && active === "View Orders Submitted" && (<SubmitOrders />)}
-        {active && active === "Book a slot in Webinar" && (<Webinar />)}
-        {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
-      </Sidebar>
-    </>
-  );
+  
+  if (!localStorage.getItem('user_id')) {
+    router.push('/Auth');
+  } else {
+    return (
+      <>
+        <Sidebar active={active} setActive={setActive}>
+          {active && active === "Dashboard" && (<Dashboard />)}
+          {active && active === "Coupon Center" && (<Coupon />)}
+          {active && active === "Request a Quotation" && (<Quotation />)}
+          {active && active === "View Orders Submitted" && (<SubmitOrders />)}
+          {active && active === "Book a slot in Webinar" && (<Webinar />)}
+          {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
+        </Sidebar>
+      </>
+    );
+  }
 }

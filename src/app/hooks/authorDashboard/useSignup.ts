@@ -4,7 +4,7 @@ import { SignupData, SignupResponse } from '@/app/utils/interfaces/types';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export const useSignup = () => {
+export const useSignup = (setAutho: any) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<SignupResponse | null>(null);
@@ -30,7 +30,7 @@ export const useSignup = () => {
 
       const result: SignupResponse = await response.json();
       setData(result);
-      router.push("/Auth")
+      setAutho(false)
     } catch (err) {
       setError((err as Error).message);
     } finally {

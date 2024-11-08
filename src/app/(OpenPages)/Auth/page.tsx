@@ -6,7 +6,9 @@ import Signup from "@/app/component/SignUpPage/SignUpPage";
 import { useState } from "react";
 
 export default function Auth() {
-  const [Autho , setAutho] = useState(false)
+  const [autho , setAutho] = useState(false)
 
-    return Autho == false ? <Login setAutho={setAutho}  /> : <Signup setAutho={setAutho}/>
+  console.log({autho})
+
+    return autho == false ? <Login setAutho={setAutho}  /> : <Signup setAutho={setAutho}/>
 }
