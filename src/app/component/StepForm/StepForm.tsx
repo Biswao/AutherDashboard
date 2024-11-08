@@ -80,6 +80,7 @@ const StepForm = () => {
                         <input type="radio" name="englishStyle" value="British" checked={formData.englishStyle === 'British'} onChange={handleChange} /> British English
                     </label>
                 </div>
+                
 
                 <label htmlFor="wordRange">Word Range *</label>
                 <select id="wordRange" name="wordRange" value={formData.wordRange} onChange={handleChange} className="select" required>
@@ -161,8 +162,8 @@ const StepForm = () => {
                 }
                 .submit-btn:hover {
                     background-color: #218838;
-                }
-            `}</style>
+                }`}
+            </style>
         </div>
     );
 };
