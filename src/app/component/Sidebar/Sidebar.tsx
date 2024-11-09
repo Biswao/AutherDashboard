@@ -39,7 +39,7 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
     return (
         <div>
             {/* Header Component */}
-            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} />
+            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} initials={`${authorDetails?.first_name[0]}${authorDetails?.last_name[0]}`}/>
 
             <div className="SideabrAllign" style={{display:"flex"}}>
                 {/* Sidebar */}

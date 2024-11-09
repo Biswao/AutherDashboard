@@ -10,6 +10,7 @@ export interface SidebarProps {
 export interface HeaderProps {
     isOpen?: boolean;
     toggleSidebar?: () => void;
+    initials: string
 }
 
 export interface TableProps {

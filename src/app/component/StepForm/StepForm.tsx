@@ -102,7 +102,7 @@ const StepForm = () => {
                 <label htmlFor="instructions">Instruction for Editor</label>
                 <textarea id="instructions" name="instructions" value={formData.instructions} onChange={handleChange} className="textarea"></textarea>
 
-                <button type="submit" className="submit-btn">Next</button>
+                {/* <button type="submit" className="submit-btn">Next</button> */}
             </form>
 
             <style jsx>{`

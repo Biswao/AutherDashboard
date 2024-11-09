@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation'
 
-export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
+export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter()
 
@@ -45,7 +45,7 @@ export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
               className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: '40px', height: '40px' }}
             >
-              IJ
+              {initials}
               <span className="ms-1">&#9662;</span>
             </button>
 
@@ -63,5 +63,3 @@ export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
     </div>
   );
 }
-
-//{"Message":"Registered Successfully as a New Author"}
