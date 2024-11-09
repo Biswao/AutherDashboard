@@ -19,6 +19,14 @@ export interface TableProps {
     mainHeader: string
 }
 
+export interface OrderDetails{
+    order_id:string;
+    service_type:string;
+    submit_date:string;
+    delivery_date:string;
+    status:string;
+}
+
 export interface AuthorDetails {
     id: string;
     user_type: string;
