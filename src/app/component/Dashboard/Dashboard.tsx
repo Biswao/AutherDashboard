@@ -9,12 +9,15 @@ import { useEffect, useState } from "react";
 
 export const Dashboard = () => {
     const [tableData, setTableData] = useState<string[][]>([])
-    const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder()
+
+    const userId: string = localStorage.getItem("user_id") ?? ''
+    const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
 
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
-        let table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
+        const table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
           const arr = []
+          
           arr.push(order.order_id)
           arr.push(order.service_type)
           arr.push(order.submit_date)

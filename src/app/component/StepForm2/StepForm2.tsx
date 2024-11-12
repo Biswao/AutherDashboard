@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const StepForm2 = () => {
+const StepForm2 = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
         mainDocument: null,
         figureFile: null,
@@ -9,6 +9,14 @@ const StepForm2 = () => {
         abstract: '',
         keywords: ''
     });
+
+    useEffect(() => {
+        if(formData.manuscriptTitle){
+            setCheck(true)
+        }else{
+            setCheck(false)
+        }
+    },[formData])
 
     const handleFileChange = (e:any) => {
         const { name, files } = e.target;

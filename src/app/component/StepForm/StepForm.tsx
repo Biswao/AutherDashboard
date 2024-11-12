@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const StepForm = () => {
+const StepForm = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
         serviceType: 'Proofreading',
         journalFormatting: false,
@@ -14,6 +14,14 @@ const StepForm = () => {
         turnaroundTime: '',
         instructions: ''
     });
+
+    useEffect(() => {
+        if(formData.specificSubject){
+            setCheck(true)
+        }else{
+            setCheck(false)
+        }
+    },[formData])
 
     const handleChange = (e:any) => {
         const { name, value, type, checked } = e.target;

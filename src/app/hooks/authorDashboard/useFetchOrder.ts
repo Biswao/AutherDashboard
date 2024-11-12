@@ -1,7 +1,7 @@
 import { OrderDetails } from '@/app/utils/interfaces/types';
 import { useEffect, useState } from 'react';
 
-const useFetchOrder = (email?: string) => {
+const useFetchOrder = (userId: string) => {
     const [fetchOrder, setFetchOrder] = useState<OrderDetails[] | null>(null);
     const [error, setError] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
@@ -10,7 +10,7 @@ const useFetchOrder = (email?: string) => {
     useEffect(() => {
         const fetchOrderToTable = async () => {
             try {
-                const orderData = await fetch(`https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=USER17145`);
+                const orderData = await fetch(`https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`);
                 if (!orderData.ok) {
                     throw new Error('Order Fetching Failed.')
                 }
@@ -27,10 +27,12 @@ const useFetchOrder = (email?: string) => {
             }
         };
         fetchOrderToTable();
-    }, [email])
+    }, [userId])
 
 
     return {fetchOrder,error,loading}
 }
 
 export default useFetchOrder
+
+// USER17145
