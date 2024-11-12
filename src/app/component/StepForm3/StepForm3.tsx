@@ -18,6 +18,7 @@ const StepForm3 = () => {
             ...formData,
             [name]: value
         });
+        
     };
 
     const handleSubmit = (e:any) => {

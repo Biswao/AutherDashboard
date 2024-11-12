@@ -123,6 +123,7 @@ const StepForm = () => {
                     display: block;
                     margin-top: 15px;
                     margin-bottom: 5px;
+                    
                 }
                 .checkbox-label {
                     font-weight: normal;
@@ -133,7 +134,7 @@ const StepForm = () => {
                 .select,
                 .input,
                 .textarea {
-                    width: 100%;
+                    width:      100%;
                     padding: 8px;
                     margin-top: 5px;
                     border: 1px solid #ced4da;

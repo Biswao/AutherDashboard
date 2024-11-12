@@ -1,13 +1,34 @@
+"use client"
 import { SidebarProps } from "@/app/utils/interfaces/types"
 import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
+import { useEffect, useState } from "react";
 
 
 export const Dashboard = () => {
+    const [tableData, setTableData] = useState([])
+    const {fetchOrder,error,loading}:any = useFetchOrder()
+console.log({fetchOrder})
+    useEffect(() => {
+      if(fetchOrder && fetchOrder.length){
+        let table_data = fetchOrder.map((order:any) => {
+          let arr = []
+          arr.push(order.order_id)
+          arr.push(order.service_type)
+          arr.push(order.submit_date)
+          arr.push(order.delivery_date)
+          arr.push(order.status)
+
+          return arr
+        })
+        setTableData(table_data)
+      }
+    },[fetchOrder])
 
     const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
-    const data: string[][] = [];
+    const data: string[][] = tableData;
     return (
         <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="">
           {/* Header Buttons */}
