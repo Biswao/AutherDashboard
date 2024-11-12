@@ -14,7 +14,7 @@ const Login = ({setAutho}:any) => {
         await login(email, password);
     };
     return (
-        <div className="container">
+        <div className="container LoginContain">
             <div className="leftSection">
                 <h2>Login</h2>
                 <form className="form" onSubmit={handleSubmit}>

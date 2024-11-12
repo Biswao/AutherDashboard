@@ -1,10 +1,11 @@
 /* SignUpPage.css */
 
-.container {
+.SignUpContain {
   display: flex;
   justify-content: center;
   padding: 20px;
   font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .leftSection {
@@ -122,4 +123,20 @@ button[type="submit"]:hover {
 
 .rightSection a:hover {
   text-decoration: underline;
+}
+
+@media(max-width:768px){
+  .SignUpContain{
+    flex-direction: column;
+  }
+
+  .SignUpContain{
+    margin-top: 0px !important;
+  }
+
+}
+
+
+.SignUpContain{
+  margin-top: 47px;
 }
