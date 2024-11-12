@@ -67,10 +67,10 @@ const StepForm3 = () => {
                     {/* Add more options as needed */}
                 </select>
 
-                <div className="button-group">
+                {/* <div className="button-group">
                     <button type="button" className="prev-btn">Previous</button>
                     <button type="submit" className="next-btn">Next</button>
-                </div>
+                </div> */}
             </form>
 
             <style jsx>{`

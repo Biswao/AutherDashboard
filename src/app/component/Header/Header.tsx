@@ -2,11 +2,20 @@ import { useState } from "react";
 import { HeaderProps } from "@/app/utils/interfaces/types";
 import { FaBars, FaWallet } from "react-icons/fa";
 import "./Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from 'next/navigation'
 
-export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
+export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter()
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+  const logoutHandler = () => {
+    localStorage.clear()
+    router.push('/Auth')
+  }
 
   return (
     <div className="container-fluid p-2" style={{ background: "#364D60" }}>
@@ -36,16 +45,16 @@ export default function Header({ isOpen, toggleSidebar }: HeaderProps) {
               className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: '40px', height: '40px' }}
             >
-              IJ
+              {initials}
               <span className="ms-1">&#9662;</span>
             </button>
 
             {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
-                <a className="dropdown-item" href="#profile">Profile</a>
-                <a className="dropdown-item" href="#settings">Settings</a>
-                <a className="dropdown-item" href="#logout">Logout</a>
+                <span className="dropdown-item"><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span>
+                <span className="dropdown-item"><FontAwesomeIcon icon={faCog} className="me-2" />Settings</span>
+                <span onClick={logoutHandler} className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} className="me-2" />Logout</span>
               </div>
             )}
           </div>

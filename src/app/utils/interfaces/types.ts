@@ -10,6 +10,7 @@ export interface SidebarProps {
 export interface HeaderProps {
     isOpen?: boolean;
     toggleSidebar?: () => void;
+    initials: string
 }
 
 export interface TableProps {
@@ -53,10 +54,9 @@ export interface AuthorDetails {
     user_find: string;
 }
 
-export interface LoginResponse {
-    success?: boolean;
-    message?: string;
-    token?: string;
+export interface LoginResponse{
+    Message?: string;
+    user_id?: string;
 }
 
 export interface UseAuthReturn {
@@ -87,6 +87,25 @@ export interface SelectedService {
 
 export interface ServiceListProps {
     title: string;
-    services: { name: string }[];
-    onAdd: (service: string,price: number) => void;
+    services: { name: string, price: number }[];
+    onAdd: (service: string, price: number) => void;
+}
+
+export interface SignupData {
+    email: string;
+    pswd: string;
+    country: string;
+    fname: string;
+    lname: string;
+    phone_no: string;
+    user_find: string;
+}
+
+export interface SignupResponse {
+    Message: string;
+}
+
+export interface CountryCodeApiResponse {
+    id: string,
+    country: string
 }

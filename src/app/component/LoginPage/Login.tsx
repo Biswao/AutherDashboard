@@ -1,8 +1,8 @@
 // components/Login.js
 import Link from 'next/link';
-import './Login.css';
 import useSignin from '@/app/hooks/authorDashboard/useSignin';
 import { FormEvent, useState } from 'react';
+import './Login.css';
 
 const Login = ({setAutho}:any) => {
     const [email, setEmail] = useState<string>('');
@@ -18,7 +18,7 @@ const Login = ({setAutho}:any) => {
             <div className="leftSection">
                 <h2>Login</h2>
                 <form className="form" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="UserName or Email" className="inputField" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="text" placeholder="Username or Email" className="inputField" onChange={(e) => setEmail(e.target.value)}/>
                     <input type="password" placeholder="Password" className="inputField" onChange={(e) => setPassword(e.target.value)}/>
                     <div className="rememberForgot">
                         <label>

@@ -30,7 +30,7 @@ console.log({fetchOrder})
     const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
     const data: string[][] = tableData;
     return (
-        <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="container MainContent">
+        <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="">
           {/* Header Buttons */}
           <div className="row justify-content-around" style={{ paddingTop: '40px' }}>
             {/* Submit New Manuscript Button */}

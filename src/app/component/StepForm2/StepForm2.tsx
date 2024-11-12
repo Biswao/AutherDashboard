@@ -62,10 +62,10 @@ const StepForm2 = () => {
                 <label htmlFor="keywords">Keywords *</label>
                 <input type="text" id="keywords" name="keywords" value={formData.keywords} onChange={handleChange} className="input" required />
 
-                <div className="button-group">
+                {/* <div className="button-group">
                     <button type="button" className="prev-btn">Previous</button>
                     <button type="submit" className="next-btn">Next</button>
-                </div>
+                </div> */}
             </form>
 
             <style jsx>{`

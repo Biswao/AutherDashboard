@@ -5,12 +5,12 @@ import Header from "../Header/Header";
 import "./Sidebar.css"
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { usePathname } from 'next/navigation'
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar({ active, setActive,children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const {loading,error,authorDetails} = useFetchAuthor()
+    const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
+    const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
 
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
     return (
         <div>
             {/* Header Component */}
-            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} />
+            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} initials={`${authorDetails?.first_name[0]}${authorDetails?.last_name[0]}`}/>
 
             <div className="SideabrAllign" style={{display:"flex"}}>
                 {/* Sidebar */}
@@ -90,7 +90,7 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
                 </aside>
 
                 {/* Main content area */}
-                <main className="flex-grow p-4">
+                <main className="flex-grow p-4 overflow-y-auto children-component" style={{ height: "calc(100vh - 64px)", overflowY: "hidden" }}>
                     {children}
                 </main>
             </div>
