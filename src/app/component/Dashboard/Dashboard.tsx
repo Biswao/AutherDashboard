@@ -1,5 +1,5 @@
 "use client"
-import { SidebarProps } from "@/app/utils/interfaces/types"
+import { OrderDetails, SidebarProps } from "@/app/utils/interfaces/types"
 import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
 
 
 export const Dashboard = () => {
-    const [tableData, setTableData] = useState([])
-    const {fetchOrder,error,loading}:any = useFetchOrder()
-console.log({fetchOrder})
+    const [tableData, setTableData] = useState<string[][]>([])
+    const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder()
+
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
-        let table_data = fetchOrder.map((order:any) => {
-          let arr = []
+        let table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
+          const arr = []
           arr.push(order.order_id)
           arr.push(order.service_type)
           arr.push(order.submit_date)

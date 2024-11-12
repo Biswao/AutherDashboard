@@ -2,8 +2,8 @@ import { OrderDetails } from '@/app/utils/interfaces/types';
 import { useEffect, useState } from 'react';
 
 const useFetchOrder = (email?: string) => {
-    const [fetchOrder, setFetchOrder] = useState<OrderDetails | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [fetchOrder, setFetchOrder] = useState<OrderDetails[] | null>(null);
+    const [error, setError] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
 
 
@@ -21,7 +21,7 @@ const useFetchOrder = (email?: string) => {
                     setFetchOrder(null);
                 }
             } catch (err) {
-                setError((err as Error).message);
+                setError(true);
             } finally {
                 setLoading(false);
             }
