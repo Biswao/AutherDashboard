@@ -34,4 +34,41 @@ nav ul a{
 }
 
 
+/* Sidebar styles for all devices */
+aside {
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc transparent;
+  height: 100vh; /* Ensure full viewport height */
+}
+
+/* Webkit-based browsers (Chrome, Safari, Edge) */
+aside::-webkit-scrollbar {
+  width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Ensure fixed position in mobile */
+@media (max-width: 768px) {
+  aside {
+      position: fixed;
+      z-index: 50;
+      width: 250px;
+  }
+
+  .MobileNoScroll{
+    position: absolute;
+  }
+}
+
+
+
   

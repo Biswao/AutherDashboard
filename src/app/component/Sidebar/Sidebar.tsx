@@ -13,6 +13,8 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
     const email = localStorage.getItem('email')
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
 
+    console.log({authorDetails})
+
 
     useEffect(() => {
         // Set initial sidebar state based on screen width
@@ -44,8 +46,8 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
             <div className="SideabrAllign" style={{display:"flex"}}>
                 {/* Sidebar */}
                 <aside
-                    className={`text-white h-auto transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-full sm:w-1/2 md:w-2/5 lg:w-1/5' : 'w-0 overflow-hidden'
-                        }`} style={{background:'#364D60'}}
+                    className={`text-white MobileNoScroll transform transition-transform duration-300 ease-in-out ${isOpen ? 'SidebarWidth' : 'w-0 overflow-hidden'
+                        }`} style={{background:'#364D60' , height:"95vh"}}
                 >
                     <div className="flex flex-col items-center p-4">
                        
@@ -62,10 +64,10 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
                         <nav className="w-full">
                             <ul className="w-full ulListStyle">
                                 <li className="mb-2 w-full" onClick={() => setActive('Dashboard')}>
-                                    <span className={`flex items-center py-2 px-4 ${active === "Dashboard" && "bg-teal-700"} text-left w-full`}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></span>
+                                    <span className={`flex items-center py-2 px-4 ${active === "Dashboard" && "bg-teal-700"} text-left `}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Submit Manuscript')}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Submit Manuscript" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Submit Manuscript" && "bg-teal-700"} hover:bg-gray-700 `}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => setActive('Request a Quotation')}>
                                     <span className={`flex items-center py-2 px-4 text-left ${active === "Request a Quotation" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>

@@ -15,6 +15,9 @@ import SubmitOrders from "./component/SubmitOrders/SubmitOrders";
 import Webinar from "./component/Webinar/Webinar";
 import SubmitManuscript from "./component/SubmitManuscript/SubmitManuscript";
 import { useRouter } from 'next/navigation'
+import TalkExpert from "./(OpenPages)/TalkExpert/page";
+import TalkToAnExpert from "./component/TalkExpert/TalkExpert";
+import ReferAColleague from "./component/ReferAColleague/ReferAColleague";
 
 export default function Home() {
   const [active, setActive] = useState<string>("Dashboard")
@@ -37,6 +40,8 @@ export default function Home() {
           {active && active === "View Orders Submitted" && (<SubmitOrders />)}
           {active && active === "Book a slot in Webinar" && (<Webinar />)}
           {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
+          {active && active === "Talk to an expert" && (<TalkToAnExpert/>)}
+          {active && active === "Refer A Colleague" && (<ReferAColleague/>)}
         </Sidebar>
       </>
     );

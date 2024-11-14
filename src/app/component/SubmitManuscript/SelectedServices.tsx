@@ -22,7 +22,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
   };
 
   return (
-    <div style={{ backgroundColor: '#AFD8F9' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
+    <div style={{ backgroundColor: '#AFD8F9' , marginTop:'100px' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
       <h2 className="text-lg md:text-xl font-semibold text-center">Selected Services</h2>
 
       <div className="space-y-2">

@@ -2,13 +2,17 @@ import { SidebarProps } from "@/app/utils/interfaces/types"
 import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
+import "./Dashboard.css"
 
 
 export const Dashboard = () => {
 
-    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
-    const data: string[][] = [];
-    return (
+  const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
+  const data: string[][] = [];
+  return (
+
+    <>
+      <div className="container">
         <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="">
           {/* Header Buttons */}
           <div className="row justify-content-around" style={{ paddingTop: '40px' }}>
@@ -89,8 +93,15 @@ export const Dashboard = () => {
             </div>
           </div>
 
-        {/* Orders Table */}
-        <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable"/>
+          {/* Orders Table */}
+          <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable" />
+        </div>
       </div>
-    )
+
+
+
+    </>
+
+
+  )
 }

@@ -9,8 +9,8 @@ const Coupon = () => {
     const data: string[][] = [];
 
     return (
-
-            <div className="container">
+<>
+<div className="container">
                 <div className="row">
                     <div className="col-lg-8">
                         <Table mainHeader="Your available discount coupons" headers={headers} data={data} emptyMessage="No Discounts Available " />
@@ -36,6 +36,9 @@ const Coupon = () => {
                     </div>
                 </div>
             </div>
+
+</>
+           
 
 
     );
