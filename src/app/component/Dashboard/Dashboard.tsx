@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export const Dashboard = () => {
     const [tableData, setTableData] = useState<string[][]>([])
 
-    const userId: string = localStorage.getItem("user_id") ?? ''
+    const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
 
     useEffect(() => {

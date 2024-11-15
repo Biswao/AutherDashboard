@@ -51,7 +51,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
 
             {/* Dropdown Menu */}
             {dropdownOpen && (
-              <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
+              <div className="absolute block shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded-lg max-h-96 overflow-auto" style={{ minWidth: '100px' }}>
                 <span className="dropdown-item"><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span>
                 <span className="dropdown-item"><FontAwesomeIcon icon={faCog} className="me-2" />Settings</span>
                 <span onClick={logoutHandler} className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} className="me-2" />Logout</span>
