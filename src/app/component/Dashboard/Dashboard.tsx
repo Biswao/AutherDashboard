@@ -1,18 +1,40 @@
-import { SidebarProps } from "@/app/utils/interfaces/types"
+"use client"
+import { OrderDetails, SidebarProps } from "@/app/utils/interfaces/types"
 import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
-import "./Dashboard.css"
+import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
+import { useEffect, useState } from "react";
 
 
 export const Dashboard = () => {
+    const [tableData, setTableData] = useState<string[][]>([])
 
-  const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
-  const data: string[][] = [];
-  return (
+    const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
+    const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
 
-    <>
-      <div className="container">
+    useEffect(() => {
+      if(fetchOrder && fetchOrder.length){
+        const table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
+          const arr = []
+          
+          arr.push(order.order_id)
+          arr.push(order.service_type)
+          arr.push(order.submit_date)
+          arr.push(order.delivery_date)
+          arr.push(order.status)
+
+          return arr
+        })
+        setTableData(table_data)
+      }
+    },[fetchOrder])
+
+    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
+    const data: string[][] = tableData;
+    return (
+
+      <>
         <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="">
           {/* Header Buttons */}
           <div className="row justify-content-around" style={{ paddingTop: '40px' }}>
@@ -96,7 +118,7 @@ export const Dashboard = () => {
           {/* Orders Table */}
           <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable" />
         </div>
-      </div>
+      
 
 
 

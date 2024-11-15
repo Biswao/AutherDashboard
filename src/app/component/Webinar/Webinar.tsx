@@ -9,12 +9,12 @@ const Webinar = () => {
             <div className="container">
                 <div className="webinar-container">
                     <h2 className="webinar-title">Upcoming Webinars/ Q&A Session</h2>
-                    <div className="">
+                    
                         <div className="row" style={{ gap: "61px" }}>
                             <div className="col-lg-5">
                                 <div className="webinar-cards">
 
-                                    <img src="/assets/images/A4.png" alt="#" />
+                                <img src="/shtest/assets/images/A4.png" alt="#" />
 
                                 </div>
                             </div>
@@ -37,9 +37,10 @@ const Webinar = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-10" style={{ display: "flex", justifyContent: "end", marginTop: "10px" }}>
-                            <a href="/all-webinars" className="see-all-link">See All →</a>
-                        </div>
+
+    
+                    <div className="col-lg-10" style={{ display: "flex", justifyContent: "end", marginTop: "10px" }}>
+                        <a href="/all-webinars" className="see-all-link">See All →</a>
                     </div>
                 </div>
             </div>

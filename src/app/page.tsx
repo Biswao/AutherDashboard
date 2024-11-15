@@ -28,7 +28,7 @@ export default function Home() {
   const data: string[][] = [];
 
   
-  if (!localStorage.getItem('user_id')) {
+  if (typeof window !== 'undefined' && !localStorage.getItem('user_id')) {
     router.push('/Auth');
   } else {
     return (

@@ -36,9 +36,9 @@ const MainStepFormComponent = () => {
                         pointerEvents: check ? "auto" : 'none'
                     },
                 }}>
-                <StepForm />
-                <StepForm2 />
-                <StepForm3 />
+                <StepForm setCheck={setCheck}/>
+                <StepForm2 setCheck={setCheck}/>
+                <StepForm3 setCheck={setCheck}/>
             </MultiStep>
         </div>
     )

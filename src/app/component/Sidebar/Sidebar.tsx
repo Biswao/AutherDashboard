@@ -5,12 +5,11 @@ import Header from "../Header/Header";
 import "./Sidebar.css"
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { usePathname } from 'next/navigation'
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar({ active, setActive,children }: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const email = localStorage.getItem('email')
+    const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
 
     console.log({authorDetails})

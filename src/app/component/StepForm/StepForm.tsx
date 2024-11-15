@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const StepForm = () => {
+const StepForm = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
         serviceType: 'Proofreading',
         journalFormatting: false,
@@ -14,6 +14,14 @@ const StepForm = () => {
         turnaroundTime: '',
         instructions: ''
     });
+
+    useEffect(() => {
+        if(formData.specificSubject){
+            setCheck(true)
+        }else{
+            setCheck(false)
+        }
+    },[formData])
 
     const handleChange = (e:any) => {
         const { name, value, type, checked } = e.target;
@@ -123,6 +131,7 @@ const StepForm = () => {
                     display: block;
                     margin-top: 15px;
                     margin-bottom: 5px;
+                    
                 }
                 .checkbox-label {
                     font-weight: normal;
@@ -133,7 +142,7 @@ const StepForm = () => {
                 .select,
                 .input,
                 .textarea {
-                    width: 100%;
+                    width:      100%;
                     padding: 8px;
                     margin-top: 5px;
                     border: 1px solid #ced4da;
