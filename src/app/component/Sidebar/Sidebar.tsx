@@ -92,7 +92,7 @@ export default function Sidebar({ active, setActive,children }: SidebarProps) {
                 </aside>
 
                 {/* Main content area */}
-                <main className="flex-grow p-4 overflow-y-auto children-component" style={{ height: "calc(100vh - 64px)", overflowY: "hidden" }}>
+                <main className="flex-grow p-4 overflow-y-auto children-component SidebarMain" style={{ height: "calc(100vh - 64px)", overflowY: "hidden" , width:"80%" }}>
                     {children}
                 </main>
             </div>

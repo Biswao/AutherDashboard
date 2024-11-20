@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
 import { useEffect, useState } from "react";
+import "./Dashboard.css"
 
 
 export const Dashboard = () => {

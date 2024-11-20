@@ -70,6 +70,12 @@ aside::-webkit-scrollbar-track {
 }
 
 
+@media(max-width:768px){
+  .SidebarMain{
+    width: 100% !important;
+  }
+}
+
 
 
 
