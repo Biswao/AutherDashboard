@@ -109,3 +109,16 @@ export interface CountryCodeApiResponse {
     id: string,
     country: string
 }
+
+export interface UserInteraction {
+    user_id: string;
+    subject_area: string;
+    contact_mode: string;
+    date: string;
+    time: string;
+}
+
+export interface UserInteractionResponse{
+    msg: string;
+    status: string;
+}
