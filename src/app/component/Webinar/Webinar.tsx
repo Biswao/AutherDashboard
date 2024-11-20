@@ -21,19 +21,19 @@ const Webinar = () => {
 
                             <div className="col-lg-5">
                                 <div className="webinar-cards">
-                                    <img src="/assets/images/1600x900-2.png" alt="#" />
+                                    <img src="/shtest/assets/images/1600x900-2.png" alt="#" />
                                 </div>
                             </div>
 
                             <div className="col-lg-5">
                                 <div className="webinar-cards">
-                                    <img src="/assets/images/A4 (1).png" alt="#" />
+                                    <img src="/shtest/assets/images/A4 (1).png" alt="#" />
                                 </div>
                             </div>
 
                             <div className="col-lg-5">
                                 <div className="webinar-cards">
-                                    <img src="/assets/images/A4.png" alt="#" />
+                                    <img src="/shtest/assets/images/A4.png" alt="#" />
                                 </div>
                             </div>
                         </div>

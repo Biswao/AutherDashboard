@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import "./Dashboard.css"
 
 
-export const Dashboard = () => {
+export const Dashboard = ({active,setActive}: {active: string, setActive: any}) => {
     const [tableData, setTableData] = useState<string[][]>([])
 
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
@@ -66,6 +66,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Request a Sample")}
               >
                 <FontAwesomeIcon icon={faFileSignature} style={{ marginRight: '10px' }} />
                 Request A Sample !
