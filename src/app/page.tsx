@@ -42,6 +42,7 @@ export default function Home() {
           {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
           {active && active === "Talk to an expert" && (<TalkToAnExpert/>)}
           {active && active === "Refer A Colleague" && (<ReferAColleague/>)}
+          
         </Sidebar>
       </>
     );
