@@ -56,6 +56,10 @@ aside::-webkit-scrollbar-track {
   background: transparent;
 }
 
+.ulListStyle {
+  cursor: pointer;
+}
+
 /* Ensure fixed position in mobile */
 @media (max-width: 768px) {
   aside {

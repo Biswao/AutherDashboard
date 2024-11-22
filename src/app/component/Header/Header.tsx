@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HeaderProps } from "@/app/utils/interfaces/types";
 import { FaBars, FaWallet } from "react-icons/fa";
 import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation'
+import Link from "next/link";
+import { MainContext } from "@/app/context/MainContext";
 
 export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const {active, setActive} = useContext(MainContext)
   const router = useRouter()
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
@@ -52,7 +55,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
             {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
-                <span className="dropdown-item"><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span>
+                <span className="dropdown-item" onClick={() => setActive("Update Profile")}><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span>
                 <span className="dropdown-item"><FontAwesomeIcon icon={faCog} className="me-2" />Settings</span>
                 <span onClick={logoutHandler} className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} className="me-2" />Logout</span>
               </div>

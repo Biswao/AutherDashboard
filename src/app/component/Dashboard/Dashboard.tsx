@@ -4,15 +4,17 @@ import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Dashboard.css"
+import { MainContext } from "@/app/context/MainContext";
 
 
-export const Dashboard = ({active,setActive}: {active: string, setActive: any}) => {
+export const Dashboard = () => {
     const [tableData, setTableData] = useState<string[][]>([])
 
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
+    const { active, setActive } = useContext(MainContext)
 
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){

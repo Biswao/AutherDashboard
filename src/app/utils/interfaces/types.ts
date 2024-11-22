@@ -3,8 +3,6 @@ import { ReactNode } from 'react';
 
 export interface SidebarProps {
     children: ReactNode;
-    active: string;
-    setActive: (active: string) => void;
 }
 
 export interface HeaderProps {
@@ -122,4 +120,9 @@ export interface UserInteraction {
 export interface UserInteractionResponse{
     msg: string;
     status: string;
+}
+
+export interface MainContextType{
+    active: string;
+    setActive: React.Dispatch<React.SetStateAction<string>>;
 }
