@@ -13,6 +13,7 @@ export const useFetchAuthor = (email?: string) => {
         if (!response.ok) {
           throw new Error('Failed to fetch author details');
         }
+        
 
         const data = await response.json();
         if (data && data.length > 0) {
@@ -20,7 +21,7 @@ export const useFetchAuthor = (email?: string) => {
         } else {
           setAuthorDetails(null);
         }
-      } catch (err) {
+      } catch (err) { 
         setError((err as Error).message);
       } finally {
         setLoading(false);
