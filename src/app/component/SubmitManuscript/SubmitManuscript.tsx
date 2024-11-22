@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SelectedServices from './SelectedServices';
 import { SelectedService } from '@/app/utils/interfaces/types';
 import { servicesData } from '@/app/utils/lib/lib';
@@ -10,7 +10,21 @@ import './SubmitManuscript.css'
 
 const SubmitManuscript = () => {
     const [selectedServices, setSelectedServices] = useState<SelectedService[]>([]);
+    const [selecetedServiceObject, setSelectedServiceObject] = useState<{ [key: string]: string }>({})
     const [showForm, setShowForm] = useState(false)
+
+    useEffect(() => {
+        const seleceted_service_object: { [key: string]: string } = {}
+        if (selectedServices && selectedServices.length) {
+            selectedServices.map(val => {
+                seleceted_service_object[val.name] = val.name
+            })
+
+            setSelectedServiceObject(seleceted_service_object)
+        }else if(!selectedServices.length){
+            setSelectedServiceObject({})
+        }
+    }, [selectedServices])
 
     const handleAddService = (serviceName: string, servicePrice: number) => {
         setSelectedServices((prev) => [...prev, { name: serviceName, price: servicePrice }]);
@@ -19,6 +33,8 @@ const SubmitManuscript = () => {
     const handleRemoveService = (serviceName: string) => {
         setSelectedServices((prev) => prev.filter((service) => service.name !== serviceName));
     };
+
+    console.log({selectedServices,selecetedServiceObject})
 
     return (
         <>
@@ -30,9 +46,10 @@ const SubmitManuscript = () => {
                             title={category.title}
                             services={category.services}
                             onAdd={(serviceName, servicePrice) => handleAddService(serviceName, servicePrice)}
+                            selecetedServiceObject={selecetedServiceObject}
                         />
                     ))}
-                    {showForm && <MainStepFormComponent/>}
+                    {showForm && <MainStepFormComponent />}
                 </div>
                 <div>
                     <SelectedServices selectedServices={selectedServices} onRemove={handleRemoveService} />

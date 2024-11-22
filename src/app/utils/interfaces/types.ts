@@ -89,6 +89,7 @@ export interface ServiceListProps {
     title: string;
     services: { name: string, price: number }[];
     onAdd: (service: string, price: number) => void;
+    selecetedServiceObject: {[key: string]: string}
 }
 
 export interface SignupData {
