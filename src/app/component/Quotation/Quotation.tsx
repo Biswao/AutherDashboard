@@ -6,80 +6,185 @@ const Quotation = () => {
     // const headers: string[] = ['Quotation Id', 'Service Type', 'Submit Date', 'Delivery Date'];
     // const data: string[][] = [];
     return (
-        <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-            <h2 style={{ marginBottom: "20px" }}>Request a Quotation</h2>
-            <div className="QuotationDivide" style={{ display: 'flex', gap: '50px' }}>
-                {/* Left Side - Form Fields */}
-                <div style={{ flex: '1' }}>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Full Name*</label>
-                        <input type="text" placeholder="Enter your name here" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} />
+        <div className="flex flex-col items-center justify-center min-f-screen dark">
+            <div className="w-full rounded-lg shadow-md p-6">
+                <form className="flex flex-col">
+                    <div className="flex space-x-4 mb-4">
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Service Type*
+                            </label>
+                            <select
+                                className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                id="gender"
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-sm mb-2 text-gray-700 cursor-pointer">
+                                Delivery Date*
+                            </label>
+                            <input
+                                className="text-gray-400 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                id="age"
+                                type="date"
+                            />
+                        </div>
+                        {/* <input
+                            placeholder="First Name"
+                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                            type="text"
+                        />
+                        <input
+                            placeholder="Last Name"
+                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                            type="text"
+                        /> */}
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Email Address*</label>
-                        <input type="email" placeholder="Enter your email here" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} />
+                    <div className="flex space-x-4 mb-4">
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Service Name*
+                            </label>
+                            <select
+                                className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                id="gender"
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Preferred Language*
+                            </label>
+                            <input type="radio" placeholder="American English"/>
+                            &nbsp;
+                            <label className="text-md mb-2 text-gray-700 cursor-pointer">
+                                American English
+                            </label>
+                            &nbsp;
+                            &nbsp;
+                            <input type="radio" />
+                            &nbsp;
+                            <label className="text-md mb-2 text-gray-700 cursor-pointer">
+                                British English
+                            </label>
+                        </div>
+                        {/* <input
+                            placeholder="Email"
+                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                            type="email"
+                        />
+                        <input
+                            placeholder="Confirm Email"
+                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                            type="email"
+                        /> */}
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Your Current Academic Role*</label>
-                        <select style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-                            <option>Please select your current academic role</option>
-                            <option>Student</option>
-                            <option>Researcher</option>
-                            <option>Professor</option>
-                        </select>
+                    <div className="flex space-x-4 mb-4">
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Major Subject Type *
+                            </label>
+                            <select
+                                className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                id="gender"
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Instruction for Editor
+                            </label>
+                            <textarea
+                                placeholder="Enter your message here..."
+                                className="text-gray-700 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ease-in-out duration-150"
+                            ></textarea>
+                        </div>
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Phone Number*</label>
-                        <input type="tel" placeholder="+91 (India)" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} />
+                    <div className="flex space-x-4 mb-4">
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Specific Subject Area *
+                            </label>
+                            <textarea
+                                placeholder="Enter your message here..."
+                                className="text-gray-700 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ease-in-out duration-150"
+                            ></textarea>
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Word Count
+                            </label>
+                            <input
+                                placeholder="Word Count"
+                                className="text-gray-200 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                type="text"
+                            />
+                        </div>
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Preferred Communication Method*</label>
-                        <select style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-                            <option>Select your communication method</option>
-                            <option>Email</option>
-                            <option>Phone</option>
-                        </select>
+                    <div className="flex space-x-4 mb-4">
+                        <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 w-1/2 flex flex-col items-center hover:bg-blue-200">
+                            <h3 className="text-gray-700 font-semibold mb-2">Upload Content File</h3>
+                            <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
+                            <label className="flex items-center cursor-pointer">
+                                <input type="file" className="hidden" />
+                                <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
+                                    Choose File
+                                </div>
+                                <span className="ml-2 text-gray-600">No file chosen</span>
+                            </label>
+                        </div>
+                        <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 w-1/2 flex flex-col items-center hover:bg-blue-200">
+                            <h3 className="text-gray-700 font-semibold mb-2">Upload Figure File</h3>
+                            <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
+                            <label className="flex items-center cursor-pointer">
+                                <input type="file" className="hidden" />
+                                <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
+                                    Choose File
+                                </div>
+                                <span className="ml-2 text-gray-600">No file chosen</span>
+                            </label>
+                        </div>
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Preferred Time for Contact*</label>
-                        <select style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-                            <option>Please select preferred time for contact</option>
-                            <option>Morning</option>
-                            <option>Afternoon</option>
-                            <option>Evening</option>
-                        </select>
+                    <div className="flex space-x-4 mb-4">
+                        <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 w-1/2 flex flex-col items-center hover:bg-blue-200">
+                            <h3 className="text-gray-700 font-semibold mb-2">Upload Table File</h3>
+                            <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
+                            <label className="flex items-center cursor-pointer">
+                                <input type="file" className="hidden" />
+                                <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
+                                    Choose File
+                                </div>
+                                <span className="ml-2 text-gray-600">No file chosen</span>
+                            </label>
+                        </div>
+                        <div className="w-1/2">
+                            <label className="block text-md mb-2 text-gray-700 cursor-pointer">
+                                Payment Mode *          (We will not be charging you now, we just need to know your preferred mode)
+                            </label>
+                            <select
+                                className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                                id="gender"
+                            >
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
                     </div>
-                    <div style={{ marginBottom: '15px' }}>
-                        <label>Urgency of your requirement*</label>
-                        <select style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}>
-                            <option>Please select urgency of your requirement</option>
-                            <option>Low</option>
-                            <option>Medium</option>
-                            <option>High</option>
-                        </select>
-                    </div>
-                </div>
-
-                {/* Right Side - Services */}
-                <div style={{ flex: '1' }}>
-                    <label style={{ marginBottom: "20px" }}>Service Required*</label>
-                    <div className="LabelsService" style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                        <label><input type="checkbox" /> Writing Manuscript/Thesis</label>
-                        <label><input type="checkbox" /> Data Analysis for Manuscript/Thesis</label>
-                        <label><input type="checkbox" /> Editing/Rewriting/Formatting/Proofreading</label>
-                        <label><input type="checkbox" /> Publication of Manuscript</label>
-                        <label><input type="checkbox" /> Paper from Thesis</label>
-                        <label><input type="checkbox" /> Expert Book Chapter Publishing Support</label>
-                        <label><input type="checkbox" /> PhD Support & Assistance</label>
-                    </div>
-                </div>
-            </div>
-
-            {/* Submit Button */}
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <button style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Next</button>
+                </form>
             </div>
         </div>
+
     )
 }
 

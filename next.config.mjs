@@ -4,7 +4,7 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     output: "export",
-    basePath: '/shtest/out',
+    basePath: '/shtest',
     trailingSlash: true,
 };
 

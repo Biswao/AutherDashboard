@@ -1,20 +1,24 @@
 "use client"
-import { SidebarProps } from "@/app/utils/interfaces/types"
+import { OrderDetails, SidebarProps } from "@/app/utils/interfaces/types"
 import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
 import { useEffect, useState } from "react";
+import "./Dashboard.css"
 
 
-export const Dashboard = () => {
-    const [tableData, setTableData] = useState([])
-    const {fetchOrder,error,loading}:any = useFetchOrder()
-console.log({fetchOrder})
+export const Dashboard = ({active,setActive}: {active: string, setActive: any}) => {
+    const [tableData, setTableData] = useState<string[][]>([])
+
+    const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
+    const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
+
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
-        let table_data = fetchOrder.map((order:any) => {
-          let arr = []
+        const table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
+          const arr = []
+          
           arr.push(order.order_id)
           arr.push(order.service_type)
           arr.push(order.submit_date)
@@ -30,6 +34,8 @@ console.log({fetchOrder})
     const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
     const data: string[][] = tableData;
     return (
+
+      <>
         <div style={{ margin: 'auto', padding: '20px', fontFamily: 'Arial, sans-serif' }} className="">
           {/* Header Buttons */}
           <div className="row justify-content-around" style={{ paddingTop: '40px' }}>
@@ -60,6 +66,7 @@ console.log({fetchOrder})
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Request a Sample")}
               >
                 <FontAwesomeIcon icon={faFileSignature} style={{ marginRight: '10px' }} />
                 Request A Sample !
@@ -110,8 +117,15 @@ console.log({fetchOrder})
             </div>
           </div>
 
-        {/* Orders Table */}
-        <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable"/>
-      </div>
-    )
+          {/* Orders Table */}
+          <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable" />
+        </div>
+      
+
+
+
+    </>
+
+
+  )
 }

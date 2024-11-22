@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const StepForm3 = () => {
+const StepForm3 = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
         billingName: '',
         billingAddress1: '',
@@ -11,6 +11,14 @@ const StepForm3 = () => {
         zipCode: '',
         country: ''
     });
+
+    useEffect(() => {
+        if(formData.billingName){
+            setCheck(true)
+        }else{
+            setCheck(false)
+        }
+    },[formData])
 
     const handleChange = (e:any) => {
         const { name, value } = e.target;

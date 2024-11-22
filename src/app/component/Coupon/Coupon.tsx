@@ -9,7 +9,7 @@ const Coupon = () => {
     const data: string[][] = [];
 
     return (
-
+        <>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8">
@@ -26,7 +26,7 @@ const Coupon = () => {
                         </div>
 
 
-                        <div className="info-card" style={{marginTop:"30px"}}>
+                        <div className="info-card" style={{ marginTop: "30px" }}>
                             <div className="info-card-header">
                                 <span className="info-icon">i</span>
                                 <h5>Avail Discounts</h5>
@@ -36,6 +36,9 @@ const Coupon = () => {
                     </div>
                 </div>
             </div>
+
+        </>
+
 
 
     );

@@ -89,6 +89,7 @@ export interface ServiceListProps {
     title: string;
     services: { name: string, price: number }[];
     onAdd: (service: string, price: number) => void;
+    selecetedServiceObject: {[key: string]: string}
 }
 
 export interface SignupData {
@@ -108,4 +109,17 @@ export interface SignupResponse {
 export interface CountryCodeApiResponse {
     id: string,
     country: string
+}
+
+export interface UserInteraction {
+    user_id: string;
+    subject_area: string;
+    contact_mode: string;
+    date: string;
+    time: string;
+}
+
+export interface UserInteractionResponse{
+    msg: string;
+    status: string;
 }
