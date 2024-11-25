@@ -1,12 +1,31 @@
+"use client"
 import { useState } from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
 import "./TalkExpert.css"
+import usePostTalkExpert from "@/app/hooks/authorDashboard/usePostTalkExpert";
 
 export default function TalkToAnExpert() {
     const [subjectArea, setSubjectArea] = useState("");
     const [modeOfContact, setModeOfContact] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
+
+    const { talkToExpert, loading, error } = usePostTalkExpert();
+
+
+    const postExpertHandler = async() => {
+        if(typeof window !== 'undefined'){
+            const requestBody = {
+                user_id: localStorage.getItem("user_id") ?? "",
+                subject_area: subjectArea,
+                contact_mode: modeOfContact,
+                date: date,
+                time: time,
+            };
+
+            await talkToExpert(requestBody);
+        }
+    }
 
     return (
         <div className="container">
@@ -67,7 +86,7 @@ export default function TalkToAnExpert() {
                         </div>
 
                         {/* Submit Button */}
-                        <button className="submit-btn">Submit Request</button>
+                        <button className="submit-btn" onClick={postExpertHandler}>Submit Request</button>
                     </div>
                 </div>
             </div>

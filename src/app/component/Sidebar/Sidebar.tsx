@@ -1,16 +1,18 @@
 "use client";
 import { SidebarProps } from "@/app/utils/interfaces/types";
-import { useState , useEffect } from "react";
+import { useState , useEffect, useContext } from "react";
 import Header from "../Header/Header";
 import "./Sidebar.css"
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import { MainContext } from "@/app/context/MainContext";
 
-export default function Sidebar({ active, setActive,children }: SidebarProps) {
+export default function Sidebar({children}: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
+    const {active, setActive} = useContext(MainContext)
 
     console.log({authorDetails})
 

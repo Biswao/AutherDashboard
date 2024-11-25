@@ -4,8 +4,9 @@ import Table from "../Table/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faFileInvoice, faFileSignature } from "@fortawesome/free-solid-svg-icons";
 import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Dashboard.css"
+import { MainContext } from "@/app/context/MainContext";
 
 
 export const Dashboard = () => {
@@ -13,6 +14,7 @@ export const Dashboard = () => {
 
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
+    const { active, setActive } = useContext(MainContext)
 
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
@@ -66,6 +68,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Request a Sample")}
               >
                 <FontAwesomeIcon icon={faFileSignature} style={{ marginRight: '10px' }} />
                 Request A Sample !

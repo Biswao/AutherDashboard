@@ -1,4 +1,6 @@
+"use client"
 import { ServiceListProps } from "@/app/utils/interfaces/types";
+import { useEffect, useState } from "react";
 
 const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => (
   
