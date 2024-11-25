@@ -1,10 +1,55 @@
+"use client"
 import Sidebar from "@/app/component/Sidebar/Sidebar"
 import Table from "@/app/component/Table/Table";
 import "./Quotation.css"
+import useQuotation from "@/app/hooks/authorDashboard/useQuotation";
+import { useEffect, useState } from "react";
+import { majorSubjectTypeOptions } from "@/app/utils/lib/lib";
+import { GroupedOption } from "@/app/utils/interfaces/types";
+import Select from "react-select";
 
 const Quotation = () => {
     // const headers: string[] = ['Quotation Id', 'Service Type', 'Submit Date', 'Delivery Date'];
     // const data: string[][] = [];
+    const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
+    const [formData, setFormData] = useState({
+        user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined,
+        order_type: "quote",
+        service_type: "",
+        service_name: "",
+        major_subject: "",
+        specific_subject: "",
+        delivery_date: "",
+        language: "",
+        inst_for_editor: "",
+        word_count: "",
+        pay_mode: "",
+        upld_content_file: null,
+        upld_figure_file: null,
+        upld_table_file: null,
+    });
+    const { loading, error, serviceType, getServiceNameById, serviceName, majorSubjectType } = useQuotation()
+
+    useEffect(() => {
+        if (majorSubjectType && majorSubjectType.length) {
+            const majorSubjectDropdownData = majorSubjectTypeOptions(majorSubjectType)
+            setMajorSubjectDropdown(majorSubjectDropdownData)
+        }
+    }, [majorSubjectType])
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, files } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: files ? files[0] : null }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+    };
     return (
         <div className="flex flex-col items-center justify-center min-f-screen dark">
             <div className="w-full rounded-lg shadow-md p-6">
@@ -17,10 +62,15 @@ const Quotation = () => {
                             <select
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="gender"
+                                name="service_type"
+                                onChange={(e) => {
+                                    getServiceNameById(e.target.value)
+                                    handleChange(e)
+                                }}
                             >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                {serviceType && serviceType.length && serviceType.map(val => (
+                                    <option value={val.id}>{val.name}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="w-1/2">
@@ -30,19 +80,12 @@ const Quotation = () => {
                             <input
                                 className="text-gray-400 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="age"
+                                name="delivery_date"
                                 type="date"
+                                value={formData.delivery_date}
+                                onChange={handleChange}
                             />
                         </div>
-                        {/* <input
-                            placeholder="First Name"
-                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-                            type="text"
-                        />
-                        <input
-                            placeholder="Last Name"
-                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-                            type="text"
-                        /> */}
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/2">
@@ -53,16 +96,16 @@ const Quotation = () => {
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="gender"
                             >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                {serviceName && serviceName.length && serviceName.map(val => (
+                                    <option value={val.id}>{val.service_name}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="w-1/2">
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Preferred Language*
                             </label>
-                            <input type="radio" placeholder="American English"/>
+                            <input type="radio" placeholder="American English" />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 American English
@@ -91,14 +134,10 @@ const Quotation = () => {
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Major Subject Type *
                             </label>
-                            <select
-                                className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                            <Select
                                 id="gender"
-                            >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
+                                options={majorSubjectDropdown}
+                            />
                         </div>
                         <div className="w-1/2">
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
@@ -175,10 +214,18 @@ const Quotation = () => {
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="gender"
                             >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                <option value="debit">Debit</option>
+                                <option value="credit">Credit</option>
                             </select>
+
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform hover:scale-105"
+                                >
+                                    Submit
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>
