@@ -176,3 +176,8 @@ export interface QuotationData {
     upld_figure_file: File | null;
     upld_table_file: File | null;
 }
+
+export interface updateAuthorDetailsResponse {
+    status: boolean
+    msg: string
+}

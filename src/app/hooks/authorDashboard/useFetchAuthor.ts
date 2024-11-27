@@ -1,4 +1,4 @@
-import { AuthorDetails } from '@/app/utils/interfaces/types';
+import { AuthorDetails, updateAuthorDetailsResponse } from '@/app/utils/interfaces/types';
 import { useState, useEffect } from 'react';
 
 export const useFetchAuthor = (email?: string) => {
@@ -32,5 +32,30 @@ export const useFetchAuthor = (email?: string) => {
     }
   };
 
-  return { authorDetails, error, loading };
+  const updateAuthorDetails = async(data: any) =>  {
+    setLoading(true)
+    try {
+      const res = await fetch('https://www.secure.manuscriptedit.com/api/update_user_details.php',{
+        method:"POST",
+        headers:{"Content-type":"application/json"},
+        body: JSON.stringify(data)
+      })
+  
+      const response: updateAuthorDetailsResponse[] = await res.json();
+
+      if(response[0].status){
+        return 
+      }else{
+        return
+      }
+    } catch (error) {
+      setError((error as Error).message)
+    } finally {
+      setLoading(false)
+    }
+
+
+  }
+
+  return { authorDetails, error, loading, updateAuthorDetails };
 };

@@ -7,6 +7,7 @@ import { MainContext } from "@/app/context/MainContext";
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 
 const UpdateProfile = () => {
+   
     const [password, setPassword] = useState(true);
     const [formData, setFormData] = useState({
         user_id: "",
@@ -30,7 +31,7 @@ const UpdateProfile = () => {
     });
     const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const user_id = typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined
-    const { loading, error, authorDetails } = useFetchAuthor(email ?? undefined)
+    const { loading, error, authorDetails, updateAuthorDetails } = useFetchAuthor(email ?? undefined)
     const { active, setActive } = useContext(MainContext)
     console.log({ activecheck: active })
 
@@ -64,10 +65,11 @@ const UpdateProfile = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         console.log("Updated Data:", formData);
         // Add logic to submit the updated form data
+        await updateAuthorDetails(formData)
     };
 
     function ClickToogle() {
@@ -91,16 +93,12 @@ const UpdateProfile = () => {
                                     className="profile-img"
                                 />
                             </div>
-                            <h3 className="profile-name">Sita Sahoo</h3>
+                            <h3 className="profile-name">{formData.user_name}</h3>
                             <p className="profile-member">Member since Sep. 2024</p>
                             <div className="profile-info">
                                 <div>
                                     <span>Username:</span>
-                                    <p>ashutoshsahuu88@gmail.com</p>
-                                </div>
-                                <div>
-                                    <span>Password:</span>
-                                    <p>********</p>
+                                    <p>{formData.email}</p>
                                 </div>
                             </div>
                             <button className="change-password-btn" onClick={ClickToogle}>{password ? "Change Password" : "Personal Information"}</button>
@@ -231,7 +229,7 @@ const UpdateProfile = () => {
                                     <input type="text" placeholder="Confirm new password" />
                                 </div>
 
-                                <button className="bg-primary updateButton">Update</button>
+                                <button className="bg-primary updateButton" onClick={handleSubmit}>Update</button>
                             </form>
                         </div>}
                     </div>
