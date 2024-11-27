@@ -215,3 +215,8 @@ export interface countryListType {
     id: string
     country: string
 }
+
+export interface updateAuthorDetailsResponse {
+    status: boolean
+    msg: string
+}

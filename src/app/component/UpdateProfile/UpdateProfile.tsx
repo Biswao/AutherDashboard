@@ -7,6 +7,7 @@ import { MainContext } from "@/app/context/MainContext";
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 
 const UpdateProfile = () => {
+   
     const [password, setPassword] = useState(true);
     const [formData, setFormData] = useState({
         user_id: "",
@@ -30,7 +31,7 @@ const UpdateProfile = () => {
     });
     const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const user_id = typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined
-    const { loading, error, authorDetails } = useFetchAuthor(email ?? undefined)
+    const { loading, error, authorDetails, updateAuthorDetails } = useFetchAuthor(email ?? undefined)
     const { active, setActive } = useContext(MainContext)
     console.log({ activecheck: active })
 
@@ -64,10 +65,11 @@ const UpdateProfile = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
         console.log("Updated Data:", formData);
         // Add logic to submit the updated form data
+        await updateAuthorDetails(formData)
     };
 
     function ClickToogle() {
@@ -91,16 +93,12 @@ const UpdateProfile = () => {
                                     className="profile-img"
                                 />
                             </div>
-                            <h3 className="profile-name">Sita Sahoo</h3>
+                            <h3 className="profile-name">{formData.user_name}</h3>
                             <p className="profile-member">Member since Sep. 2024</p>
                             <div className="profile-info">
                                 <div>
                                     <span>Username:</span>
-                                    <p>ashutoshsahuu88@gmail.com</p>
-                                </div>
-                                <div>
-                                    <span>Password:</span>
-                                    <p>********</p>
+                                    <p>{formData.email}</p>
                                 </div>
                             </div>
                             <button className="change-password-btn" onClick={ClickToogle}>{password ? "Change Password" : "Personal Information"}</button>
@@ -110,15 +108,15 @@ const UpdateProfile = () => {
                             <form>
                                 <div className="form-group">
                                     <label>Institution</label>
-                                    <input type="text" placeholder="Institution" value={formData.institution} onChange={handleInputChange} />
+                                    <input name="institution" type="text" placeholder="Institution" value={formData.institution} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Department</label>
-                                    <input type="text" placeholder="Department" value={formData.department} onChange={handleInputChange} />
+                                    <input name="department" type="text" placeholder="Department" value={formData.department} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Primary Affiliation</label>
-                                    <select value={formData.affiliation} onChange={handleInputChange}>
+                                    <select name="affiliation" value={formData.affiliation} onChange={handleInputChange}>
                                         <option value="">--Select--</option>
                                         <option value="Academic">Academic</option>
                                         <option value="Government">Government</option>
@@ -129,7 +127,7 @@ const UpdateProfile = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Primary Position</label>
-                                    <select value={formData.position} onChange={handleInputChange}>
+                                    <select name="position" value={formData.position} onChange={handleInputChange}>
                                         <option value="professor emeritus">Professor Emeritus</option>
                                         <option value="full professor">Full Professor</option>
                                         <option value="associate professor">Associate Professor</option>
@@ -148,68 +146,69 @@ const UpdateProfile = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Address Line 1</label>
-                                    <input type="text" placeholder="Address Line 1" value={formData.address1} onChange={handleInputChange} />
+                                    <input name="address1" type="text" placeholder="Address Line 1" value={formData.address1} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Address Line 2</label>
-                                    <input type="text" placeholder="Address Line 2" value={formData.address2} onChange={handleInputChange} />
+                                    <input name="address2" type="text" placeholder="Address Line 2" value={formData.address2} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>City</label>
-                                    <input type="text" placeholder="City" value={formData.city} onChange={handleInputChange} />
+                                    <input name="city" type="text" placeholder="City" value={formData.city} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>State/Province</label>
-                                    <input type="text" placeholder="State/Province" value={formData.state} onChange={handleInputChange} />
+                                    <input name="state" type="text" placeholder="State/Province" value={formData.state} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Zip/Postal Code</label>
-                                    <input type="text" placeholder="Zip/Postal Code" value={formData.pin} onChange={handleInputChange} />
+                                    <input name="pin" type="text" placeholder="Zip/Postal Code" value={formData.pin} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Country</label>
-                                    <input type="text" placeholder="Country" value={formData.country} onChange={handleInputChange} />
+                                    <input name="country" type="text" placeholder="Country" value={formData.country} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Phone</label>
-                                    <input type="text" placeholder="Phone" value={formData.phone} onChange={handleInputChange} />
+                                    <input name="phone" type="text" placeholder="Phone" value={formData.phone} onChange={handleInputChange} />
                                 </div>
                                 {/* <div className="form-group">
-                                    <label>Fax</label>
-                                    <input type="text" placeholder="Fax" />
-                                </div> */}
+    <label>Fax</label>
+    <input name="fax" type="text" placeholder="Fax" />
+</div> */}
                                 <div className="form-group">
                                     <label>Preferred Email ID</label>
-                                    <input type="email" value={formData.email} onChange={handleInputChange} />
+                                    <input name="email" type="email" value={formData.email} onChange={handleInputChange} />
                                 </div>
 
                                 <div className="form-group">
                                     <label>Alternate Email ID</label>
-                                    <input type="email" value={formData.alt_email} onChange={handleInputChange} />
+                                    <input name="alt_email" type="email" value={formData.alt_email} onChange={handleInputChange} />
                                 </div>
 
                                 {/* <div className="form-group">
-                                    <label>Website URL</label>
-                                    <input type="text" value="" />
-                                </div> */}
+    <label>Website URL</label>
+    <input name="website" type="text" value="" />
+</div> */}
 
                                 <div className="mt-5"></div>
 
                                 <h3>Additional Billing Information</h3>
                                 <div className="form-group">
                                     <label>Contact Name</label>
-                                    <input type="text" placeholder="Contact Name" value={formData.c_name} onChange={handleInputChange} />
+                                    <input name="c_name" type="text" placeholder="Contact Name" value={formData.c_name} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Contact Phone</label>
-                                    <input type="text" placeholder="Contact Phone" value={formData.c_phone} onChange={handleInputChange} />
+                                    <input name="c_phone" type="text" placeholder="Contact Phone" value={formData.c_phone} onChange={handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label>Contact Email</label>
-                                    <input type="text" placeholder="Contact Email" value={formData.c_email} onChange={handleInputChange} />
+                                    <input name="c_email" type="text" placeholder="Contact Email" value={formData.c_email} onChange={handleInputChange} />
                                 </div>
 
-                                <button className="bg-primary updateButton">Update</button>
+
+                                <button className="bg-primary updateButton" onClick={handleSubmit}>Update</button>
                             </form>
                         </div>}
                         {!password && <div className="profile-form">
@@ -230,7 +229,7 @@ const UpdateProfile = () => {
                                     <input type="text" placeholder="Confirm new password" />
                                 </div>
 
-                                <button className="bg-primary updateButton">Update</button>
+                                <button className="bg-primary updateButton" onClick={handleSubmit}>Update</button>
                             </form>
                         </div>}
                     </div>
