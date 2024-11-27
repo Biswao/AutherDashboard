@@ -1,4 +1,4 @@
-import { ServiceCategory } from "../interfaces/types";
+import { ServiceCategory, SubjectGroup } from "../interfaces/types";
 
 export const servicesData: ServiceCategory[] = [
     {
@@ -29,3 +29,15 @@ export const servicesData: ServiceCategory[] = [
         ]
     }
 ];
+
+export const majorSubjectTypeOptions = (data:SubjectGroup[]) => {
+    const groupedOptions = data.map(({ subject, sub_subjects }) => ({
+        label: subject,
+        options: sub_subjects.map(sub => {
+            const [key, value] = Object.entries(sub)[0];
+            return { value: key, label: value };
+        })
+    }));
+
+    return groupedOptions
+}
