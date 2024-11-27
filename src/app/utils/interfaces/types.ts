@@ -161,7 +161,7 @@ export interface GroupedOption {
 }
 
 export interface QuotationData {
-    user_id: string;
+    user_id: string | null;
     order_type: string;
     service_type: string;
     service_name: string;
@@ -175,4 +175,43 @@ export interface QuotationData {
     upld_content_file: File | null;
     upld_figure_file: File | null;
     upld_table_file: File | null;
+}
+
+export interface FileUploadResponse {
+    Message: string;
+    FileUrl: string
+}
+
+export interface SubmitManuscriptRequest {
+    user_id: string;
+    order_type: string;
+    service_type: string;
+    service_name: string;
+    journal_format: string;
+    major_subject: string;
+    specific_subject: string;
+    language: string;
+    word_count: string;
+    total_price: string;
+    turn_ar_time: string;
+    inst_for_editor: string;
+    upld_content_file: string;
+    upld_figure_file: string;
+    upld_table_file: string;
+    title: string;
+    abstract: string;
+    keyword: string;
+    bill_name: string;
+    bill_addr1: string;
+    bill_addr2: string;
+    bill_phone: string;
+    bill_city: string;
+    bill_state: string;
+    bill_zip: string;
+    bill_country: string;
+};
+
+export interface countryListType {
+    id: string
+    country: string
 }

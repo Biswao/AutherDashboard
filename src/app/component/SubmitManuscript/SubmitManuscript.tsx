@@ -7,11 +7,24 @@ import { servicesData } from '@/app/utils/lib/lib';
 import ServiceList from './ServiceList';
 import MainStepFormComponent from '../MainStepFormComponent/MainStepFormComponent';
 import './SubmitManuscript.css'
+import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
 
 const SubmitManuscript = () => {
     const [selectedServices, setSelectedServices] = useState<SelectedService[]>([]);
-    const [selecetedServiceObject, setSelectedServiceObject] = useState<{ [key: string]: string }>({})
-    const [showForm, setShowForm] = useState(false)
+    const [selecetedServiceObject, setSelectedServiceObject] = useState<{ [key: string]: string }>({})       
+    const [stepFormData, setStepFormData] = useState<any>()
+    const [showForm, setShowForm] = useState<boolean>(false)
+    const [totalPrice, setTotalPrice] = useState<number>()
+
+    useEffect(() => {
+        let sum = 0
+        if(selectedServices && selectedServices.length){
+            sum = selectedServices.reduce( (accumulator, currentValue) => accumulator + currentValue.price,0)
+        }
+
+        setTotalPrice(sum)
+    })
+
 
     useEffect(() => {
         const seleceted_service_object: { [key: string]: string } = {}
@@ -34,10 +47,17 @@ const SubmitManuscript = () => {
         setSelectedServices((prev) => prev.filter((service) => service.name !== serviceName));
     };
 
-    console.log({selectedServices,selecetedServiceObject})
+    console.log({selectedServices,totalPrice})
+
+    const formDataObject: any = {
+        stepFormData,
+        setStepFormData,
+        totalPrice,
+        setTotalPrice
+    }
 
     return (
-        <>
+        <SubmitManuscriptContext.Provider value={formDataObject}>
             <div className="mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="lg:col-span-2 space-y-4">
                     {!showForm && servicesData.map((category) => (
@@ -62,7 +82,7 @@ const SubmitManuscript = () => {
 
                 </div>
             </button>
-        </>
+        </SubmitManuscriptContext.Provider>
     );
 };
 
