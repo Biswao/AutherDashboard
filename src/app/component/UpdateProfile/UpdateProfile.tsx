@@ -64,7 +64,7 @@ const UpdateProfile = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Updated Data:", formData);
         // Add logic to submit the updated form data
