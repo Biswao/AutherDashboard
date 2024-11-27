@@ -13,11 +13,15 @@ const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => 
           <button style={{ backgroundColor: '#0D5086' }} onClick={() => {
             if (service.name === 'Customized Editing Service') {
               setActive("Request a Quotation")
-            } else {
+            } else if (service.name === 'Illustration & Enhancement'){
+              setActive("Request a Quotation")
+            }
+             else {
               onAdd(service.name, service.price);
             }
           }} className="text-white px-4 py-1 rounded-lg">
-            {service.name === 'Customized Editing Service' ? "yes" : "Add"}
+            {service.name === 'Customized Editing Service' || service.name === 'Illustration & Enhancement' ? "yes" : "Add"}
+            
           </button>
         </div>
       ))}

@@ -22,6 +22,7 @@ import SampleRequest from "./component/SampleRquest/SampleRequest";
 import { MainContext } from "./context/MainContext";
 import { MainContextType } from "./utils/interfaces/types";
 import UpdateProfile from "./component/UpdateProfile/UpdateProfile";
+import PublicationForm from "./component/JournalPublicationForm/JournalPublicationForm";
 
 export default function Home() {
   const [active, setActive] = useState<string>("Dashboard")
@@ -41,7 +42,8 @@ export default function Home() {
     router.push('/Auth');
   } else {
     return (
-      <MainContext.Provider value={obj}>
+      <>
+            <MainContext.Provider value={obj}>
         <Sidebar>
           {active && active === "Dashboard" && (<Dashboard />)}
           {active && active === "Coupon Center" && (<Coupon />)}
@@ -55,6 +57,10 @@ export default function Home() {
           {active && active === "Update Profile" && (<UpdateProfile />)}
         </Sidebar>
       </MainContext.Provider>
+
+      
+      </>
+
     );
   }
 }

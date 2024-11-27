@@ -7,6 +7,8 @@ import { servicesData } from '@/app/utils/lib/lib';
 import ServiceList from './ServiceList';
 import MainStepFormComponent from '../MainStepFormComponent/MainStepFormComponent';
 import './SubmitManuscript.css'
+import PublicationSupportForm from '../PublicationSupportForm/PublicationSupportForm';
+import PublicationForm from '../JournalPublicationForm/JournalPublicationForm';
 
 const SubmitManuscript = () => {
     const [selectedServices, setSelectedServices] = useState<SelectedService[]>([]);
@@ -62,6 +64,12 @@ const SubmitManuscript = () => {
 
                 </div>
             </button>
+
+
+
+
+
+
         </>
     );
 };
