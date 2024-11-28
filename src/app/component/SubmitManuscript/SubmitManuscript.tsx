@@ -8,6 +8,8 @@ import ServiceList from './ServiceList';
 import MainStepFormComponent from '../MainStepFormComponent/MainStepFormComponent';
 import './SubmitManuscript.css'
 import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
+import PublicationSupportForm from '../PublicationSupportForm/PublicationSupportForm';
+import PublicationForm from '../JournalPublicationForm/JournalPublicationForm';
 
 const SubmitManuscript = () => {
     const [selectedServices, setSelectedServices] = useState<SelectedService[]>([]);

@@ -17,7 +17,8 @@ const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => 
               onAdd(service.name, service.price,title);
             }
           }} className="text-white px-4 py-1 rounded-lg">
-            {service.name === 'Customized Editing Service' ? "yes" : "Add"}
+            {service.name === 'Customized Editing Service' || service.name === 'Illustration & Enhancement' ? "yes" : "Add"}
+            
           </button>
         </div>
       ))}
