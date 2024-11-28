@@ -15,6 +15,7 @@ const SubmitManuscript = () => {
     const [stepFormData, setStepFormData] = useState<any>()
     const [showForm, setShowForm] = useState<boolean>(false)
     const [totalPrice, setTotalPrice] = useState<number>()
+    const [serviceTitle, setServiceTitle] = useState<string>("")
 
     useEffect(() => {
         let sum = 0
@@ -39,21 +40,23 @@ const SubmitManuscript = () => {
         }
     }, [selectedServices])
 
-    const handleAddService = (serviceName: string, servicePrice: number) => {
+    const handleAddService = (serviceName: string, servicePrice: number,title: string) => {
         setSelectedServices((prev) => [...prev, { name: serviceName, price: servicePrice }]);
+        setShowForm(!showForm)
+        setServiceTitle(title)
     };
 
     const handleRemoveService = (serviceName: string) => {
         setSelectedServices((prev) => prev.filter((service) => service.name !== serviceName));
     };
 
-    console.log({selectedServices,totalPrice})
 
     const formDataObject: any = {
         stepFormData,
         setStepFormData,
         totalPrice,
-        setTotalPrice
+        setTotalPrice,
+        serviceTitle
     }
 
     return (
@@ -65,7 +68,7 @@ const SubmitManuscript = () => {
                             key={category.title}
                             title={category.title}
                             services={category.services}
-                            onAdd={(serviceName, servicePrice) => handleAddService(serviceName, servicePrice)}
+                            onAdd={(serviceName: string, servicePrice: number,title: string) => handleAddService(serviceName, servicePrice,title)}
                             selecetedServiceObject={selecetedServiceObject}
                         />
                     ))}

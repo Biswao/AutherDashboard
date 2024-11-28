@@ -66,10 +66,12 @@ export interface UseAuthReturn {
 export interface Service {
     name: string;
     price: number;
+    id?: string;
 }
 
 export interface ServiceCategory {
     title: string;
+    id?: string;
     services: Service[];
 }
 
@@ -86,7 +88,7 @@ export interface SelectedService {
 export interface ServiceListProps {
     title: string;
     services: { name: string, price: number }[];
-    onAdd: (service: string, price: number) => void;
+    onAdd: (service: string, price: number,title: string) => void;
     selecetedServiceObject: { [key: string]: string }
 }
 

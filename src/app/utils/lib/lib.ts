@@ -3,29 +3,30 @@ import { ServiceCategory, SubjectGroup } from "../interfaces/types";
 export const servicesData: ServiceCategory[] = [
     {
         title: "Editing Services",
+        id: "1",
         services: [
-            { name: "Proofreading", price: 50 },
-            { name: "Substantive Editing", price: 100 },
-            { name: "Extensive Substantive Editing", price: 150 },
+            { name: "Proofreading", price: 50, id: "9" },
+            { name: "Substantive Editing", price: 100, id: "104" },
+            { name: "Extensive Substantive Editing", price: 150, id: "8" },
             { name: "Customized Editing Service", price: 200 }
         ]
     },
     {
         title: "Journal Publication Packages",
         services: [
-            { name: "Standard Publication Package", price: 250 },
-            { name: "Advanced Publication Package", price: 300 },
-            { name: "Premium Publication Package", price: 400 },
-            { name: "Premium Plus Publication Package", price: 500 },
+            { name: "Standard Publication Package", price: 250, id: "187" },
+            { name: "Advanced Publication Package", price: 300, id: "186" },
+            { name: "Premium Publication Package", price: 400, id: "185" },
+            { name: "Premium Plus Publication Package", price: 500, id: "332" },
             { name: "Book Publication Package", price: 350 }
         ]
     },
     {
         title: "Publication Support Services",
         services: [
-            { name: "Journal Publication", price: 80 },
-            { name: "Formatting Service", price: 60 },
-            { name: "Illustration & Enhancement", price: 120 }
+            { name: "Journal Publication", price: 80, id: '5' },
+            { name: "Formatting Service", price: 60, id: "3" },
+            { name: "Illustration & Enhancement", price: 120, id: "169" }
         ]
     }
 ];
