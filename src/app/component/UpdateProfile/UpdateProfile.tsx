@@ -5,9 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { MainContext } from "@/app/context/MainContext";
 import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
+import { useFetchCountryCode } from "@/app/hooks/authorDashboard/useFetchCountryCode";
 
 const UpdateProfile = () => {
-   
+
     const [password, setPassword] = useState(true);
     const [formData, setFormData] = useState({
         user_id: "",
@@ -28,10 +29,13 @@ const UpdateProfile = () => {
         c_name: "",
         c_phone: "",
         c_email: "",
+        web_url: "www.manuscript.com",
+        fax: ""
     });
     const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const user_id = typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined
     const { loading, error, authorDetails, updateAuthorDetails } = useFetchAuthor(email ?? undefined)
+    const { countryCode } = useFetchCountryCode()
     const { active, setActive } = useContext(MainContext)
     console.log({ activecheck: active })
 
@@ -48,7 +52,7 @@ const UpdateProfile = () => {
                 address2: authorDetails.address2 || "",
                 city: authorDetails.city || "",
                 state: authorDetails.state || "",
-                country: authorDetails.country || "",
+                country: countryCode?.filter(country => country.country === authorDetails?.country)[0].id || "",
                 pin: authorDetails.pin || "",
                 phone: authorDetails.phone || "",
                 email: authorDetails.email || "",
@@ -56,6 +60,8 @@ const UpdateProfile = () => {
                 c_name: authorDetails.c_name || "",
                 c_phone: authorDetails.c_phone || "",
                 c_email: authorDetails.c_email || "",
+                web_url: "www.manuscript.com",
+                fax: ""
             });
         }
     }, [authorDetails]);
@@ -65,11 +71,11 @@ const UpdateProfile = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = async(e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Updated Data:", formData);
         // Add logic to submit the updated form data
-        await updateAuthorDetails(formData)
+        updateAuthorDetails(formData)
     };
 
     function ClickToogle() {
@@ -79,7 +85,7 @@ const UpdateProfile = () => {
 
     return (
         <>
-            {loading ? <h1>Loading...</h1> :
+            {loading && countryCode && countryCode.length ? <h1>Loading...</h1> :
                 (<div className="profile-container">
                     <div className="profile-header">
                         <h2>User Profile</h2>
@@ -166,7 +172,16 @@ const UpdateProfile = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Country</label>
-                                    <input name="country" type="text" placeholder="Country" value={formData.country} onChange={handleInputChange} />
+                                    <select name="country" onChange={handleInputChange} value={countryCode?.filter(country => country.country === authorDetails?.country)[0].id}>
+                                        <option>--Select--</option>
+                                        {
+                                            countryCode && countryCode.length && countryCode.map(country => {
+                                                return (
+                                                    <option value={country.id}>{country.country}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label>Phone</label>

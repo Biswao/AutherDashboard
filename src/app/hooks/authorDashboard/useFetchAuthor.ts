@@ -14,7 +14,7 @@ export const useFetchAuthor = (email?: string) => {
 
   const fetchAuthorDetails = async () => {
     try {
-      const response = await fetch(`https://www.secure.manuscriptedit.com/api/author_details.php?email_id=${email}`);
+      const response = await fetch(`https://www.secure.manuscriptedit.com/api/author_details.php?email_id=${email}`,{cache: 'no-store'});
       if (!response.ok) {
         throw new Error('Failed to fetch author details');
       }
@@ -44,9 +44,9 @@ export const useFetchAuthor = (email?: string) => {
       const response: updateAuthorDetailsResponse[] = await res.json();
 
       if(response[0].status){
-        return 
+        fetchAuthorDetails()
       }else{
-        return
+        fetchAuthorDetails()
       }
     } catch (error) {
       setError((error as Error).message)
