@@ -10,7 +10,7 @@ const PublicationForm = () => {
 
   const { submitQuotationJournalPublicationPackage } = useManuscript()
 
-  const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree} = useContext(SubmitManuscriptContext)
+  const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree, selectedService} = useContext(SubmitManuscriptContext)
 
   const handleInputChange = (e:any) => {
     const { name, value } = e.target;
@@ -43,8 +43,7 @@ const PublicationForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option>Standard Package</option>
-            <option>Premium Package</option>
+            <option>{selectedService}</option>
           </select>
         </div>
 

@@ -1,6 +1,7 @@
 "use client"
 import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
 const useQuotation = () => {
@@ -154,10 +155,14 @@ const useQuotation = () => {
             }
 
             const data = await response.json();
-            console.log("Quotation submitted successfully:", data);
+            if(data){
+                toast.success("Quotation Submitted!!")
+                window.location.reload()
+            }
         } catch (err: any) {
             console.error("Error:", err);
             setError(err.message || "Something went wrong.");
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }

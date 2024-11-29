@@ -290,5 +290,6 @@ export interface SubmitManuscriptContextType {
     setFinalCheck: (data: boolean) => void,
     publicationFormdata: PublicationFormType,
     setPublicationFormData: (data: Partial<PublicationFormType>) => void,
-    serviceName: any
+    serviceName: any,
+    selectedService: string
 }

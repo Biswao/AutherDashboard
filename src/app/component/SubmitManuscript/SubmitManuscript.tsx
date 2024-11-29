@@ -20,6 +20,7 @@ const SubmitManuscript = () => {
     const [totalPrice, setTotalPrice] = useState<number>()
     const [serviceTitle, setServiceTitle] = useState<string>("")
     const [finalCheck, setFinalCheck] = useState<boolean>(false)
+    const [selectedService, setSelecetedService] = useState<string>("")
     const [formDataOne, setFormDataOne] = useState<FormDataOne>({
         user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
         order_type: "manu",
@@ -70,7 +71,6 @@ const SubmitManuscript = () => {
 
     const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName } = useManuscript()
     // const { getServiceNameById, serviceName } = useQuotation()
-    console.log({first: serviceName})
 
     useEffect(() => {
         let sum = 0
@@ -99,6 +99,7 @@ const SubmitManuscript = () => {
         setSelectedServices((prev) => [...prev, { name: serviceName, price: servicePrice }]);
         setShowForm(!showForm)
         setServiceTitle(title)
+        setSelecetedService(serviceName)
         console.log({title})
         if (title === "Editing Services") {
             setFormDataOne((prev: any) => {
@@ -114,7 +115,7 @@ const SubmitManuscript = () => {
                 return {
                     ...prev,
                     service_type: id,
-                    'service-name': id
+                    service_name: id
 
                 }
             })
@@ -160,7 +161,8 @@ const SubmitManuscript = () => {
         setFinalCheck,
         publicationFormdata,
         setPublicationFormData,
-        serviceName
+        serviceName,
+        selectedService
     }
 
     console.log({ formDataOne, formDataTwo, formDataThree })
