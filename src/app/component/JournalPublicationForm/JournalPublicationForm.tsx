@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
+import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
+import useManuscript from '@/app/hooks/authorDashboard/useManuscript';
+import React, { useContext, useState } from 'react';
 
 const PublicationForm = () => {
   const [formData, setFormData] = useState({
     package: 'Standard Package',
-    manuscriptTitle: '',
-    language: 'American English',
-    abstract: '',
-    keywords: '',
-    instructions: '',
-    wordCount: '',
-    contentFile: null,
-    figureFile: null,
-    tableFile: null,
+    
   });
+
+  const { submitQuotationJournalPublicationPackage } = useManuscript()
+
+  const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree} = useContext(SubmitManuscriptContext)
 
   const handleInputChange = (e:any) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setPublicationFormData({ ...publicationFormdata, [name]: value });
   };
 
   const handleFileChange = (e:any) => {
     const { name, files } = e.target;
-    setFormData({ ...formData, [name]: files[0] });
+    setPublicationFormData({ ...publicationFormdata, [name]: files[0] });
   };
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Submitted Data:', formData);
-    alert('Form submitted successfully!');
+    console.log('Submitted Data:', publicationFormdata);
+    submitQuotationJournalPublicationPackage(publicationFormdata,formDataOne,formDataTwo,formDataThree)
   };
 
   return (
@@ -56,8 +54,8 @@ const PublicationForm = () => {
           <input
             type="text"
             className="form-control"
-            name="manuscriptTitle"
-            value={formData.manuscriptTitle}
+            name="title"
+            value={publicationFormdata.title}
             onChange={handleInputChange}
             placeholder="Enter..."
             required
@@ -74,7 +72,7 @@ const PublicationForm = () => {
                 type="radio"
                 name="language"
                 value="American English"
-                checked={formData.language === 'American English'}
+                checked={publicationFormdata.language === 'American English'}
                 onChange={handleInputChange}
               />
               <label className="form-check-label">American English</label>
@@ -85,7 +83,7 @@ const PublicationForm = () => {
                 type="radio"
                 name="language"
                 value="British English"
-                checked={formData.language === 'British English'}
+                checked={publicationFormdata.language === 'British English'}
                 onChange={handleInputChange}
               />
               <label className="form-check-label">British English</label>
@@ -99,9 +97,9 @@ const PublicationForm = () => {
           <textarea
             className="form-control"
             name="abstract"
-            value={formData.abstract}
+            value={publicationFormdata.abstract}
             onChange={handleInputChange}
-            rows="3"
+            rows={3}
             placeholder="Enter..."
             required
           ></textarea>
@@ -113,8 +111,8 @@ const PublicationForm = () => {
           <input
             type="text"
             className="form-control"
-            name="keywords"
-            value={formData.keywords}
+            name="keyword"
+            value={publicationFormdata.keyword}
             onChange={handleInputChange}
             placeholder="Enter..."
             required
@@ -126,10 +124,10 @@ const PublicationForm = () => {
           <label className="form-label">Instruction for Editor</label>
           <textarea
             className="form-control"
-            name="instructions"
-            value={formData.instructions}
+            name="inst_for_editor"
+            value={publicationFormdata.inst_for_editor}
             onChange={handleInputChange}
-            rows="3"
+            rows={3}
             placeholder="Enter..."
           ></textarea>
         </div>
@@ -140,8 +138,8 @@ const PublicationForm = () => {
           <input
             type="number"
             className="form-control"
-            name="wordCount"
-            value={formData.wordCount}
+            name="word_count"
+            value={publicationFormdata.word_count}
             onChange={handleInputChange}
             placeholder="Enter..."
             required
@@ -154,7 +152,7 @@ const PublicationForm = () => {
           <input
             type="file"
             className="form-control"
-            name="contentFile"
+            name="upld_content_file"
             onChange={handleFileChange}
             required
           />
@@ -165,7 +163,7 @@ const PublicationForm = () => {
           <input
             type="file"
             className="form-control"
-            name="figureFile"
+            name="upld_figure_file"
             onChange={handleFileChange}
           />
         </div>
@@ -175,7 +173,7 @@ const PublicationForm = () => {
           <input
             type="file"
             className="form-control"
-            name="tableFile"
+            name="upld_table_file"
             onChange={handleFileChange}
           />
         </div>

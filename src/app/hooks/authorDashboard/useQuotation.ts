@@ -12,7 +12,7 @@ const useQuotation = () => {
 
     useEffect(() => {
         getServiceType()
-        getServiceNameById("1")
+        getServiceNameById()
         getAllMajorSubjectType()
     }, [])
 
@@ -39,7 +39,7 @@ const useQuotation = () => {
         }
     }
 
-    const getServiceNameById = async (id: string) => {
+    const getServiceNameById = async (id: string="1") => {
         setLoading(true)
         try {
             const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`);

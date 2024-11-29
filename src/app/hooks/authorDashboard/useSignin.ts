@@ -24,7 +24,6 @@ const useSignin = (): UseAuthReturn => {
 
             const data: LoginResponse[] = await response.json();
 
-            console.log({data})
 
             if (data[0] && data[0].Message === "Login Successfully") {
                 localStorage.setItem('email',email)

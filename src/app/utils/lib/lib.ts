@@ -8,7 +8,7 @@ export const servicesData: ServiceCategory[] = [
             { name: "Proofreading", price: 50, id: "9" },
             { name: "Substantive Editing", price: 100, id: "104" },
             { name: "Extensive Substantive Editing", price: 150, id: "8" },
-            { name: "Customized Editing Service", price: 200 }
+            { name: "Customized Editing Service", price: 200, id: "none" }
         ]
     },
     {
@@ -18,7 +18,7 @@ export const servicesData: ServiceCategory[] = [
             { name: "Advanced Publication Package", price: 300, id: "186" },
             { name: "Premium Publication Package", price: 400, id: "185" },
             { name: "Premium Plus Publication Package", price: 500, id: "332" },
-            { name: "Book Publication Package", price: 350 }
+            { name: "Book Publication Package", price: 350, id: "none" }
         ]
     },
     {
