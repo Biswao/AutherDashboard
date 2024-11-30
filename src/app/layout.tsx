@@ -1,3 +1,4 @@
+"use client"
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -6,33 +7,47 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import Script from "next/script";
+import { useEffect } from "react";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
-export const metadata: Metadata = {
-  title: "Author Dashboard",
-  description: "Great like never before.",
-};
+// export const metadata: Metadata = {
+//   title: "Author Dashboard",
+//   description: "Great like never before.",
+// };
 
-export default function RootLayout({     
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // useEffect(() => {
+  //   window.addEventListener("popstate", function (event) {
+  //     alert("Back navigation is disabled.");
+  //     window.history.pushState(null, '', window.location.pathname);
+  //   });
+
+  //   console.log("Hello World")
+  //   window.history.pushState(null, '', window.location.pathname);
+  // },[])
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <ToastContainer />
+      <head>
+        {/* <Script type="text/javascript" src="/shtest/js.js"/> */}
+      </head>
+      <body>
+        <ToastContainer />
         {children}
       </body>
     </html>
