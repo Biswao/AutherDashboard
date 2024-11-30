@@ -60,5 +60,6 @@ export const SubmitManuscriptContext = createContext<SubmitManuscriptContextType
     },
     setPublicationFormData: () => { },
     serviceName: [],
-    selectedService: ""
+    selectedService: "",
+    setSelectedServices: () => { }
 })

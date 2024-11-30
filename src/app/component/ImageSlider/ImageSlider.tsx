@@ -23,10 +23,10 @@ export default function ImageSlider() {
             
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-2" style={{textAlign:'center'}}>
                     <img src= {testi1.src} style={{width:'90px',height:'90px',borderRadius:'50%'}} />
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-10">
                     <p>"Thank you for your comments and corrections of my paper- it is done in much more professional way."</p>
                     </div>
                 </div>
@@ -35,10 +35,10 @@ export default function ImageSlider() {
         <div>
         <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-2">
                     <img src= {testi2.src} style={{width:'90px',height:'90px',borderRadius:'50%'}} />
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-10">
                     <p>"Please send my great appreciation to the editors, they have done a wonderful job. I am very confident now in submitting my work to the journal. 
                         I will certainly recommend your service to any researcher who needs such kind of service."</p>
                     </div>
@@ -48,10 +48,10 @@ export default function ImageSlider() {
         <div>
         <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-2">
                     <img src= {testi3.src} style={{width:'90px',height:'90px',borderRadius:'50%'}} />
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-10">
                     <p>"Many thanks for your excellent work and the comments. I like it very much, Appreciated."</p>
                     </div>
                 </div>
@@ -60,10 +60,10 @@ export default function ImageSlider() {
         <div>
         <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-2">
                     <img src= {testi6.src} style={{width:'90px',height:'90px',borderRadius:'50%'}} />
                     </div>
-                    <div className="col-lg-9">
+                    <div className="col-lg-10">
                     <p>"My research paper was handled very professionally by your manuscript editing service. Thank you for thorough English language editing and checking in minute details."</p>
                     </div>
                 </div>

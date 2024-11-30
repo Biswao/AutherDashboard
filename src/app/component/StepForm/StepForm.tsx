@@ -1,6 +1,6 @@
 import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
 import useQuotation from '@/app/hooks/authorDashboard/useQuotation';
-import { FormDataOne, GroupedOption, SubmitManuscriptRequest } from '@/app/utils/interfaces/types';
+import { FormDataOne, GroupedOption, SelectedService, SubmitManuscriptRequest } from '@/app/utils/interfaces/types';
 import { majorSubjectTypeOptions } from '@/app/utils/lib/lib';
 import { useContext, useEffect, useState } from 'react';
 import Select from "react-select";
@@ -10,9 +10,8 @@ let journalCheckboxData = [0, 0, 0]
 const StepForm = ({ setCheck, check }: any) => {
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
 
-    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService } = useContext(SubmitManuscriptContext)
+    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService, setSelectedServices } = useContext(SubmitManuscriptContext)
     const { majorSubjectType } = useQuotation()
-    console.log({serviceName})
 
     const handleMajorSubjectType = (e: any) => {
         const { value } = e
@@ -38,6 +37,30 @@ const StepForm = ({ setCheck, check }: any) => {
     const handleChange = (e: any) => {
         const { name, value, type, checked } = e.target;
 
+        console.log({name,value,type,checked})
+
+        if(name === 'journalFormatting'){
+            if(checked){
+                setSelectedServices((prev: SelectedService[]) => [...prev, {name: "Jornal Formatting", price: 80}])
+            }else{
+                setSelectedServices((prev: SelectedService[]) => prev.filter((service) => service.name !== "Jornal Formatting"));
+            }
+        }
+        if(name === 'journalSelection'){
+            if(checked){
+                setSelectedServices((prev: SelectedService[]) => [...prev, {name: "Jornal Selection", price: 350}])
+            }else{
+                setSelectedServices((prev: SelectedService[]) => prev.filter((service) => service.name !== "Jornal Selection"));
+            }
+        }
+        if(name === 'journalSubmission'){
+            if(checked){
+                setSelectedServices((prev: SelectedService[]) => [...prev, {name: "Jornal Submission", price: 120}])
+            }else{
+                setSelectedServices((prev: SelectedService[]) => prev.filter((service) => service.name !== "Jornal Submission"));
+            }
+        }
+
         if (name === "word_count" && formDataOne.wordRange) {
             if (+formDataOne.wordRange < value) {
                 alert("Your word count exceeds according to the word range you have selected.")
@@ -45,11 +68,11 @@ const StepForm = ({ setCheck, check }: any) => {
             }
         }
         if (name === 'journalFormatting') {
-            journalCheckboxData[0] = value === "on" ? 1 : 0
+            journalCheckboxData[0] = checked ? 1 : 0
         } else if (name === 'journalSelection') {
-            journalCheckboxData[1] = value === "on" ? 1 : 0
+            journalCheckboxData[1] = checked ? 1 : 0
         } else if (name === "journalSubmission") {
-            journalCheckboxData[2] = value === "on" ? 1 : 0
+            journalCheckboxData[2] = checked ? 1 : 0
         }
 
         const checkboxName = 'journal_format'

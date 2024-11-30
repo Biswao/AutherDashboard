@@ -161,7 +161,8 @@ const SubmitManuscript = () => {
         publicationFormdata,
         setPublicationFormData,
         serviceName,
-        selectedService
+        selectedService,
+        setSelectedServices
     }
 
     console.log({ formDataOne, formDataTwo, formDataThree })
