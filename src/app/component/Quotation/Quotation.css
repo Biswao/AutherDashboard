@@ -7,3 +7,10 @@
 .LabelsService{
     
 }
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 16px;
+  }

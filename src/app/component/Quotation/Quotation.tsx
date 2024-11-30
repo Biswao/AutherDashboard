@@ -61,11 +61,14 @@ const Quotation = () => {
         }
     };
     return (
+        
         <div className="flex flex-col items-center justify-center min-h-screen dark">
+            <h2 className="title">Request a Quotation</h2>
             <div className="w-full rounded-lg shadow-md p-6">
                 <form className="flex flex-col">
                     <div className="flex space-x-4 mb-4">
                         <div className="col-lg-6">
+                        
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Service Type*
                             </label>

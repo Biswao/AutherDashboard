@@ -170,6 +170,7 @@ const SubmitManuscript = () => {
         <SubmitManuscriptContext.Provider value={formDataObject}>
             <div className="mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="lg:col-span-2 space-y-4">
+                <h2 className="title">Submit Manuscript</h2>
                     {!showForm && servicesData.map((category) => (
                         <ServiceList
                             key={category.title}

@@ -17,6 +17,7 @@ const SubmitOrders = () => {
 
     return (
         <div className="orders-container">
+            <h2 className="title">View Orders submitted</h2>
             {modal ? <OrderModal modalHandler={modalHandler}/> :  '' }
             {
                 fetchOrder?.map((order) => {
