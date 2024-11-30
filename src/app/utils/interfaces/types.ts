@@ -291,5 +291,6 @@ export interface SubmitManuscriptContextType {
     publicationFormdata: PublicationFormType,
     setPublicationFormData: (data: Partial<PublicationFormType>) => void,
     serviceName: any,
-    selectedService: string
+    selectedService: string,
+    setSelectedServices: any
 }

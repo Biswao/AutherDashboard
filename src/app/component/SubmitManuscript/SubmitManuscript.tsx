@@ -160,7 +160,8 @@ const SubmitManuscript = () => {
         publicationFormdata,
         setPublicationFormData,
         serviceName,
-        selectedService
+        selectedService,
+        setSelectedServices
     }
 
     return (
