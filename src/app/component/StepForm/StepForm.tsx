@@ -10,7 +10,7 @@ let journalCheckboxData = [0, 0, 0]
 const StepForm = ({ setCheck, check }: any) => {
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
 
-    const { serviceTitle, setFormDataOne, formDataOne, serviceName } = useContext(SubmitManuscriptContext)
+    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService } = useContext(SubmitManuscriptContext)
     const { majorSubjectType } = useQuotation()
     console.log({serviceName})
 
@@ -76,7 +76,7 @@ const StepForm = ({ setCheck, check }: any) => {
                         <option value={val.id}>{val.service_name}</option>
                     ))}
                 </select>) : (<select id="serviceType" onChange={handleChange} className="select" required disabled>
-                    <option>Proofreading</option>
+                    <option>{selectedService}</option>
                 </select>)}
 
                 {serviceTitle !== "Publication Support Services" && (<div>

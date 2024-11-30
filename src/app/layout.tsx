@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./component/Header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <ToastContainer />
         {children}
       </body>
     </html>

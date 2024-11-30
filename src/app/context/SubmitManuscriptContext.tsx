@@ -18,7 +18,7 @@ export const SubmitManuscriptContext = createContext<SubmitManuscriptContextType
         word_count: "",
         turn_ar_time: "",
         inst_for_editor: "",
-        "service-name": ""
+        service_name: ""
     },
     setFormDataOne: () => { },
     formDataTwo: {
@@ -47,7 +47,7 @@ export const SubmitManuscriptContext = createContext<SubmitManuscriptContextType
         user_id: "",
         order_type: "",
         service_type: "",
-        'service-name': "",
+        service_name: "",
         title: '',
         language: '',
         abstract: '',
@@ -59,5 +59,6 @@ export const SubmitManuscriptContext = createContext<SubmitManuscriptContextType
         upld_table_file: null,
     },
     setPublicationFormData: () => { },
-    serviceName: []
+    serviceName: [],
+    selectedService: ""
 })

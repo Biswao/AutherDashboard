@@ -235,7 +235,7 @@ const Quotation = () => {
                                     onClick={handleSubmit}
                                     className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform hover:scale-105"
                                 >
-                                    Submit
+                                    {loading ? "Loading..." : "Submit"}
                                 </button>
                             </div>
                         </div>

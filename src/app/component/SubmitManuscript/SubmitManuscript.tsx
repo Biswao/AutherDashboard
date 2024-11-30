@@ -20,6 +20,7 @@ const SubmitManuscript = () => {
     const [totalPrice, setTotalPrice] = useState<number>()
     const [serviceTitle, setServiceTitle] = useState<string>("")
     const [finalCheck, setFinalCheck] = useState<boolean>(false)
+    const [selectedService, setSelecetedService] = useState<string>("")
     const [formDataOne, setFormDataOne] = useState<FormDataOne>({
         user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
         order_type: "manu",
@@ -68,9 +69,8 @@ const SubmitManuscript = () => {
         upld_table_file: null,
     });
 
-    const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName } = useManuscript()
+    const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName, loading } = useManuscript()
     // const { getServiceNameById, serviceName } = useQuotation()
-    console.log({first: serviceName})
 
     useEffect(() => {
         let sum = 0
@@ -99,13 +99,13 @@ const SubmitManuscript = () => {
         setSelectedServices((prev) => [...prev, { name: serviceName, price: servicePrice }]);
         setShowForm(!showForm)
         setServiceTitle(title)
-        console.log({title})
+        setSelecetedService(serviceName)
         if (title === "Editing Services") {
             setFormDataOne((prev: any) => {
                 return {
                     ...prev,
                     service_type: "1",
-                    'service-name': id
+                    service_name: id
 
                 }
             })
@@ -114,7 +114,7 @@ const SubmitManuscript = () => {
                 return {
                     ...prev,
                     service_type: id,
-                    'service-name': id
+                    service_name: id
 
                 }
             })
@@ -160,7 +160,8 @@ const SubmitManuscript = () => {
         setFinalCheck,
         publicationFormdata,
         setPublicationFormData,
-        serviceName
+        serviceName,
+        selectedService
     }
 
     console.log({ formDataOne, formDataTwo, formDataThree })
@@ -193,7 +194,7 @@ const SubmitManuscript = () => {
                 </button>
                 {finalCheck && (
                     <button className='submit-manuscript-next-button' onClick={handleSubmitForm}>
-                        Submit
+                        {loading ? "Loading..." : "Submit"}
                     </button>
                 )}
             </div>

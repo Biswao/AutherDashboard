@@ -2,6 +2,7 @@
 
 import { countryListType, FileUploadResponse, FormDataOne, FormDataThree, FormDataTwo, PublicationFormType, serviceNameType } from "@/app/utils/interfaces/types";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const useManuscript = () => {
     const [countryList, setCountryList] = useState<countryListType[]>([]);
@@ -139,10 +140,15 @@ const useManuscript = () => {
             }
 
             const data = await response.json();
-            console.log("Quotation submitted successfully:", data);
+            if(data){
+                toast.success("Manuscript Submitted!!")
+                setTimeout(() => {
+                    window.location.reload()
+                },2000)
+            }
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }
@@ -152,7 +158,6 @@ const useManuscript = () => {
         setLoading(true);
 
         try {
-            // Upload files and collect their names
             const upldContentFileName = JournalPublicationFormData.upld_content_file && JournalPublicationFormData.user_id
                 ? await uploadFile(JournalPublicationFormData.upld_content_file,JournalPublicationFormData.user_id,JournalPublicationFormData.order_type)
                 : null;
@@ -164,9 +169,6 @@ const useManuscript = () => {
                 : null;
 
                 const requestBody = {
-                    ...formDataOne,
-                    ...formDataTwo,
-                    ...formDataThree,
                     user_id: JournalPublicationFormData.user_id,
                     order_type: "manu",
                     service_type: JournalPublicationFormData.service_type,
@@ -180,34 +182,48 @@ const useManuscript = () => {
                     abstract: JournalPublicationFormData.abstract,
                     keyword: JournalPublicationFormData.keyword,
                     turn_ar_time: "0",
+                    journal_format: formDataOne.journal_format || "test",
+                    major_subject: formDataOne.major_subject || "test",
+                    specific_subject: formDataOne.specific_subject || "test",
+                    language: formDataOne.language || "test  ",
+                    total_price: "100",
+                    bill_name: formDataThree.bill_name || "test",
+                    bill_addr1: formDataThree.bill_addr1 || "test",
+                    bill_addr2: formDataThree.bill_addr2 || "test",
+                    bill_phone: formDataThree.bill_phone || "test",
+                    bill_city: formDataThree.bill_city || "test",
+                    bill_state: formDataThree.bill_state || "test",
+                    bill_zip: formDataThree.bill_zip || "test",
+                    bill_country: formDataThree.bill_country || "4",
                   };
 
-                  console.log({requestBody})
+            console.log({requestBody})
 
-            // const response = await fetch(
-            //     "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
-            //     {
-            //         method: "POST",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //         body: JSON.stringify(requestBody),
-            //         mode: 'cors'
-            //     }
-            // );
+            const response = await fetch(
+                "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestBody),
+                }
+            );
 
-            // console.log({response})
+            console.log({response})
 
-            // if (!response.ok) {
-            //     throw new Error(`Error submitting quotation: ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`Error submitting quotation: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            // if(data){
+            //     toast.success("Manuscript Submitted!!")
+            //     window.location.reload()
             // }
-
-            // const data = await response.json();
-            // console.log({data})
-            // console.log("Quotation submitted successfully:", data);
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }
