@@ -47,6 +47,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#688bb2', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Submit Manuscript")}
               >
                 <FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '10px' }} />
                 Submit New Manuscript !
@@ -58,6 +59,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#c7715d', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Request a Quotation")}
               >
                 <FontAwesomeIcon icon={faFileInvoice} style={{ marginRight: '10px' }} />
                 Request A Quote !
