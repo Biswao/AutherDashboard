@@ -2,6 +2,7 @@
 
 import { LoginResponse, UseAuthReturn, UserInteraction, UserInteractionResponse } from '@/app/utils/interfaces/types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const usePostTalkExpert = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -24,11 +25,14 @@ const usePostTalkExpert = () => {
 
             if (data[0] && data[0].status) {
                 setError(null)
+                toast.success("Success!!, we will get back to you soon.")
             } else {
                 setError(data[0].msg || 'Something went wrong');
+                toast.error("Something went wrong")
             }
         } catch (error) {
             setError('An error occurred. Please try again.');
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }
