@@ -1,134 +1,150 @@
 import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
+import useQuotation from '@/app/hooks/authorDashboard/useQuotation';
+import { FormDataOne, GroupedOption, SubmitManuscriptRequest } from '@/app/utils/interfaces/types';
+import { majorSubjectTypeOptions } from '@/app/utils/lib/lib';
 import { useContext, useEffect, useState } from 'react';
+import Select from "react-select";
 
-let journalCheckboxData = [0,0,0]
+let journalCheckboxData = [0, 0, 0]
 
-const StepForm = ({setCheck}: any) => {
-    const [formData, setFormData] = useState({
-        service_type: 'Proofreading',
-        majorSubject: '',
-        specificSubject: '',
-        englishStyle: 'American',
-        wordRange: '',
-        wordCount: '',
-        turnaroundTime: '',
-        instructions: ''
-    });
+const StepForm = ({ setCheck, check }: any) => {
+    const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
 
-    const { stepFormData,setStepFormData } = useContext(SubmitManuscriptContext)
+    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService } = useContext(SubmitManuscriptContext)
+    const { majorSubjectType } = useQuotation()
+    console.log({serviceName})
+
+    const handleMajorSubjectType = (e: any) => {
+        const { value } = e
+        setFormDataOne({ ...formDataOne, major_subject: value });
+    }
 
     useEffect(() => {
-        if(formData.specificSubject){
+        if (majorSubjectType && majorSubjectType.length) {
+            const majorSubjectDropdownData = majorSubjectTypeOptions(majorSubjectType)
+            setMajorSubjectDropdown(majorSubjectDropdownData)
+        }
+    }, [majorSubjectType])
+
+
+    useEffect(() => {
+        if (formDataOne.specific_subject && formDataOne.word_count && formDataOne.turn_ar_time) {
             setCheck(true)
-        }else{
+        } else {
             setCheck(false)
         }
-    },[formData])
+    }, [formDataOne])
 
-    const handleChange = (e:any) => {
+    const handleChange = (e: any) => {
         const { name, value, type, checked } = e.target;
-        console.log({name})
-        if(name === 'journalFormatting'){
+
+        if (name === "word_count" && formDataOne.wordRange) {
+            if (+formDataOne.wordRange < value) {
+                alert("Your word count exceeds according to the word range you have selected.")
+                return
+            }
+        }
+        if (name === 'journalFormatting') {
             journalCheckboxData[0] = value === "on" ? 1 : 0
-        }else if(name === 'journalSelection'){
+        } else if (name === 'journalSelection') {
             journalCheckboxData[1] = value === "on" ? 1 : 0
-        }else if(name === "journalSubmission"){
+        } else if (name === "journalSubmission") {
             journalCheckboxData[2] = value === "on" ? 1 : 0
         }
 
         const checkboxName = 'journal_format'
-        const key = 
-        name === "journalFormatting" || name === "journalSelection" || name === "journalSubmission"
-            ? checkboxName
-            : name;
+        const key =
+            name === "journalFormatting" || name === "journalSelection" || name === "journalSubmission"
+                ? checkboxName
+                : name;
 
-        console.log({key})
-        setFormData({
-            ...formData,
+        setFormDataOne({
+            ...formDataOne,
             [key]: type === 'checkbox' ? journalCheckboxData.join("") : value
         });
     };
-
-    const handleSubmit = (e:any) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-        // You can add form submission logic here (e.g., sending data to an API endpoint)
-    };
-
-    console.log({formData})
 
     return (
         <div className="container">
             <h2>Details About Your Submission</h2>
             <p>Before we start working on your submission, please answer all the questions below. Your answers will help us to provide you the best possible services.</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => { }}>
                 <label htmlFor="serviceType">Service Type *</label>
-                <select id="serviceType" name="service_type" value={formData.service_type} onChange={handleChange} className="select" required>
-                    <option>Proofreading</option>
-                </select>
+                {serviceTitle === "Publication Support Services" ? (<select id="serviceType" name='service_name' onChange={handleChange} className="select" required>
+                    {serviceName && serviceName.length && serviceName.map((val:any) => (
+                        <option value={val.id}>{val.service_name}</option>
+                    ))}
+                </select>) : (<select id="serviceType" onChange={handleChange} className="select" required disabled>
+                    <option>{selectedService}</option>
+                </select>)}
 
-                <div>
+                {serviceTitle !== "Publication Support Services" && (<div>
                     <label className="checkbox-label">
                         <input type="checkbox" name="journalFormatting" onChange={handleChange} /> Add journal formatting<br />
                         For less than 3,000 words, additional 1 day turnaround time & $80 extra.<br />
                         For 3,000 to 6,000 words, additional 2 days turnaround time & $130 extra.
                     </label>
-                </div>
+                </div>)}
 
-                <div>
+                {serviceTitle !== "Publication Support Services" && (<div>
                     <label className="checkbox-label">
                         <input type="checkbox" name="journalSelection" onChange={handleChange} /> Add journal selection<br />
                         Additional 5 days turnaround time & $350 extra charge.
                     </label>
-                </div>
+                </div>)}
 
-                <div>
+                {serviceTitle !== "Publication Support Services" && (<div>
                     <label className="checkbox-label">
                         <input type="checkbox" name="journalSubmission" onChange={handleChange} /> Add journal submission<br />
                         Additional 2 days turnaround time & $120 extra charge.
                     </label>
-                </div>
+                </div>)}
 
                 <label htmlFor="majorSubject">Major Subject Type *</label>
-                <select id="majorSubject" name="majorSubject" value={formData.majorSubject} onChange={handleChange} className="select" required>
-                    <option value="" disabled>-- Select --</option>
-                    {/* Add other options as needed */}
-                </select>
+                <Select
+                    name='major_subject'
+                    options={majorSubjectDropdown}
+                    onChange={handleMajorSubjectType}
+                />
 
                 <label htmlFor="specificSubject">Provide Specific Subject *</label>
-                <input type="text" id="specificSubject" name="specificSubject" value={formData.specificSubject} onChange={handleChange} className="input" required />
+                <input type="text" id="specificSubject" name="specific_subject" value={formDataOne.specific_subject} onChange={handleChange} className="input" required />
 
                 <label>Style of English *</label>
                 <div className="radio-group">
                     <label>
-                        <input type="radio" name="englishStyle" value="American" checked={formData.englishStyle === 'American'} onChange={handleChange} /> American English
+                        <input type="radio" name="language" value="American" checked={formDataOne.language === 'American'} onChange={handleChange} /> American English
                     </label>
                     <label>
-                        <input type="radio" name="englishStyle" value="British" checked={formData.englishStyle === 'British'} onChange={handleChange} /> British English
+                        <input type="radio" name="language" value="British" checked={formDataOne.language === 'British'} onChange={handleChange} /> British English
                     </label>
                 </div>
-                
+
 
                 <label htmlFor="wordRange">Word Range *</label>
-                <select id="wordRange" name="wordRange" value={formData.wordRange} onChange={handleChange} className="select" required>
-                    <option value="" disabled>-- Select --</option>
-                    {/* Add other options as needed */}
+                <select id="wordRange" name="wordRange" value={formDataOne.wordRange} onChange={handleChange} className="select" required>
+                    <option value="2500">Below 2,500</option>
+                    <option value="5999">2,500-5,999</option>
+                    <option value="9999">6,000-9,999</option>
+                    <option value="19999">10,000-19,999</option>
+                    <option value="39999">20,000-39,999</option>
                 </select>
                 <p className="note">If your word count is more than 40,000 then <a href="#">Click here</a>.</p>
 
                 <label htmlFor="wordCount">Word Count *</label>
-                <input type="number" id="wordCount" name="wordCount" value={formData.wordCount} onChange={handleChange} className="input" required />
+                <input type="number" id="wordCount" name="word_count" value={formDataOne.word_count} onChange={handleChange} className="input" required />
 
                 <label htmlFor="turnaroundTime">Turnaround Time *</label>
-                <select id="turnaroundTime" name="turnaroundTime" value={formData.turnaroundTime} onChange={handleChange} className="select" required>
+                <select id="turnaroundTime" name="turn_ar_time" value={formDataOne.turn_ar_time} onChange={handleChange} className="select" required>
                     <option value="" disabled>-- Select --</option>
-                    {/* Add other options as needed */}
+                    <option value="5">5 days</option>
+                    <option value="10">10 days</option>
                 </select>
                 <p className="note">If you desire a turnaround time different than those in the list, please <a href="#">click here</a>.</p>
 
                 <label htmlFor="instructions">Instruction for Editor</label>
-                <textarea id="instructions" name="instructions" value={formData.instructions} onChange={handleChange} className="textarea"></textarea>
+                <textarea id="instructions" name="inst_for_editor" value={formDataOne.inst_for_editor} onChange={handleChange} className="textarea"></textarea>
 
                 {/* <button type="submit" className="submit-btn">Next</button> */}
             </form>

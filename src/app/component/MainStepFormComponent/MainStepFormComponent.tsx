@@ -6,10 +6,12 @@ import StepForm2 from "../StepForm2/StepForm2"
 
 import "./MainStepFormComponent.css"
 import StepForm3 from "../StepForm3/StepForm3"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { SubmitManuscriptContext } from "@/app/context/SubmitManuscriptContext"
 
 const MainStepFormComponent = () => {
     const [check, setCheck] = useState(true)
+    const {finalCheck} = useContext(SubmitManuscriptContext)
     return (
         <div className="main-step-form">
             <MultiStep activeStep={0}
@@ -25,7 +27,7 @@ const MainStepFormComponent = () => {
                     }
                 }}
                 nextButton={{
-                    title: "Next",
+                    title: finalCheck ? "" : "Next",
                     style: {
                         background: check ? 'green' : "grey",
                         padding: '10px 20px',
@@ -36,9 +38,9 @@ const MainStepFormComponent = () => {
                         pointerEvents: check ? "auto" : 'none'
                     },
                 }}>
-                <StepForm setCheck={setCheck}/>
-                <StepForm2 setCheck={setCheck}/>
-                <StepForm3 setCheck={setCheck}/>
+                <StepForm setCheck={setCheck} check={check}/>
+                <StepForm2 setCheck={setCheck} check={check}/>
+                <StepForm3 setCheck={setCheck} check={check}/>
             </MultiStep>
         </div>
     )

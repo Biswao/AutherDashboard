@@ -1,6 +1,7 @@
 "use client"
 import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
 const useQuotation = () => {
@@ -12,7 +13,7 @@ const useQuotation = () => {
 
     useEffect(() => {
         getServiceType()
-        getServiceNameById("1")
+        getServiceNameById()
         getAllMajorSubjectType()
     }, [])
 
@@ -39,7 +40,7 @@ const useQuotation = () => {
         }
     }
 
-    const getServiceNameById = async (id: string) => {
+    const getServiceNameById = async (id: string="1") => {
         setLoading(true)
         try {
             const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`);
@@ -154,10 +155,15 @@ const useQuotation = () => {
             }
 
             const data = await response.json();
-            console.log("Quotation submitted successfully:", data);
+            if(data){
+                toast.success("Quotation Submitted!!")
+                setTimeout(() => {
+                    window.location.reload()
+                },2000)
+            }
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }
