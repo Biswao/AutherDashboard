@@ -1,12 +1,15 @@
 "use client"
 
+import { MainContext } from '@/app/context/MainContext';
 import { LoginResponse, UseAuthReturn, UserInteraction, UserInteractionResponse } from '@/app/utils/interfaces/types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const usePostTalkExpert = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+
+    const {setActive} = useContext(MainContext)
 
     const talkToExpert = async(body:UserInteraction) => {
         setLoading(true);
@@ -26,6 +29,7 @@ const usePostTalkExpert = () => {
             if (data[0] && data[0].status) {
                 setError(null)
                 toast.success("Success!!, we will get back to you soon.")
+                setActive("Dashboard")
             } else {
                 setError(data[0].msg || 'Something went wrong');
                 toast.error("Something went wrong")

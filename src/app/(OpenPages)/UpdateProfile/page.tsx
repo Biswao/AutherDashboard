@@ -32,7 +32,6 @@ const UpdateProfile = () => {
     const user_id = typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined
     const { loading, error, authorDetails } = useFetchAuthor(email ?? undefined)
     const { active, setActive } = useContext(MainContext)
-    console.log({activecheck: active})
 
     useEffect(() => {
         if (authorDetails) {

@@ -14,8 +14,6 @@ export default function Sidebar({children}: SidebarProps) {
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
     const {active, setActive} = useContext(MainContext)
 
-    console.log({authorDetails})
-
 
     useEffect(() => {
         // Set initial sidebar state based on screen width

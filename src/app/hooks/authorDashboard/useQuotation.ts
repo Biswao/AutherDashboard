@@ -1,6 +1,7 @@
 "use client"
+import { MainContext } from "@/app/context/MainContext";
 import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 
@@ -10,6 +11,8 @@ const useQuotation = () => {
     const [serviceType, setServiceType] = useState<serviceType[]>([])
     const [serviceName, setServiceName] = useState<serviceNameType[]>([])
     const [majorSubjectType, setMajorSubjectType] = useState<SubjectGroup[]>([])
+
+    const {setActive} = useContext(MainContext)
 
     useEffect(() => {
         getServiceType()
@@ -157,9 +160,7 @@ const useQuotation = () => {
             const data = await response.json();
             if(data){
                 toast.success("Quotation Submitted!!")
-                setTimeout(() => {
-                    window.location.reload()
-                },2000)
+                setActive("Dashboard")
             }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");

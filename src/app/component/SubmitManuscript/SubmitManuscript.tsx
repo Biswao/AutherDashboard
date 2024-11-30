@@ -119,7 +119,6 @@ const SubmitManuscript = () => {
                 }
             })
         } else if (title === "Publication Support Services") {
-            console.log("I am here",id)
             getServiceNameById(id)
             setFormDataOne((prev: any) => {
                 return {
@@ -163,8 +162,6 @@ const SubmitManuscript = () => {
         serviceName,
         selectedService
     }
-
-    console.log({ formDataOne, formDataTwo, formDataThree })
 
     return (
         <SubmitManuscriptContext.Provider value={formDataObject}>

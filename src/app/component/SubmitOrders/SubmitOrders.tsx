@@ -7,7 +7,6 @@ import OrderModal from "../Modal/OrderModal";
 const SubmitOrders = () => {
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const { fetchOrder, error, loading }: { fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean } = useFetchOrder(userId)
-    console.log({ fetchOrder });
 
     const [modal, setmodal] = useState(false);
 
@@ -21,7 +20,6 @@ const SubmitOrders = () => {
                 {modal ? <OrderModal modalHandler={modalHandler} /> : ''}
                 {loading ? (<h1>Loading...</h1>) :
                     fetchOrder?.map((order) => {
-                        console.log({ order })
                         return (
                             <div key={order.order_id} className="order-card">
                                 <div className="order-header">

@@ -12,7 +12,6 @@ const StepForm = ({ setCheck, check }: any) => {
 
     const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService } = useContext(SubmitManuscriptContext)
     const { majorSubjectType } = useQuotation()
-    console.log({serviceName})
 
     const handleMajorSubjectType = (e: any) => {
         const { value } = e

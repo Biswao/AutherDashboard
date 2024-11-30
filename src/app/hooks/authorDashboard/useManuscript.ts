@@ -1,7 +1,8 @@
 "use client"
 
+import { MainContext } from "@/app/context/MainContext";
 import { countryListType, FileUploadResponse, FormDataOne, FormDataThree, FormDataTwo, PublicationFormType, serviceNameType } from "@/app/utils/interfaces/types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const useManuscript = () => {
@@ -9,6 +10,8 @@ const useManuscript = () => {
     const [serviceName, setServiceName] = useState<serviceNameType[]>([])
     const [error, setError] = useState<boolean | string>(false);
     const [loading, setLoading] = useState<boolean>(true);
+
+    const {setActive} = useContext(MainContext)
 
     useEffect(() => {
         fetchCountryList()
@@ -142,9 +145,7 @@ const useManuscript = () => {
             const data = await response.json();
             if(data){
                 toast.success("Manuscript Submitted!!")
-                setTimeout(() => {
-                    window.location.reload()
-                },2000)
+                setActive("Dashboard")
             }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");
@@ -197,7 +198,6 @@ const useManuscript = () => {
                     bill_country: formDataThree.bill_country || "4",
                   };
 
-            console.log({requestBody})
 
             const response = await fetch(
                 "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
@@ -210,17 +210,15 @@ const useManuscript = () => {
                 }
             );
 
-            console.log({response})
-
             if (!response.ok) {
                 throw new Error(`Error submitting quotation: ${response.statusText}`);
             }
 
             const data = await response.json();
-            // if(data){
-            //     toast.success("Manuscript Submitted!!")
-            //     window.location.reload()
-            // }
+            if(data){
+                toast.success("Manuscript Submitted!!")
+                setActive("Dashboard")
+            }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");
             toast.error("Something went wrong")

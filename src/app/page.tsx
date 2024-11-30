@@ -37,28 +37,28 @@ export default function Home() {
     setActive
   }
 
-  
+
   if (typeof window !== 'undefined' && !localStorage.getItem('user_id')) {
     router.push('/Auth');
   } else {
     return (
       <>
-            <MainContext.Provider value={obj}>
-        <Sidebar>
-          {active && active === "Dashboard" && (<Dashboard />)}
-          {active && active === "Coupon Center" && (<Coupon />)}
-          {active && active === "Request a Quotation" && (<Quotation />)}
-          {active && active === "View Orders Submitted" && (<SubmitOrders />)}
-          {active && active === "Book a slot in Webinar" && (<Webinar />)}
-          {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
-          {active && active === "Talk to an expert" && (<TalkToAnExpert/>)}
-          {active && active === "Refer A Colleague" && (<ReferAColleague/>)}
-          {active && active === "Request a Sample" && (<SampleRequest />)}
-          {active && active === "Update Profile" && (<UpdateProfile />)}
-        </Sidebar>
-      </MainContext.Provider>
+        <MainContext.Provider value={obj}>
+          <Sidebar>
+            {active && active === "Dashboard" && (<Dashboard />)}
+            {active && active === "Coupon Center" && (<Coupon />)}
+            {active && active === "Request a Quotation" && (<Quotation />)}
+            {active && active === "View Orders Submitted" && (<SubmitOrders />)}
+            {active && active === "Book a slot in Webinar" && (<Webinar />)}
+            {active && active === "Submit Manuscript" && (<SubmitManuscript />)}
+            {active && active === "Talk to an expert" && (<TalkToAnExpert />)}
+            {active && active === "Refer A Colleague" && (<ReferAColleague />)}
+            {active && active === "Request a Sample" && (<SampleRequest />)}
+            {active && active === "Update Profile" && (<UpdateProfile />)}
+          </Sidebar>
+        </MainContext.Provider>
 
-      
+
       </>
 
     );
