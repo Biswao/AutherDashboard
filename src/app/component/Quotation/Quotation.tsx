@@ -1,6 +1,6 @@
 "use client"
-import Sidebar from "@/app/component/Sidebar/Sidebar"
-import Table from "@/app/component/Table/Table";
+// import Sidebar from "@/app/component/Sidebar/Sidebar"
+// import Table from "@/app/component/Table/Table";
 import "./Quotation.css"
 import useQuotation from "@/app/hooks/authorDashboard/useQuotation";
 import { useEffect, useState } from "react";
@@ -61,11 +61,14 @@ const Quotation = () => {
         }
     };
     return (
-        <div className="flex flex-col items-center justify-center min-f-screen dark">
+        
+        <div className="flex flex-col items-center justify-center min-h-screen dark">
+            <h2 className="title">Request a Quotation</h2>
             <div className="w-full rounded-lg shadow-md p-6">
                 <form className="flex flex-col">
                     <div className="flex space-x-4 mb-4">
-                        <div className="w-1/2">
+                        <div className="col-lg-6">
+                        
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Service Type*
                             </label>
@@ -83,7 +86,7 @@ const Quotation = () => {
                                 ))}
                             </select>
                         </div>
-                        <div className="w-1/2">
+                        <div className="col-lg-6">
                             <label className="block text-sm mb-2 text-gray-700 cursor-pointer">
                                 Delivery Date*
                             </label>

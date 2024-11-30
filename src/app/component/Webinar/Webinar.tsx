@@ -8,8 +8,8 @@ const Webinar = () => {
         <>
             <div className="container">
                 <div className="webinar-container">
-                    <h2 className="webinar-title">Upcoming Webinars/ Q&A Session</h2>
-                    
+                    {/* <h2 className="webinar-title">Upcoming Webinars/ Q&A Session</h2> */}
+                    <h2 className="title">Upcoming Webinars/ Q&A Session</h2>
                         <div className="row" style={{ gap: "61px" }}>
                             <div className="col-lg-5">
                                 <div className="webinar-cards">
