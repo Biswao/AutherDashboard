@@ -37,7 +37,7 @@ export default function Home() {
     setActive
   }
 
-  
+
   if (typeof window !== 'undefined' && !localStorage.getItem('user_id')) {
     router.push('/Auth');
   } else {
@@ -58,7 +58,6 @@ export default function Home() {
         {/* </Sidebar> */}
       {/* </MainContext.Provider> */}
 
-      
       </>
 
     );

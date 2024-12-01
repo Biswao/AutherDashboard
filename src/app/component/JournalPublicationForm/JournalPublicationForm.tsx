@@ -24,7 +24,6 @@ const PublicationForm = () => {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Submitted Data:', publicationFormdata);
     submitQuotationJournalPublicationPackage(publicationFormdata,formDataOne,formDataTwo,formDataThree)
   };
 

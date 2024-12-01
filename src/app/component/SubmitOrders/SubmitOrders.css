@@ -11,6 +11,12 @@
 .orders-container::-webkit-scrollbar {
   width: 8px;
 }
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 16px;
+}
 
 .orders-container::-webkit-scrollbar-thumb {
   background-color: #ccc;

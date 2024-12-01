@@ -69,7 +69,7 @@ const SubmitManuscript = () => {
         upld_table_file: null,
     });
 
-    const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName } = useManuscript()
+    const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName, loading } = useManuscript()
     // const { getServiceNameById, serviceName } = useQuotation()
 
     useEffect(() => {
@@ -100,13 +100,12 @@ const SubmitManuscript = () => {
         setShowForm(!showForm)
         setServiceTitle(title)
         setSelecetedService(serviceName)
-        console.log({title})
         if (title === "Editing Services") {
             setFormDataOne((prev: any) => {
                 return {
                     ...prev,
                     service_type: "1",
-                    'service-name': id
+                    service_name: id
 
                 }
             })
@@ -120,7 +119,6 @@ const SubmitManuscript = () => {
                 }
             })
         } else if (title === "Publication Support Services") {
-            console.log("I am here",id)
             getServiceNameById(id)
             setFormDataOne((prev: any) => {
                 return {
@@ -162,15 +160,15 @@ const SubmitManuscript = () => {
         publicationFormdata,
         setPublicationFormData,
         serviceName,
-        selectedService
+        selectedService,
+        setSelectedServices
     }
-
-    console.log({ formDataOne, formDataTwo, formDataThree })
 
     return (
         <SubmitManuscriptContext.Provider value={formDataObject}>
             <div className="mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="lg:col-span-2 space-y-4">
+                <h2 className="title">Submit Manuscript</h2>
                     {!showForm && servicesData.map((category) => (
                         <ServiceList
                             key={category.title}
@@ -195,7 +193,7 @@ const SubmitManuscript = () => {
                 </button>
                 {finalCheck && (
                     <button className='submit-manuscript-next-button' onClick={handleSubmitForm}>
-                        Submit
+                        {loading ? "Loading..." : "Submit"}
                     </button>
                 )}
             </div>

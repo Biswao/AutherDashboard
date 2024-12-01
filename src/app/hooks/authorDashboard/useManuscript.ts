@@ -1,7 +1,8 @@
 "use client"
 
+import { MainContext } from "@/app/context/MainContext";
 import { countryListType, FileUploadResponse, FormDataOne, FormDataThree, FormDataTwo, PublicationFormType, serviceNameType } from "@/app/utils/interfaces/types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const useManuscript = () => {
@@ -10,6 +11,8 @@ const useManuscript = () => {
     const [error, setError] = useState<boolean | string>(false);
     const [loading, setLoading] = useState<boolean>(true);
     
+
+    const {setActive} = useContext(MainContext)
 
     useEffect(() => {
         fetchCountryList()
@@ -143,10 +146,9 @@ const useManuscript = () => {
             const data = await response.json();
             if(data){
                 toast.success("Manuscript Submitted!!")
-                window.location.reload()
+                setActive("Dashboard")
             }
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
             toast.error("Something went wrong")
         } finally {
@@ -158,7 +160,6 @@ const useManuscript = () => {
         setLoading(true);
 
         try {
-            // Upload files and collect their names
             const upldContentFileName = JournalPublicationFormData.upld_content_file && JournalPublicationFormData.user_id
                 ? await uploadFile(JournalPublicationFormData.upld_content_file,JournalPublicationFormData.user_id,JournalPublicationFormData.order_type)
                 : null;
@@ -169,9 +170,7 @@ const useManuscript = () => {
                 ? await uploadFile(JournalPublicationFormData.upld_table_file,JournalPublicationFormData.user_id,JournalPublicationFormData.order_type)
                 : null;
 
-                console.log({JournalPublicationFormData})
-
-                const requestBody = {   
+                const requestBody = {
                     user_id: JournalPublicationFormData.user_id,
                     order_type: "manu",
                     service_type: JournalPublicationFormData.service_type,
@@ -197,8 +196,9 @@ const useManuscript = () => {
                     bill_city: formDataThree.bill_city || "test",
                     bill_state: formDataThree.bill_state || "test",
                     bill_zip: formDataThree.bill_zip || "test",
-                    bill_country: formDataThree.bill_country || "test",
+                    bill_country: formDataThree.bill_country || "4",
                   };
+
 
             const response = await fetch(
                 "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
@@ -208,11 +208,8 @@ const useManuscript = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(requestBody),
-                    mode: 'cors'
                 }
             );
-
-            console.log({response})
 
             if (!response.ok) {
                 throw new Error(`Error submitting quotation: ${response.statusText}`);
@@ -221,10 +218,9 @@ const useManuscript = () => {
             const data = await response.json();
             if(data){
                 toast.success("Manuscript Submitted!!")
-                window.location.reload()
+                setActive("Dashboard")
             }
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
             toast.error("Something went wrong")
         } finally {

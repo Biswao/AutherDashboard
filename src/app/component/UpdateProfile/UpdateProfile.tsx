@@ -37,7 +37,6 @@ const UpdateProfile = () => {
     const { loading, error, authorDetails, updateAuthorDetails } = useFetchAuthor(email ?? undefined)
     const { countryCode } = useFetchCountryCode()
     const { active, setActive } = useContext(MainContext)
-    console.log({ activecheck: active })
 
     useEffect(() => {
         if (authorDetails) {
@@ -73,7 +72,6 @@ const UpdateProfile = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Updated Data:", formData);
         // Add logic to submit the updated form data
         updateAuthorDetails(formData)
     };
