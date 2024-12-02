@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { MainContext } from "@/app/context/MainContext";
 import { useRouter } from 'next/navigation'
+import user from '../../../../public/assets/images/user.png'
 
 export default function Sidebar({children}: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -55,7 +56,7 @@ export default function Sidebar({children}: SidebarProps) {
                        
                         {/* Profile Section */}
                         <div className="text-center mb-8 centroid">
-                            <img src="./assets/images/user.png" alt="Profile" className="w-20 h-20 rounded-full mb-3" />
+                            <img src={user.src} alt="Profile" className="w-20 h-20 rounded-full mb-3" />
                             <h3 className="text-xl font-semibold">{`${authorDetails?.first_name ?? "No"} ${authorDetails?.last_name ?? "Name"}`}</h3>
                             <p className="text-green-500 text-sm flex items-center justify-center">
                                 <i className="fa fa-check-circle mr-1"></i> {authorDetails?.user_type}
