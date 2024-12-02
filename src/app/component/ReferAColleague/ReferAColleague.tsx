@@ -6,10 +6,10 @@ const ReferAColleague = () => {
         <>
             <div className="min-h-screen flex items-center justify-center py-10 px-4">
                 <div className="w-full bg-white shadow-md rounded-lg p-6">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                    {/* <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
                         Refer a Colleague
-                    </h2>
-
+                    </h2> */}
+                    <h2 style={{fontSize:'18px',fontWeight:'bold',color:'#003366',marginBottom:'16px'}}>Refer A Colleague</h2>
                     {/* Your Details Section */}
                     <form className="space-y-6">
                         <div>

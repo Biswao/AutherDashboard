@@ -11,7 +11,7 @@ const useFetchOrder = (userId: string | null) => {
         if (userId) {
             const fetchOrderToTable = async () => {
                 try {
-                    const orderData = await fetch(`https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`);
+                    const orderData = await fetch(`https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`,{cache: 'no-store'});
                     if (!orderData.ok) {
                         throw new Error('Order Fetching Failed.')
                     }

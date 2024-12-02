@@ -1,48 +1,31 @@
-import { useEffect, useState } from 'react';
+import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
+import { useContext, useEffect, useState } from 'react';
 
 const StepForm2 = ({setCheck}: any) => {
-    const [formData, setFormData] = useState({
-        upld_content_file: null,
-        upld_figure_file: null,
-        upld_table_file: null,
-        title: '',
-        abstract: '',
-        keyword: ''
-    });
+    const { formDataTwo, setFormDataTwo } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
-        if(formData.title){
+        if(formDataTwo.title, formDataTwo.upld_content_file && formDataTwo.keyword){
             setCheck(true)
         }else{
             setCheck(false)
         }
-    },[formData])
-
-    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const { name, files } = e.target;
-    //     setFormData((prev) => ({ ...prev, [name]: files ? files[0] : null }));
-    // };
+    },[formDataTwo])
 
     const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
-        setFormData({
-            ...formData,
+        setFormDataTwo({
+            ...formDataTwo,
             [name]: files ? files[0] : null
         });
     };
 
     const handleChange = (e:any) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormDataTwo({
+            ...formDataTwo,
             [name]: value
         });
-    };
-
-    const handleSubmit = (e:any) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-        // You can add form submission logic here (e.g., sending data to an API endpoint)
     };
 
     return (
@@ -53,7 +36,7 @@ const StepForm2 = ({setCheck}: any) => {
             <p><strong>Only files in the "main document" section</strong> will be edited, translated, formatted or will receive Review comments, depending on the service you purchased. Files in the "supporting or reference document" section are for the editors' reference only - they will not be charged.</p>
             <p>Files in the "main document" section should be either .doc or .txt format. Supporting reference or figure files can be of any type. You can move to the next step only after your files have finished uploading.</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => {}}>
                 <label htmlFor="mainDocument">Upload your main document or content file *</label>
                 <input type="file" id="mainDocument" name="upld_content_file" onChange={handleFileChange} className="file-input" required />
                 <p className="note">(Compress multiple documents in a single zip file)</p>
@@ -67,13 +50,13 @@ const StepForm2 = ({setCheck}: any) => {
                 <p className="note">(Compress multiple documents in a single zip file)</p>
 
                 <label htmlFor="manuscriptTitle">Title of the Manuscript *</label>
-                <input type="text" id="manuscriptTitle" name="title" value={formData.title} onChange={handleChange} className="input" required />
+                <input type="text" id="manuscriptTitle" name="title" value={formDataTwo.title} onChange={handleChange} className="input" required />
 
                 <label htmlFor="abstract">Abstract</label>
-                <textarea id="abstract" name="abstract" value={formData.abstract} onChange={handleChange} className="textarea"></textarea>
+                <textarea id="abstract" name="abstract" value={formDataTwo.abstract} onChange={handleChange} className="textarea"></textarea>
 
                 <label htmlFor="keywords">Keywords *</label>
-                <input type="text" id="keywords" name="keyword" value={formData.keyword} onChange={handleChange} className="input" required />
+                <input type="text" id="keywords" name="keyword" value={formDataTwo.keyword} onChange={handleChange} className="input" required />
             </form>
 
             <style jsx>{`

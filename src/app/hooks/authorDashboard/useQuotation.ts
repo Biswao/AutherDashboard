@@ -1,6 +1,8 @@
 "use client"
+import { MainContext } from "@/app/context/MainContext";
 import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
 const useQuotation = () => {
@@ -10,9 +12,11 @@ const useQuotation = () => {
     const [serviceName, setServiceName] = useState<serviceNameType[]>([])
     const [majorSubjectType, setMajorSubjectType] = useState<SubjectGroup[]>([])
 
+    const {setActive} = useContext(MainContext)
+
     useEffect(() => {
         getServiceType()
-        getServiceNameById("1")
+        getServiceNameById()
         getAllMajorSubjectType()
     }, [])
 
@@ -39,7 +43,7 @@ const useQuotation = () => {
         }
     }
 
-    const getServiceNameById = async (id: string) => {
+    const getServiceNameById = async (id: string="1") => {
         setLoading(true)
         try {
             const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`);
@@ -154,10 +158,13 @@ const useQuotation = () => {
             }
 
             const data = await response.json();
-            console.log("Quotation submitted successfully:", data);
+            if(data){
+                toast.success("Quotation Submitted!!")
+                setActive("Dashboard")
+            }
         } catch (err: any) {
-            console.error("Error:", err);
             setError(err.message || "Something went wrong.");
+            toast.error("Something went wrong")
         } finally {
             setLoading(false);
         }

@@ -5,10 +5,10 @@ import "./TalkExpert.css"
 import usePostTalkExpert from "@/app/hooks/authorDashboard/usePostTalkExpert";
 
 export default function TalkToAnExpert() {
-    const [subjectArea, setSubjectArea] = useState("");
-    const [modeOfContact, setModeOfContact] = useState("");
+    const [subjectArea, setSubjectArea] = useState("subject1");
+    const [modeOfContact, setModeOfContact] = useState("email");
     const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
+    const [time, setTime] = useState("12");
 
     const { talkToExpert, loading, error } = usePostTalkExpert();
 
@@ -78,15 +78,14 @@ export default function TalkToAnExpert() {
                                 value={time}
                                 onChange={(e) => setTime(e.target.value)}
                             >
-                                <option value="12AM">12 AM</option>
-                                <option value="1AM">1 AM</option>
-                                <option value="2AM">2 AM</option>
-                                {/* Add more time options */}
+                                <option value="12">12 AM</option>
+                                <option value="1">1 AM</option>
+                                <option value="2">2 AM</option>
                             </select>
                         </div>
 
                         {/* Submit Button */}
-                        <button className="submit-btn" onClick={postExpertHandler}>Submit Request</button>
+                        <button className="submit-btn" onClick={postExpertHandler}>{loading ? "Loading..." : "Submit Request"}</button>
                     </div>
                 </div>
             </div>

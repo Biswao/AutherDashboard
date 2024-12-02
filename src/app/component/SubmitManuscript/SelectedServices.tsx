@@ -42,10 +42,12 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       <div className="flex justify-between text-sm sm:text-base md:text-lg">
         <span>Services Subtotal</span>
         <span>${servicesSubtotal.toFixed(2)}</span>
+        <span></span>
       </div>
       <div className="flex justify-between text-sm sm:text-base md:text-lg">
         <span>Discounts Applied</span>
         <span>${discount.toFixed(2)}</span>
+        <span></span>
       </div>
 
       <div className="border-t border-white-300 my-2"></div>
@@ -53,6 +55,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       <div className="flex justify-between font-semibold text-sm sm:text-base md:text-lg">
         <span>Total Cost</span>
         <span>${totalCost.toFixed(2)}</span>
+        <span></span>
       </div>
 
       <div className="mt-4">
@@ -66,7 +69,8 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
             placeholder="Enter code"
           />
           <button
-            onClick={handleApplyDiscount}
+            // onClick={handleApplyDiscount}
+            onClick={() => {}}
             className="bg-green-500 text-white px-4 py-2 text-sm md:text-base rounded-r-lg hover:bg-green-600"
           >
             Apply

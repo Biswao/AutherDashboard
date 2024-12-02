@@ -66,10 +66,12 @@ export interface UseAuthReturn {
 export interface Service {
     name: string;
     price: number;
+    id: string;
 }
 
 export interface ServiceCategory {
     title: string;
+    id?: string;
     services: Service[];
 }
 
@@ -85,8 +87,8 @@ export interface SelectedService {
 
 export interface ServiceListProps {
     title: string;
-    services: { name: string, price: number }[];
-    onAdd: (service: string, price: number) => void;
+    services: { name: string, price: number, id: string }[];
+    onAdd: (service: string, price: number, title: string, id: string) => void;
     selecetedServiceObject: { [key: string]: string }
 }
 
@@ -183,32 +185,32 @@ export interface FileUploadResponse {
 }
 
 export interface SubmitManuscriptRequest {
-    user_id: string;
-    order_type: string;
-    service_type: string;
-    service_name: string;
-    journal_format: string;
-    major_subject: string;
-    specific_subject: string;
-    language: string;
-    word_count: string;
-    total_price: string;
-    turn_ar_time: string;
-    inst_for_editor: string;
-    upld_content_file: string;
-    upld_figure_file: string;
-    upld_table_file: string;
-    title: string;
-    abstract: string;
-    keyword: string;
-    bill_name: string;
-    bill_addr1: string;
-    bill_addr2: string;
-    bill_phone: string;
-    bill_city: string;
-    bill_state: string;
-    bill_zip: string;
-    bill_country: string;
+    user_id?: string;
+    order_type?: string;
+    service_type?: string;
+    service_name?: string;
+    journal_format?: string;
+    major_subject?: string;
+    specific_subject?: string;
+    language?: string;
+    word_count?: string;
+    total_price?: string;
+    turn_ar_time?: string;
+    inst_for_editor?: string;
+    upld_content_file?: string;
+    upld_figure_file?: string;
+    upld_table_file?: string;
+    title?: string;
+    abstract?: string;
+    keyword?: string;
+    bill_name?: string;
+    bill_addr1?: string;
+    bill_addr2?: string;
+    bill_phone?: string;
+    bill_city?: string;
+    bill_state?: string;
+    bill_zip?: string;
+    bill_country?: string;
 };
 
 export interface countryListType {
@@ -219,4 +221,76 @@ export interface countryListType {
 export interface updateAuthorDetailsResponse {
     status: boolean
     msg: string
+}
+
+export interface FormDataOne {
+    user_id?: string | null,
+    order_type: string,
+    service_type?: string;
+    "service_name": string;
+    major_subject?: string;
+    specific_subject?: string;
+    language?: string;
+    wordRange?: string;
+    word_count?: string;
+    turn_ar_time?: string;
+    inst_for_editor?: string;
+    journal_format?: string;
+}
+
+export interface FormDataTwo {
+    upld_content_file: File | null;
+    upld_figure_file: File | null;
+    upld_table_file: File | null;
+    title: string;
+    abstract: string;
+    keyword: string;
+}
+
+export interface FormDataThree {
+    bill_name: string;
+    bill_addr1: string;
+    bill_addr2: string;
+    bill_phone: string;
+    bill_city: string;
+    bill_state: string;
+    bill_zip: string;
+    bill_country: string;
+}
+
+export interface PublicationFormType {
+    user_id?: string | null,
+    order_type: string,
+    service_type: string,
+    service_name: string,
+    title: string;
+    language: string;
+    abstract: string;
+    keyword: string;
+    inst_for_editor: string;
+    word_count: string;
+    upld_content_file: File | null;
+    upld_figure_file: File | null;
+    upld_table_file: File | null;
+}
+
+export interface SubmitManuscriptContextType {
+    stepFormData: any;
+    setStepFormData: (data: Partial<FormDataOne>) => void;
+    totalPrice: number;
+    setTotalPrice: (price: number) => void;
+    serviceTitle: string;
+    formDataOne: FormDataOne;
+    setFormDataOne: (data: Partial<FormDataOne>) => void;
+    formDataTwo: FormDataTwo;
+    setFormDataTwo: (data: Partial<FormDataTwo>) => void;
+    formDataThree: FormDataThree;
+    setFormDataThree: (data: Partial<FormDataThree>) => void;
+    finalCheck: boolean,
+    setFinalCheck: (data: boolean) => void,
+    publicationFormdata: PublicationFormType,
+    setPublicationFormData: (data: Partial<PublicationFormType>) => void,
+    serviceName: any,
+    selectedService: string
+    setSelectedServices: any
 }

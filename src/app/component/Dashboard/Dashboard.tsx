@@ -7,6 +7,7 @@ import useFetchOrder from "@/app/hooks/authorDashboard/useFetchOrder";
 import { useContext, useEffect, useState } from "react";
 import "./Dashboard.css"
 import { MainContext } from "@/app/context/MainContext";
+import ImageSlider from "../ImageSlider/ImageSlider";
 
 
 export const Dashboard = () => {
@@ -46,6 +47,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#688bb2', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Submit Manuscript")}
               >
                 <FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '10px' }} />
                 Submit New Manuscript !
@@ -57,6 +59,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#c7715d', borderRadius: '15px', color: '#fff', padding: '22px' }}
+                onClick={() => setActive("Request a Quotation")}
               >
                 <FontAwesomeIcon icon={faFileInvoice} style={{ marginRight: '10px' }} />
                 Request A Quote !
@@ -80,28 +83,11 @@ export const Dashboard = () => {
           {/* Testimonials and Discounts */}
           <div className="row mt-4" style={{ paddingTop: '40px', paddingBottom: '40px' }}>
             <div className="col-md-8">
-              <div className="card testiHeight p-3" style={{ height: '191px', justifyContent: 'center', lineHeight: '33px' }}>
-                <h5 style={{ marginBottom: '20px' }}>Author Testimonials</h5>
-                <div className="d-flex">
-                  <div className="me-3" style={{ display: 'flex', alignItems: 'center' }}>
-                    <img
-                      src="/assets/images/user.png"
-                      alt="Author"
-                      className="rounded-circle"
-                      width="90"
-                      height="90"
-                    />
-                  </div>
-                  <div>
-                    <p>
-                      We are very thankful to you for your help in improving our
-                      manuscript! Without your help, we could not have published
-                      our reviews. Please accept sincere gratitude from all the
-                      authors.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {/* <div className="card testiHeight p-3" style={{ height: '191px', justifyContent: 'center', lineHeight: '33px' }}> */}
+              <h5 style={{ marginBottom: '20px',fontWeight:'bold' }}>Author Testimonials</h5>
+               
+                <ImageSlider />
+              {/* </div> */}
             </div>
             <div className="col-md-4">
               <div className="card p-3">

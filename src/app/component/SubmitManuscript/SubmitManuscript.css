@@ -16,6 +16,12 @@
     gap: 0.6em;
     font-weight: bold;
 }
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 16px;
+  }
 
 .submit-manuscript-next-button .arrow-wrapper {
     display: flex;

@@ -1,30 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import { SubmitManuscriptContext } from "@/app/context/SubmitManuscriptContext";
+import useQuotation from "@/app/hooks/authorDashboard/useQuotation";
+import { GroupedOption } from "@/app/utils/interfaces/types";
+import { majorSubjectTypeOptions } from "@/app/utils/lib/lib";
+import React, { useContext, useEffect, useState } from "react";
+import Select from "react-select";
 
 const PublicationSupportForm = () => {
-  const [formData, setFormData] = useState({
-    serviceType: "",
-    majorSubjectType: "",
-    specificSubject: "",
-    styleOfEnglish: "American English",
-    wordRange: "",
-    wordCount: "",
-    turnaroundTime: "",
-  });
+  const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
+
+  const { serviceTitle, setFormDataOne, formDataOne } = useContext(SubmitManuscriptContext)
+  const { majorSubjectType } = useQuotation()
+
+  const handleMajorSubjectType = (e: any) => {
+    const { value } = e
+    setFormDataOne({ ...formDataOne, major_subject: value });
+  }
+
+  useEffect(() => {
+    if (majorSubjectType && majorSubjectType.length) {
+      const majorSubjectDropdownData = majorSubjectTypeOptions(majorSubjectType)
+      setMajorSubjectDropdown(majorSubjectDropdownData)
+    }
+  }, [majorSubjectType])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
+    setFormDataOne({ ...formDataOne, [name]: value });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto">
+    <form onSubmit={() => {}} className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto">
       <h2 className="text-xl font-semibold mb-4">Details About Your Submission</h2>
       <p className="text-sm text-gray-600 mb-6">
         Before we start working on your submission, please answer all the questions below. Your answers will help us to provide you the best possible services.
@@ -38,7 +45,7 @@ const PublicationSupportForm = () => {
         <select
           id="serviceType"
           name="serviceType"
-          value={formData.serviceType}
+          value={formDataOne.specific_subject}
           onChange={handleInputChange}
           className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
         >
@@ -54,18 +61,11 @@ const PublicationSupportForm = () => {
         <label htmlFor="majorSubjectType" className="block font-medium mb-2">
           Major Subject Type <span className="text-red-500">*</span>
         </label>
-        <select
-          id="majorSubjectType"
-          name="majorSubjectType"
-          value={formData.majorSubjectType}
-          onChange={handleInputChange}
-          className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">-- Select --</option>
-          <option value="Science">Science</option>
-          <option value="Arts">Arts</option>
-          <option value="Commerce">Commerce</option>
-        </select>
+        <Select
+          name='major_subject'
+          options={majorSubjectDropdown}
+          onChange={handleMajorSubjectType}
+        />
       </div>
 
       {/* Provide Specific Subject */}
@@ -77,7 +77,7 @@ const PublicationSupportForm = () => {
           type="text"
           id="specificSubject"
           name="specificSubject"
-          value={formData.specificSubject}
+          value={formDataOne.specific_subject}
           onChange={handleInputChange}
           placeholder="Enter ..."
           className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -95,7 +95,7 @@ const PublicationSupportForm = () => {
               type="radio"
               name="styleOfEnglish"
               value="American English"
-              checked={formData.styleOfEnglish === "American English"}
+              checked={formDataOne.language === "American English"}
               onChange={handleInputChange}
               className="text-blue-500 focus:ring-blue-500"
             />
@@ -106,7 +106,7 @@ const PublicationSupportForm = () => {
               type="radio"
               name="styleOfEnglish"
               value="British English"
-              checked={formData.styleOfEnglish === "British English"}
+              checked={formDataOne.language === "British English"}
               onChange={handleInputChange}
               className="text-blue-500 focus:ring-blue-500"
             />
@@ -123,7 +123,7 @@ const PublicationSupportForm = () => {
         <select
           id="wordRange"
           name="wordRange"
-          value={formData.wordRange}
+          value={formDataOne.wordRange}
           onChange={handleInputChange}
           className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
         >
@@ -145,8 +145,8 @@ const PublicationSupportForm = () => {
         <input
           type="text"
           id="wordCount"
-          name="wordCount"
-          value={formData.wordCount}
+          name="word_count"
+          value={formDataOne.word_count}
           onChange={handleInputChange}
           placeholder="Enter word count"
           className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -160,8 +160,8 @@ const PublicationSupportForm = () => {
         </label>
         <select
           id="turnaroundTime"
-          name="turnaroundTime"
-          value={formData.turnaroundTime}
+          name="turn_ar_time"
+          value={formDataOne.turn_ar_time}
           onChange={handleInputChange}
           className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
         >

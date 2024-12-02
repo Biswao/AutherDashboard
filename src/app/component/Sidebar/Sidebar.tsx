@@ -14,8 +14,6 @@ export default function Sidebar({children}: SidebarProps) {
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
     const {active, setActive} = useContext(MainContext)
 
-    console.log({authorDetails})
-
 
     useEffect(() => {
         // Set initial sidebar state based on screen width
@@ -42,7 +40,7 @@ export default function Sidebar({children}: SidebarProps) {
     return (
         <div>
             {/* Header Component */}
-            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} initials={`${authorDetails?.first_name[0]}${authorDetails?.last_name[0]}`}/>
+            <Header isOpen={isOpen} toggleSidebar={toggleSidebar} initials={`${authorDetails?.first_name[0] ?? ""}${authorDetails?.last_name[0] ?? ""}`}/>
 
             <div className="SideabrAllign" style={{display:"flex"}}>
                 {/* Sidebar */}

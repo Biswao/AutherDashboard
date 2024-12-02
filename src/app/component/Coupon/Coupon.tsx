@@ -10,6 +10,7 @@ const Coupon = () => {
 
     return (
         <>
+        <h2 className="title">Coupon Center</h2>
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8">

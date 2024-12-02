@@ -12,6 +12,8 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
   const {active, setActive} = useContext(MainContext)
   const router = useRouter()
 
+  console.log({initials})
+
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const logoutHandler = () => {
@@ -47,7 +49,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
               className="btn btn-light rounded-circle d-flex align-items-center justify-content-center"
               style={{ width: '40px', height: '40px' }}
             >
-              {initials}
+              {initials ?? ""}
               <span className="ms-1">&#9662;</span>
             </button>
 
