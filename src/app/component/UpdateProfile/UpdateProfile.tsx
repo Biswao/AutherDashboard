@@ -80,6 +80,8 @@ const UpdateProfile = () => {
         setPassword(!password)
     }
 
+    console.log({formData});
+
 
     return (
         <>
