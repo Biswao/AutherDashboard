@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation'
 import { MainContext } from "@/app/context/MainContext";
+import Link from "next/link";
 import logo from '../../../../public/assets/images/logooForAuthor.png'
 
 export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
@@ -55,8 +56,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
             {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
-                <span className="dropdown-item" onClick={() => setActive("Update Profile")}><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span>
-                <span className="dropdown-item"><FontAwesomeIcon icon={faCog} className="me-2" />Settings</span>
+                <Link href={'/UpdateProfile'} style={{textDecoration:"none"}}><span className="dropdown-item"><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span></Link>
                 <span onClick={logoutHandler} className="dropdown-item"><FontAwesomeIcon icon={faSignOutAlt} className="me-2" />Logout</span>
               </div>
             )}
