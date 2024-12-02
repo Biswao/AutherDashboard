@@ -2,8 +2,10 @@
 import { MainContext } from "@/app/context/MainContext";
 import { ServiceListProps } from "@/app/utils/interfaces/types";
 import { useContext } from "react";
+import {useRouter} from 'next/navigation'
 const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => {
   const { setActive } = useContext(MainContext)
+  const router = useRouter()
   return (
     <div style={{ backgroundColor: '#E7F4FF' }} className="text-white p-4 rounded-lg">
       
@@ -13,7 +15,7 @@ const ServiceList: React.FC<ServiceListProps> = ({ title, services, onAdd }) => 
           <span>{service.name}</span>
           <button style={{ backgroundColor: '#0D5086' }} onClick={() => {
             if (service.name === 'Customized Editing Service' || service.name === "Book Publication Package") {
-              setActive("Request a Quotation")
+              router.push('/QuotationRequest')
             } else {
               onAdd(service.name, service.price,title, service.id);
             }

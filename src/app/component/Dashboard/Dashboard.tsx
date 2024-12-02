@@ -106,7 +106,7 @@ export const Dashboard = () => {
           </div>
 
           {/* Orders Table */}
-          <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage="No Order Avilable" />
+          <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage={loading ? "Loading Orders..." :"No Order Avilable"} />
         </div>
       
 

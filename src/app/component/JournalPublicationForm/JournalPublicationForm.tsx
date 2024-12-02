@@ -8,7 +8,7 @@ const PublicationForm = () => {
     
   });
 
-  const { submitQuotationJournalPublicationPackage } = useManuscript()
+  const { loading,submitQuotationJournalPublicationPackage } = useManuscript()
 
   const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree, selectedService} = useContext(SubmitManuscriptContext)
 
@@ -177,7 +177,7 @@ const PublicationForm = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-primary">SUBMIT</button>
+        <button type="submit" className="btn btn-primary">{loading ? "LOADING..." : "SUBMIT"}</button>
       </form>
     </div>
   );
