@@ -57,7 +57,6 @@ export default function Home() {
           {active && active === "Update Profile" && (<UpdateProfile />)}
         </Sidebar>
       </MainContext.Provider>
-
       
       </>
 

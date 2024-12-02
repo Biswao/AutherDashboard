@@ -2,27 +2,32 @@ import { useEffect, useState } from 'react';
 
 const StepForm2 = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
-        mainDocument: null,
-        figureFile: null,
-        tableFile: null,
-        manuscriptTitle: '',
+        upld_content_file: null,
+        upld_figure_file: null,
+        upld_table_file: null,
+        title: '',
         abstract: '',
-        keywords: ''
+        keyword: ''
     });
 
     useEffect(() => {
-        if(formData.manuscriptTitle){
+        if(formData.title){
             setCheck(true)
         }else{
             setCheck(false)
         }
     },[formData])
 
-    const handleFileChange = (e:any) => {
+    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, files } = e.target;
+    //     setFormData((prev) => ({ ...prev, [name]: files ? files[0] : null }));
+    // };
+
+    const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
         setFormData({
             ...formData,
-            [name]: files[0]
+            [name]: files ? files[0] : null
         });
     };
 
@@ -50,30 +55,25 @@ const StepForm2 = ({setCheck}: any) => {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="mainDocument">Upload your main document or content file *</label>
-                <input type="file" id="mainDocument" name="mainDocument" onChange={handleFileChange} className="file-input" required />
+                <input type="file" id="mainDocument" name="upld_content_file" onChange={handleFileChange} className="file-input" required />
                 <p className="note">(Compress multiple documents in a single zip file)</p>
 
                 <label htmlFor="figureFile">Upload your Figure File</label>
-                <input type="file" id="figureFile" name="figureFile" onChange={handleFileChange} className="file-input" />
+                <input type="file" id="figureFile" name="upld_figure_file" onChange={handleFileChange} className="file-input" />
                 <p className="note">(Compress multiple documents in a single zip file)</p>
 
                 <label htmlFor="tableFile">Upload your Table File</label>
-                <input type="file" id="tableFile" name="tableFile" onChange={handleFileChange} className="file-input" />
+                <input type="file" id="tableFile" name="upld_table_file" onChange={handleFileChange} className="file-input" />
                 <p className="note">(Compress multiple documents in a single zip file)</p>
 
                 <label htmlFor="manuscriptTitle">Title of the Manuscript *</label>
-                <input type="text" id="manuscriptTitle" name="manuscriptTitle" value={formData.manuscriptTitle} onChange={handleChange} className="input" required />
+                <input type="text" id="manuscriptTitle" name="title" value={formData.title} onChange={handleChange} className="input" required />
 
                 <label htmlFor="abstract">Abstract</label>
                 <textarea id="abstract" name="abstract" value={formData.abstract} onChange={handleChange} className="textarea"></textarea>
 
                 <label htmlFor="keywords">Keywords *</label>
-                <input type="text" id="keywords" name="keywords" value={formData.keywords} onChange={handleChange} className="input" required />
-
-                {/* <div className="button-group">
-                    <button type="button" className="prev-btn">Previous</button>
-                    <button type="submit" className="next-btn">Next</button>
-                </div> */}
+                <input type="text" id="keywords" name="keyword" value={formData.keyword} onChange={handleChange} className="input" required />
             </form>
 
             <style jsx>{`

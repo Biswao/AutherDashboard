@@ -1,19 +1,22 @@
+import useManuscript from '@/app/hooks/authorDashboard/useManuscript';
 import { useEffect, useState } from 'react';
 
 const StepForm3 = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
-        billingName: '',
-        billingAddress1: '',
-        billingAddress2: '',
-        phone: '',
-        city: '',
-        state: '',
-        zipCode: '',
-        country: ''
+        bill_name: '',
+        bill_addr1: '',
+        bill_addr2: '',
+        bill_phone: '',
+        bill_city: '',
+        bill_state: '',
+        bill_zip: '',
+        bill_country: ''
     });
 
+    const { countryList, error, loading } = useManuscript()
+
     useEffect(() => {
-        if(formData.billingName){
+        if(formData.bill_name){
             setCheck(true)
         }else{
             setCheck(false)
@@ -46,39 +49,38 @@ const StepForm3 = ({setCheck}: any) => {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="billingName">Billing Name *</label>
-                <input type="text" id="billingName" name="billingName" value={formData.billingName} onChange={handleChange} className="input" required />
+                <input type="text" id="billingName" name="bill_name" value={formData.bill_name} onChange={handleChange} className="input" required />
 
                 <label htmlFor="billingAddress1">Billing Address1 *</label>
-                <input type="text" id="billingAddress1" name="billingAddress1" value={formData.billingAddress1} onChange={handleChange} className="input" required />
+                <input type="text" id="billingAddress1" name="bill_addr1" value={formData.bill_addr1} onChange={handleChange} className="input" required />
 
                 <label htmlFor="billingAddress2">Billing Address2</label>
-                <input type="text" id="billingAddress2" name="billingAddress2" value={formData.billingAddress2} onChange={handleChange} className="input" />
+                <input type="text" id="billingAddress2" name="bill_addr2" value={formData.bill_addr2} onChange={handleChange} className="input" />
 
                 <label htmlFor="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="input" />
+                <input type="text" id="phone" name="bill_phone" value={formData.bill_phone} onChange={handleChange} className="input" />
 
                 <label htmlFor="city">City *</label>
-                <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} className="input" required />
+                <input type="text" id="city" name="bill_city" value={formData.bill_city} onChange={handleChange} className="input" required />
 
                 <label htmlFor="state">State</label>
-                <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} className="input" />
+                <input type="text" id="state" name="bill_state" value={formData.bill_state} onChange={handleChange} className="input" />
 
                 <label htmlFor="zipCode">Zip Code *</label>
-                <input type="text" id="zipCode" name="zipCode" value={formData.zipCode} onChange={handleChange} className="input" required />
+                <input type="text" id="zipCode" name="bill_zip" value={formData.bill_zip} onChange={handleChange} className="input" required />
 
                 <label htmlFor="country">Country *</label>
-                <select id="country" name="country" value={formData.country} onChange={handleChange} className="input" required>
+                <select id="country" name="bill_country" value={formData.bill_country} onChange={handleChange} className="input" required>
                     <option value="">-- Select --</option>
-                    <option value="USA">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="UK">United Kingdom</option>
+                    {
+                        countryList && countryList.length && countryList.map(country => {
+                            return (
+                                <option value={country.id}>{country.country}</option>
+                            )
+                        })
+                    }
                     {/* Add more options as needed */}
                 </select>
-
-                {/* <div className="button-group">
-                    <button type="button" className="prev-btn">Previous</button>
-                    <button type="submit" className="next-btn">Next</button>
-                </div> */}
             </form>
 
             <style jsx>{`

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
+import { useContext, useEffect, useState } from 'react';
+
+let journalCheckboxData = [0,0,0]
 
 const StepForm = ({setCheck}: any) => {
     const [formData, setFormData] = useState({
-        serviceType: 'Proofreading',
-        journalFormatting: false,
-        journalSelection: false,
-        journalSubmission: false,
+        service_type: 'Proofreading',
         majorSubject: '',
         specificSubject: '',
         englishStyle: 'American',
@@ -14,6 +14,8 @@ const StepForm = ({setCheck}: any) => {
         turnaroundTime: '',
         instructions: ''
     });
+
+    const { stepFormData,setStepFormData } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
         if(formData.specificSubject){
@@ -25,9 +27,25 @@ const StepForm = ({setCheck}: any) => {
 
     const handleChange = (e:any) => {
         const { name, value, type, checked } = e.target;
+        console.log({name})
+        if(name === 'journalFormatting'){
+            journalCheckboxData[0] = value === "on" ? 1 : 0
+        }else if(name === 'journalSelection'){
+            journalCheckboxData[1] = value === "on" ? 1 : 0
+        }else if(name === "journalSubmission"){
+            journalCheckboxData[2] = value === "on" ? 1 : 0
+        }
+
+        const checkboxName = 'journal_format'
+        const key = 
+        name === "journalFormatting" || name === "journalSelection" || name === "journalSubmission"
+            ? checkboxName
+            : name;
+
+        console.log({key})
         setFormData({
             ...formData,
-            [name]: type === 'checkbox' ? checked : value
+            [key]: type === 'checkbox' ? journalCheckboxData.join("") : value
         });
     };
 
@@ -37,6 +55,8 @@ const StepForm = ({setCheck}: any) => {
         // You can add form submission logic here (e.g., sending data to an API endpoint)
     };
 
+    console.log({formData})
+
     return (
         <div className="container">
             <h2>Details About Your Submission</h2>
@@ -44,13 +64,13 @@ const StepForm = ({setCheck}: any) => {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="serviceType">Service Type *</label>
-                <select id="serviceType" name="serviceType" value={formData.serviceType} onChange={handleChange} className="select" required>
+                <select id="serviceType" name="service_type" value={formData.service_type} onChange={handleChange} className="select" required>
                     <option>Proofreading</option>
                 </select>
 
                 <div>
                     <label className="checkbox-label">
-                        <input type="checkbox" name="journalFormatting" checked={formData.journalFormatting} onChange={handleChange} /> Add journal formatting<br />
+                        <input type="checkbox" name="journalFormatting" onChange={handleChange} /> Add journal formatting<br />
                         For less than 3,000 words, additional 1 day turnaround time & $80 extra.<br />
                         For 3,000 to 6,000 words, additional 2 days turnaround time & $130 extra.
                     </label>
@@ -58,14 +78,14 @@ const StepForm = ({setCheck}: any) => {
 
                 <div>
                     <label className="checkbox-label">
-                        <input type="checkbox" name="journalSelection" checked={formData.journalSelection} onChange={handleChange} /> Add journal selection<br />
+                        <input type="checkbox" name="journalSelection" onChange={handleChange} /> Add journal selection<br />
                         Additional 5 days turnaround time & $350 extra charge.
                     </label>
                 </div>
 
                 <div>
                     <label className="checkbox-label">
-                        <input type="checkbox" name="journalSubmission" checked={formData.journalSubmission} onChange={handleChange} /> Add journal submission<br />
+                        <input type="checkbox" name="journalSubmission" onChange={handleChange} /> Add journal submission<br />
                         Additional 2 days turnaround time & $120 extra charge.
                     </label>
                 </div>

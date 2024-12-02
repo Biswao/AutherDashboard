@@ -9,11 +9,9 @@ import { GroupedOption } from "@/app/utils/interfaces/types";
 import Select from "react-select";
 
 const Quotation = () => {
-    // const headers: string[] = ['Quotation Id', 'Service Type', 'Submit Date', 'Delivery Date'];
-    // const data: string[][] = [];
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
     const [formData, setFormData] = useState({
-        user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : undefined,
+        user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
         order_type: "quote",
         service_type: "",
         service_name: "",
@@ -28,7 +26,8 @@ const Quotation = () => {
         upld_figure_file: null,
         upld_table_file: null,
     });
-    const { loading, error, serviceType, getServiceNameById, serviceName, majorSubjectType } = useQuotation()
+
+    const { loading, error, serviceType, getServiceNameById, serviceName, majorSubjectType, submitQuotation } = useQuotation()
 
     useEffect(() => {
         if (majorSubjectType && majorSubjectType.length) {
@@ -42,13 +41,24 @@ const Quotation = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleMajorSubjectType = (e: any) => {
+        const { value } = e
+        setFormData((prev) => ({ ...prev, major_subject: value }));
+    }
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
         setFormData((prev) => ({ ...prev, [name]: files ? files[0] : null }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
+        if (formData?.user_id && formData?.service_type && formData?.service_name && formData?.major_subject && formData?.language && formData?.specific_subject && formData?.pay_mode) {
+            await submitQuotation(formData);
+        } else {
+            alert("Please fill all the required field.")
+            return
+        }
     };
     return (
         <div className="flex flex-col items-center justify-center min-f-screen dark">
@@ -95,6 +105,8 @@ const Quotation = () => {
                             <select
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="gender"
+                                onChange={handleChange}
+                                name="service_name"
                             >
                                 {serviceName && serviceName.length && serviceName.map(val => (
                                     <option value={val.id}>{val.service_name}</option>
@@ -105,29 +117,19 @@ const Quotation = () => {
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Preferred Language*
                             </label>
-                            <input type="radio" placeholder="American English" />
+                            <input name="language" onChange={handleChange} type="radio" placeholder="American English" />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 American English
                             </label>
                             &nbsp;
                             &nbsp;
-                            <input type="radio" />
+                            <input onChange={handleChange} type="radio" />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 British English
                             </label>
                         </div>
-                        {/* <input
-                            placeholder="Email"
-                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-                            type="email"
-                        />
-                        <input
-                            placeholder="Confirm Email"
-                            className="text-gray-200 border-0 rounded-md p-2 w-1/2 mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
-                            type="email"
-                        /> */}
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/2">
@@ -137,6 +139,7 @@ const Quotation = () => {
                             <Select
                                 id="gender"
                                 options={majorSubjectDropdown}
+                                onChange={handleMajorSubjectType}
                             />
                         </div>
                         <div className="w-1/2">
@@ -144,6 +147,8 @@ const Quotation = () => {
                                 Instruction for Editor
                             </label>
                             <textarea
+                                name="inst_for_editor"
+                                onChange={handleChange}
                                 placeholder="Enter your message here..."
                                 className="text-gray-700 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ease-in-out duration-150"
                             ></textarea>
@@ -155,6 +160,8 @@ const Quotation = () => {
                                 Specific Subject Area *
                             </label>
                             <textarea
+                                name="specific_subject"
+                                onChange={handleChange}
                                 placeholder="Enter your message here..."
                                 className="text-gray-700 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition ease-in-out duration-150"
                             ></textarea>
@@ -164,6 +171,8 @@ const Quotation = () => {
                                 Word Count
                             </label>
                             <input
+                                onChange={handleChange}
+                                name="word_count"
                                 placeholder="Word Count"
                                 className="text-gray-200 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 type="text"
@@ -175,7 +184,7 @@ const Quotation = () => {
                             <h3 className="text-gray-700 font-semibold mb-2">Upload Content File</h3>
                             <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
                             <label className="flex items-center cursor-pointer">
-                                <input type="file" className="hidden" />
+                                <input name="upld_content_file" onChange={handleFileChange} type="file" className="hidden" />
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
@@ -186,7 +195,7 @@ const Quotation = () => {
                             <h3 className="text-gray-700 font-semibold mb-2">Upload Figure File</h3>
                             <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
                             <label className="flex items-center cursor-pointer">
-                                <input type="file" className="hidden" />
+                                <input name="upld_figure_file" onChange={handleFileChange} type="file" className="hidden" />
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
@@ -199,7 +208,7 @@ const Quotation = () => {
                             <h3 className="text-gray-700 font-semibold mb-2">Upload Table File</h3>
                             <p className="text-sm text-red-500 italic mb-4">(Compress multiple documents in a single zip file)</p>
                             <label className="flex items-center cursor-pointer">
-                                <input type="file" className="hidden" />
+                                <input name="upld_table_file" onChange={handleFileChange} type="file" className="hidden" />
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
@@ -213,6 +222,8 @@ const Quotation = () => {
                             <select
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                                 id="gender"
+                                onChange={handleChange}
+                                name="pay_mode"
                             >
                                 <option value="debit">Debit</option>
                                 <option value="credit">Credit</option>
@@ -221,6 +232,7 @@ const Quotation = () => {
                             <div className="flex justify-end">
                                 <button
                                     type="submit"
+                                    onClick={handleSubmit}
                                     className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform transform hover:scale-105"
                                 >
                                     Submit
@@ -231,7 +243,6 @@ const Quotation = () => {
                 </form>
             </div>
         </div>
-
     )
 }
 

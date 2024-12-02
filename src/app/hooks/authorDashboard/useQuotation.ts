@@ -1,5 +1,5 @@
 "use client"
-import { QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
+import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
 import { useEffect, useState } from "react";
 
 
@@ -60,7 +60,7 @@ const useQuotation = () => {
         }
     }
 
-    const getAllMajorSubjectType = async() => {
+    const getAllMajorSubjectType = async () => {
         setLoading(true)
         try {
             const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_all_major_subject_type.php`);
@@ -81,56 +81,89 @@ const useQuotation = () => {
         }
     }
 
+    const uploadFile = async (file: File,user_id: string,order_type: string): Promise<string> => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("user_id", user_id);
+            formData.append("order_type", order_type);
+
+            const response = await fetch("https://www.secure.manuscriptedit.com/api/editor_order_file_upload.php", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`File upload failed: ${response.statusText}`);
+            }
+
+            const data: FileUploadResponse = await response.json();
+            return data.FileUrl;
+        } catch (err: any) {
+            console.error("Error uploading file:", err);
+            throw new Error(err.message || "Failed to upload file.");
+        }
+    };
+
     const submitQuotation = async (formData: QuotationData) => {
         setLoading(true);
         setError(null);
-    
-        try {
-          // Prepare form data for file upload
-          const formDataToSend = new FormData();
-          formDataToSend.append("user_id", formData.user_id);
-          formDataToSend.append("order_type", formData.order_type);
-          formDataToSend.append("service_type", formData.service_type);
-          formDataToSend.append("service_name", formData.service_name);
-          formDataToSend.append("major_subject", formData.major_subject);
-          formDataToSend.append("specific_subject", formData.specific_subject);
-          formDataToSend.append("delivery_date", formData.delivery_date);
-          formDataToSend.append("language", formData.language);
-          formDataToSend.append("inst_for_editor", formData.inst_for_editor);
-          formDataToSend.append("word_count", formData.word_count);
-          formDataToSend.append("pay_mode", formData.pay_mode);
-          if (formData.upld_content_file) {
-            formDataToSend.append("upld_content_file", formData.upld_content_file);
-          }
-          if (formData.upld_figure_file) {
-            formDataToSend.append("upld_figure_file", formData.upld_figure_file);
-          }
-          if (formData.upld_table_file) {
-            formDataToSend.append("upld_table_file", formData.upld_table_file);
-          }
-    
-          const response = await fetch(
-            "https://www.secure.manuscriptedit.com/api/submit_quotation.php",
-            {
-              method: "POST",
-              body: formDataToSend,
-            }
-          );
-    
-          if (!response.ok) {
-            throw new Error(`Error: ${response.statusText}`);
-          }
-    
-          const data = await response.json();
-        } catch (err: any) {
-          console.error("Error submitting quotation:", err);
-          setError(err.response?.data?.message || "Something went wrong.");
-        } finally {
-          setLoading(false);
-        }
-      };
 
-    return { serviceType, loading, error, getServiceNameById, serviceName, majorSubjectType }
+        try {
+            // Upload files and collect their names
+            const upldContentFileName = formData.upld_content_file && formData.user_id
+                ? await uploadFile(formData.upld_content_file,formData.user_id,formData.order_type)
+                : null;
+            const upldFigureFileName = formData.upld_figure_file && formData.user_id
+                ? await uploadFile(formData.upld_figure_file,formData.user_id,formData.order_type)
+                : null;
+            const upldTableFileName = formData.upld_table_file && formData.user_id
+                ? await uploadFile(formData.upld_table_file,formData.user_id,formData.order_type)
+                : null;
+
+            const requestBody = {
+                user_id: formData.user_id,
+                order_type: formData.order_type,
+                service_type: formData.service_type,
+                service_name: formData.service_name,
+                major_subject: formData.major_subject,
+                specific_subject: formData.specific_subject,
+                delivery_date: formData.delivery_date,
+                language: formData.language,
+                inst_for_editor: formData.inst_for_editor,
+                word_count: formData.word_count,
+                pay_mode: formData.pay_mode,
+                upld_content_file: upldContentFileName,
+                upld_figure_file: upldFigureFileName,
+                upld_table_file: upldTableFileName,
+            };
+
+            const response = await fetch(
+                "https://www.secure.manuscriptedit.com/api/submit_quotation.php",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestBody),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Error submitting quotation: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log("Quotation submitted successfully:", data);
+        } catch (err: any) {
+            console.error("Error:", err);
+            setError(err.message || "Something went wrong.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { serviceType, loading, error, getServiceNameById, serviceName, majorSubjectType, submitQuotation }
 }
 
 export default useQuotation

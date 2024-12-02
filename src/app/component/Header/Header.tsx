@@ -5,7 +5,6 @@ import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation'
-import Link from "next/link";
 import { MainContext } from "@/app/context/MainContext";
 
 export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
