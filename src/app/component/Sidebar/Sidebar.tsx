@@ -7,17 +7,22 @@ import { useFetchAuthor } from "@/app/hooks/authorDashboard/useFetchAuthor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faComments, faFileUpload, faGift, faQuoteRight, faShoppingCart, faTachometerAlt, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { MainContext } from "@/app/context/MainContext";
-import { useRouter } from 'next/navigation'
 import user from '../../../../public/assets/images/user.png'
+import { useRouter, usePathname } from 'next/navigation'
 
 export default function Sidebar({children}: SidebarProps) {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const email = typeof window !== 'undefined' ? localStorage.getItem('email') : undefined
     const {loading,error,authorDetails} = useFetchAuthor(email ?? undefined)
-    const {active, setActive} = useContext(MainContext)
-
+    const [active, setActive] = useState<string>("/Dashboard/")
+    const pathname = usePathname()
     const router = useRouter()
 
+    console.log({pathname})
+
+    useEffect(() => {
+        setActive(pathname)
+    },[pathname])
 
     useEffect(() => {
         // Set initial sidebar state based on screen width
@@ -66,29 +71,31 @@ export default function Sidebar({children}: SidebarProps) {
                         {/* Navigation */}
                         <nav className="w-full">
                             <ul className="w-full ulListStyle">
-                                <li className="mb-2 w-full" onClick={() => router.push("/UserDashboard")}>
-                                    <span className={`flex items-center py-2 px-4 ${active === "Dashboard" && "bg-teal-700"} text-left `}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></span>
+                                <li className="mb-2 w-full" onClick={() => {
+                                    router.push("/UserDashboard")
+                                }}>
+                                    <span className={`flex items-center py-2 px-4 ${active === "/UserDashboard/" && "bg-teal-700"} text-left `}><FontAwesomeIcon icon={faTachometerAlt} className="mr-2" /><span className="flex-grow">Dashboard</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/ManuscriptSubmit")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Submit Manuscript" && "bg-teal-700"} hover:bg-gray-700 `}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/ManuscriptSubmit");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/ManuscriptSubmit/" && "bg-teal-700"} hover:bg-gray-700 `}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/QuotationRequest")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Request a Quotation" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/QuotationRequest");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/QuotationRequest/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/OrderList")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "View Orders Submitted" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/OrderList");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/OrderList/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/Referrals")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Refer A Colleague" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faUserFriends} className="mr-2" /><span className="flex-grow">Refer A Colleague</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/Referrals");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/Referrals/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faUserFriends} className="mr-2" /><span className="flex-grow">Refer A Colleague</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/Coupons")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Coupon Center" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faGift} className="mr-2" /><span className="flex-grow">Coupon Center</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/Coupons");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/Coupons/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faGift} className="mr-2" /><span className="flex-grow">Coupon Center</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/Webinars")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Book a slot in Webinar" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faCalendarAlt} className="mr-2" /><span className="flex-grow">Book a slot in Webinar</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/Webinars");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/Webinars/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faCalendarAlt} className="mr-2" /><span className="flex-grow">Book a slot in Webinar</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => router.push("/TalkExpert")}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "Talk to an expert" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faComments} className="mr-2" /><span className="flex-grow">Talk to an expert</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/TalkExpert");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/TalkExpert/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faComments} className="mr-2" /><span className="flex-grow">Talk to an expert</span></span>
                                 </li>
                             </ul>
                         </nav>
