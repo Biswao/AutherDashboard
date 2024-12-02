@@ -12,7 +12,6 @@ const StepForm = ({ setCheck, check }: any) => {
 
     const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService, setSelectedServices } = useContext(SubmitManuscriptContext)
     const { majorSubjectType } = useQuotation()
-    console.log({majorSubjectType})
 
     const handleMajorSubjectType = (e: any) => {
         const { value } = e
@@ -37,8 +36,6 @@ const StepForm = ({ setCheck, check }: any) => {
 
     const handleChange = (e: any) => {
         const { name, value, type, checked } = e.target;
-
-        console.log({name,value,type,checked})
 
         if(name === 'journalFormatting'){
             if(checked){

@@ -6,13 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from 'next/navigation'
 import { MainContext } from "@/app/context/MainContext";
+import logo from '../../../../public/assets/images/logooForAuthor.png'
 
 export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const {active, setActive} = useContext(MainContext)
   const router = useRouter()
-
-  console.log({initials})
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
@@ -26,7 +25,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
       <div className="row align-items-center justify-content-between">
         {/* Left section with logo and menu button */}
         <div className="col-lg-4 d-flex align-items-center" style={{gap:'35px'}}>
-          <img src="./assets/images/logooForAuthor.png" style={{ width: '248px' , background:'white' , padding:'8px'}} alt="Logo" />
+          <img src={logo.src} style={{ width: '248px' , background:'white' , padding:'8px'}} alt="Logo" />
           <button
             onClick={toggleSidebar}
             className="text-white btn p-0 ms-2"

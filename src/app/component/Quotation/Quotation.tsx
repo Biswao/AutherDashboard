@@ -64,7 +64,6 @@ const Quotation = () => {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
-        console.log({ files })
         if (files && files[0]) {
             setFormData((prev) => ({
                 ...prev,
@@ -82,8 +81,6 @@ const Quotation = () => {
             return
         }
     };
-
-    console.log({ formData })
     return (
 
         <div className="flex flex-col items-center justify-center min-h-screen dark">
