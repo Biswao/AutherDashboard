@@ -7,9 +7,7 @@ import TalkToAnExpert from "@/app/component/TalkExpert/TalkExpert";
 const TalkExpert = () => {
    return (
     <>
-      <Sidebar>
          <TalkToAnExpert />
-      </Sidebar>
     </>
    ) 
 }

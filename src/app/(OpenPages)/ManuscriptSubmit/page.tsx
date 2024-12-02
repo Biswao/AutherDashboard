@@ -4,9 +4,7 @@ import SubmitManuscript from "@/app/component/SubmitManuscript/SubmitManuscript"
 
 const ManuscriptSubmit = () => {
     return (
-        <Sidebar>
             <SubmitManuscript />
-        </Sidebar>
     )
 }
 

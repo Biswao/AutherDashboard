@@ -4,9 +4,7 @@ import Sidebar from "@/app/component/Sidebar/Sidebar"
 
 const Referrals = () => {
     return (
-        <Sidebar>
             <ReferAColleague />
-        </Sidebar>
     )
 }
 

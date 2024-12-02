@@ -3,6 +3,7 @@ import { MainContext } from "@/app/context/MainContext";
 import { FileUploadResponse, QuotationData, serviceNameType, serviceType, SubjectGroup } from "@/app/utils/interfaces/types";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation'
 
 
 const useQuotation = () => {
@@ -11,6 +12,7 @@ const useQuotation = () => {
     const [serviceType, setServiceType] = useState<serviceType[]>([])
     const [serviceName, setServiceName] = useState<serviceNameType[]>([])
     const [majorSubjectType, setMajorSubjectType] = useState<SubjectGroup[]>([])
+    const router = useRouter()
 
     const {setActive} = useContext(MainContext)
 
@@ -157,10 +159,12 @@ const useQuotation = () => {
                 throw new Error(`Error submitting quotation: ${response.statusText}`);
             }
 
-            const data = await response.json();
-            if(data){
+            const {Message} = await response.json();
+            if(Message === "Data Saved Successfully"){
                 toast.success("Quotation Submitted!!")
-                setActive("Dashboard")
+                router.push('/UserDashboard')
+            }else{
+                toast.error("Something went wrong")
             }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");

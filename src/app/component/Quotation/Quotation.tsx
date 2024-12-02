@@ -10,22 +10,38 @@ import Select from "react-select";
 
 const Quotation = () => {
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
-    const [formData, setFormData] = useState({
-        user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
-        order_type: "quote",
-        service_type: "",
-        service_name: "",
-        major_subject: "",
-        specific_subject: "",
-        delivery_date: "",
-        language: "",
-        inst_for_editor: "",
-        word_count: "",
-        pay_mode: "",
-        upld_content_file: null,
-        upld_figure_file: null,
-        upld_table_file: null,
-    });
+    const [formData, setFormData] = useState<
+        {
+            user_id: string | null;
+            order_type: string;
+            service_type: string;
+            service_name: string;
+            major_subject: string;
+            specific_subject: string;
+            delivery_date: string;
+            language: string;
+            inst_for_editor: string;
+            word_count: string;
+            pay_mode: string;
+            upld_content_file: File | null;
+            upld_figure_file: File | null;
+            upld_table_file: File | null;
+        }>({
+            user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
+            order_type: "quote",
+            service_type: "",
+            service_name: "",
+            major_subject: "",
+            specific_subject: "",
+            delivery_date: "",
+            language: "",
+            inst_for_editor: "",
+            word_count: "",
+            pay_mode: "debit",
+            upld_content_file: null,
+            upld_figure_file: null,
+            upld_table_file: null,
+        });
 
     const { loading, error, serviceType, getServiceNameById, serviceName, majorSubjectType, submitQuotation } = useQuotation()
 
@@ -48,7 +64,13 @@ const Quotation = () => {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: files ? files[0] : null }));
+        console.log({ files })
+        if (files && files[0]) {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: files[0], // Store the file object
+            }));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent): Promise<void> => {
@@ -60,15 +82,17 @@ const Quotation = () => {
             return
         }
     };
+
+    console.log({ formData })
     return (
-        
+
         <div className="flex flex-col items-center justify-center min-h-screen dark">
             <h2 className="title">Request a Quotation</h2>
             <div className="w-full rounded-lg shadow-md p-6">
                 <form className="flex flex-col">
                     <div className="flex space-x-4 mb-4">
                         <div className="col-lg-6">
-                        
+
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Service Type*
                             </label>
@@ -191,7 +215,7 @@ const Quotation = () => {
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
-                                <span className="ml-2 text-gray-600">No file chosen</span>
+                                <span className="ml-2 text-gray-600"> {formData.upld_content_file ? formData.upld_content_file.name : "No file chosen"}</span>
                             </label>
                         </div>
                         <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 w-1/2 flex flex-col items-center hover:bg-blue-200">
@@ -202,7 +226,7 @@ const Quotation = () => {
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
-                                <span className="ml-2 text-gray-600">No file chosen</span>
+                                <span className="ml-2 text-gray-600">{formData.upld_figure_file ? formData.upld_figure_file.name : "No file chosen"}</span>
                             </label>
                         </div>
                     </div>
@@ -215,7 +239,7 @@ const Quotation = () => {
                                 <div className="bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
                                     Choose File
                                 </div>
-                                <span className="ml-2 text-gray-600">No file chosen</span>
+                                <span className="ml-2 text-gray-600">{formData.upld_table_file ? formData.upld_table_file.name : "No file chosen"}</span>
                             </label>
                         </div>
                         <div className="w-1/2">
