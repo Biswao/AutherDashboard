@@ -24,6 +24,13 @@ export interface OrderDetails {
     submit_date: string;
     delivery_date: string;
     status: string;
+    service_cat: string;
+    inst_for_editor:string;
+    language: string;
+    journal_name: string;
+    specific_sub: string;
+    maj_serv_area: string;
+    service_details:string;
 }
 
 export interface AuthorDetails {
