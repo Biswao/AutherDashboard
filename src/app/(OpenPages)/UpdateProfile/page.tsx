@@ -6,9 +6,7 @@ import UpdateProfile from "@/app/component/UpdateProfile/UpdateProfile";
 const UpdateProfilePage = () => {
     return (
         <>
-            <Sidebar>
                 <UpdateProfile />
-            </Sidebar>
         </>
 
     );

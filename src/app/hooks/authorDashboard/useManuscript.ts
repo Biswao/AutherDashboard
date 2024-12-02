@@ -4,12 +4,14 @@ import { MainContext } from "@/app/context/MainContext";
 import { countryListType, FileUploadResponse, FormDataOne, FormDataThree, FormDataTwo, PublicationFormType, serviceNameType } from "@/app/utils/interfaces/types";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation'
 
 const useManuscript = () => {
     const [countryList, setCountryList] = useState<countryListType[]>([]);
     const [serviceName, setServiceName] = useState<serviceNameType[]>([])
     const [error, setError] = useState<boolean | string>(false);
     const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter()
     
 
     const {setActive} = useContext(MainContext)
@@ -143,10 +145,12 @@ const useManuscript = () => {
                 throw new Error(`Error submitting quotation: ${response.statusText}`);
             }
 
-            const data = await response.json();
-            if(data){
+            const { Message } = await response.json();
+            if(Message === "Data Saved Successfully"){
                 toast.success("Manuscript Submitted!!")
-                setActive("Dashboard")
+                router.push('/UserDashboard')
+            }else{
+                toast.error("Something went wrong")
             }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");
@@ -215,10 +219,12 @@ const useManuscript = () => {
                 throw new Error(`Error submitting quotation: ${response.statusText}`);
             }
 
-            const data = await response.json();
-            if(data){
+            const {Message} = await response.json();
+            if(Message === "Data Saved Successfully"){
                 toast.success("Manuscript Submitted!!")
-                setActive("Dashboard")
+                router.push('/UserDashboard')
+            }else{
+                toast.error("Something went wrong")
             }
         } catch (err: any) {
             setError(err.message || "Something went wrong.");

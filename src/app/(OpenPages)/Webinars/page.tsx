@@ -5,9 +5,7 @@ import Webinar from "@/app/component/Webinar/Webinar"
 const Webinars = () => {
     return (
         <>
-            <Sidebar>
                 <Webinar />
-            </Sidebar>
         </>
     )
 }
