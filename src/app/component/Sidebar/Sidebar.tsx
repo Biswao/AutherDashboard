@@ -18,8 +18,6 @@ export default function Sidebar({children}: SidebarProps) {
     const pathname = usePathname()
     const router = useRouter()
 
-    console.log({pathname})
-
     useEffect(() => {
         setActive(pathname)
     },[pathname])
