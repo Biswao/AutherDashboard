@@ -7,7 +7,7 @@ import Select from "react-select";
 
 let journalCheckboxData = [0, 0, 0]
 
-const StepForm = ({ setCheck, check }: any) => {
+const StepForm = ({ setCheck, check, setButton }: any) => {
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
 
     const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService, setSelectedServices } = useContext(SubmitManuscriptContext)
@@ -17,6 +17,11 @@ const StepForm = ({ setCheck, check }: any) => {
         const { value } = e
         setFormDataOne({ ...formDataOne, major_subject: value });
     }
+    // console.log({check})
+    useEffect(() => {
+        setButton(false)
+    },[])
+
 
     useEffect(() => {
         if (majorSubjectType && majorSubjectType.length) {
@@ -85,6 +90,8 @@ const StepForm = ({ setCheck, check }: any) => {
         });
     };
 
+    console.log({formDataOne})
+
     return (
         <div className="container">
             <h2>Details About Your Submission</h2>
@@ -96,8 +103,10 @@ const StepForm = ({ setCheck, check }: any) => {
                     {serviceName && serviceName.length && serviceName.map((val:any) => (
                         <option value={val.id} key={val.service_name}>{val.service_name}</option>
                     ))}
-                </select>) : (<select id="serviceType" onChange={handleChange} className="select" required disabled>
-                    <option>{selectedService}</option>
+                </select>) : (<select id="serviceType" name='service_name' onChange={handleChange} className="select" required value={formDataOne.service_name}>
+                    {serviceName && serviceName.length && serviceName.map((val:any) => (
+                        <option value={val.id} key={val.service_name}>{val.service_name}</option>
+                    ))}
                 </select>)}
 
                 {serviceTitle !== "Publication Support Services" && (<div>

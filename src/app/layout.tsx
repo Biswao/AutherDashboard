@@ -37,6 +37,9 @@ export default function RootLayout({
   if(!hideSidebar){
     return (
       <html lang="en">
+        <head>
+            <title>Author Dashboard</title>
+        </head>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ToastContainer />
         {!hideSidebar && (<Sidebar>

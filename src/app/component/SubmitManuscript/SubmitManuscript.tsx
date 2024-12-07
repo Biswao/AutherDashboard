@@ -101,6 +101,7 @@ const SubmitManuscript = () => {
         setServiceTitle(title)
         setSelecetedService(serviceName)
         if (title === "Editing Services") {
+            getServiceNameById('1')
             setFormDataOne((prev: any) => {
                 return {
                     ...prev,
@@ -185,11 +186,11 @@ const SubmitManuscript = () => {
                 </div>
             </div>
             <div style={{width: "70%",display: "flex", justifyContent: "space-between"}}>
-                <button className='submit-manuscript-next-button' onClick={() => setShowForm(!showForm)}>
-                    {showForm ? 'Previous' : 'Next'}
-                    <div className="arrow-wrapper">
+                <button className={showForm ? 'submit-manuscript-next-button':''} onClick={() => setShowForm(!showForm)}>
+                    {showForm && '← Go Back'}
+                    {/* <div className="arrow-wrapper">
                         <div className="arrow"></div>
-                    </div>
+                    </div> */}
                 </button>
                 {finalCheck && (
                     <button className='submit-manuscript-next-button' onClick={handleSubmitForm}>

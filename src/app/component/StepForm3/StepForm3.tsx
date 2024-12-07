@@ -2,9 +2,13 @@ import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
 import useManuscript from '@/app/hooks/authorDashboard/useManuscript';
 import { useContext, useEffect, useState } from 'react';
 
-const StepForm3 = ({setCheck,check}: any) => {
-    const { countryList, error, loading } = useManuscript()
+const StepForm3 = ({setCheck, setButton}: any) => {
+    const { countryList, error, loading} = useManuscript()
     const { formDataThree, setFormDataThree, setFinalCheck } = useContext(SubmitManuscriptContext)
+
+    useEffect(() => {
+        setButton(true)
+    },[])
 
     useEffect(() => {
         if(formDataThree.bill_name && formDataThree.bill_addr1 && formDataThree.bill_city && formDataThree.bill_zip && formDataThree.bill_country){

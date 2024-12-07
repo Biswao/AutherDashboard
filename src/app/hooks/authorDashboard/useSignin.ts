@@ -11,7 +11,6 @@ const useSignin = (): UseAuthReturn => {
 
     const login = async (email: string, password: string): Promise<void> => {
         setLoading(true);
-        setError(null);
 
         try {
             const response = await fetch('https://www.secure.manuscriptedit.com/api/author_signin.php', {

@@ -1,7 +1,9 @@
 import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
 import { useContext, useEffect, useState } from 'react';
 
-const StepForm2 = ({setCheck}: any) => {
+
+
+const StepForm2 = ({setCheck, setButton}: any) => {
     const { formDataTwo, setFormDataTwo } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
@@ -11,6 +13,10 @@ const StepForm2 = ({setCheck}: any) => {
             setCheck(false)
         }
     },[formDataTwo])
+    
+    useEffect(() => {
+        setButton(true)
+    },[])
 
     const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { name, files } = e.target;

@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import "./Dashboard.css"
 import { MainContext } from "@/app/context/MainContext";
 import ImageSlider from "../ImageSlider/ImageSlider";
+import { useRouter } from 'next/navigation'
 
 
 export const Dashboard = () => {
@@ -16,6 +17,7 @@ export const Dashboard = () => {
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
     const { active, setActive } = useContext(MainContext)
+    const router = useRouter()
 
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
@@ -47,7 +49,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#688bb2', borderRadius: '15px', color: '#fff', padding: '22px' }}
-                onClick={() => setActive("Submit Manuscript")}
+                onClick={() => router.push('/ManuscriptSubmit')}
               >
                 <FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '10px' }} />
                 Submit New Manuscript !
@@ -59,7 +61,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#c7715d', borderRadius: '15px', color: '#fff', padding: '22px' }}
-                onClick={() => setActive("Request a Quotation")}
+                onClick={() => router.push('/QuotationRequest')}
               >
                 <FontAwesomeIcon icon={faFileInvoice} style={{ marginRight: '10px' }} />
                 Request A Quote !
@@ -71,7 +73,7 @@ export const Dashboard = () => {
               <button
                 className="btn w-100 d-flex align-items-center justify-content-center"
                 style={{ backgroundColor: '#84a96a', borderRadius: '15px', color: '#fff', padding: '22px' }}
-                onClick={() => setActive("Request a Sample")}
+                onClick={() => router.push('/QuotationRequest')}
               >
                 <FontAwesomeIcon icon={faFileSignature} style={{ marginRight: '10px' }} />
                 Request A Sample !
@@ -108,10 +110,6 @@ export const Dashboard = () => {
           {/* Orders Table */}
           <Table mainHeader="Your Available Orders" headers={headers} data={data} emptyMessage={loading ? "Loading Orders..." :"No Order Avilable"} />
         </div>
-      
-
-
-
     </>
 
 
