@@ -9,6 +9,7 @@ const SubmitOrders = () => {
     const { fetchOrder, error, loading }: { fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean } = useFetchOrder(userId)
 
     const [modal, setmodal] = useState(false);
+    const [content , setcontent] = useState('')
 
     function modalHandler() {
         setmodal(!modal)
@@ -18,11 +19,11 @@ const SubmitOrders = () => {
         <>
             <div className="orders-container">
                 <h2 className="title">View Orders submitted</h2>
-                {modal ? <OrderModal modalHandler={modalHandler} /> : ''}
+                {modal ? <OrderModal modalHandler={modalHandler} content={content}/> : ''}
                 {loading ? (<h1>Loading...</h1>) :
-                    fetchOrder?.map((order) => {
+                    fetchOrder?.map((order: OrderDetails) => {
                         return (
-                            <div key={order.order_id} className="order-card">
+                            <div key={order.order_id} className="order-card" onClick={()=>setcontent(order.order_id)}>
                                 <div className="order-header">
                                     <span className="order-id" onClick={modalHandler}>{order.order_id}</span>
                                     <span className="order-status">Order Status: {order.status}</span>

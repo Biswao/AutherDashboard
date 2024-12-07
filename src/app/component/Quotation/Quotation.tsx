@@ -141,14 +141,14 @@ const Quotation = () => {
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Preferred Language*
                             </label>
-                            <input name="language" onChange={handleChange} type="radio" placeholder="American English" />
+                            <input name="language" onChange={handleChange} type="radio"  />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 American English
                             </label>
                             &nbsp;
                             &nbsp;
-                            <input onChange={handleChange} type="radio" />
+                            <input name="language" onChange={handleChange} type="radio" />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 British English
