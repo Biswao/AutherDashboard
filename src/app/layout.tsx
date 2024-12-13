@@ -39,9 +39,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ToastContainer />
-        {!hideSidebar && (<Sidebar>
+        <Sidebar>
           {children}
-        </Sidebar>)}
+        </Sidebar>
         </body>
       </html>
     );
