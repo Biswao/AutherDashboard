@@ -13,7 +13,7 @@ export interface HeaderProps {
 
 export interface TableProps {
     headers: string[];
-    data: string[][];
+    data: (string | React.ReactNode)[][];
     emptyMessage: string
     mainHeader: string
 }

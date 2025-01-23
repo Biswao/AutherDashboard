@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 
 
 export const Dashboard = () => {
-    const [tableData, setTableData] = useState<string[][]>([])
+    const [tableData, setTableData] = useState<(string | React.ReactNode)[][]>([])
 
     const userId: string | null = typeof window !== 'undefined' ? localStorage.getItem("user_id") : null
     const {fetchOrder,error,loading}:{fetchOrder: OrderDetails[] | null, error: boolean, loading: boolean} = useFetchOrder(userId)
@@ -21,7 +21,7 @@ export const Dashboard = () => {
 
     useEffect(() => {
       if(fetchOrder && fetchOrder.length){
-        const table_data: string[][] = fetchOrder.map((order:OrderDetails) => {
+        const table_data: (string | React.ReactNode)[][] = fetchOrder.map((order:OrderDetails) => {
           const arr = []
           
           arr.push(order.order_id)
@@ -29,6 +29,8 @@ export const Dashboard = () => {
           arr.push(order.submit_date)
           arr.push(order.delivery_date)
           arr.push(order.status)
+          arr.push(<button onClick={()=> console.log('hii')}>Pay Now</button>)
+          
 
           return arr
         })
@@ -36,8 +38,8 @@ export const Dashboard = () => {
       }
     },[fetchOrder])
 
-    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status'];
-    const data: string[][] = tableData;
+    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status','Pay Now'];
+    const data: (string | React.ReactNode)[][] = tableData;
     return (
 
       <>

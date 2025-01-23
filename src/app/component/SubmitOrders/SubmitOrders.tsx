@@ -28,7 +28,6 @@ const SubmitOrders = () => {
                                     <span className="order-id" onClick={modalHandler}>{order.order_id}</span>
                                     <span className="order-status">Order Status: {order.status}</span>
                                 </div>
-
                                 <div className="row">
                                     <div className="col-lg-6">
                                         <div className="order-body">
