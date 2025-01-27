@@ -43,6 +43,7 @@ const SubmitOrders = () => {
                                             <p><strong>ORDER PRICE:</strong> {order.service_type}</p>
                                             <p><strong>Payment Status:</strong> {order.status}</p>
                                             <p><strong>Download Completed Work:</strong> </p>
+                                            <button className="PaynOwww">Pay now</button>
                                         </div>
                                     </div>
                                 </div>

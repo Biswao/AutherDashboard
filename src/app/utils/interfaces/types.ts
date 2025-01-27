@@ -31,6 +31,7 @@ export interface OrderDetails {
     specific_sub: string;
     maj_serv_area: string;
     service_details:string;
+    total_price:string;
 }
 
 export interface AuthorDetails {

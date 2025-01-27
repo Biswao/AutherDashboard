@@ -20,7 +20,7 @@ const ReferAColleague = () => {
                                         Salutation
                                     </label>
                                     <select
-                                        className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                        className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 spacing"
                                         required
                                     >
                                         <option value="Mr.">Mr.</option>
@@ -66,7 +66,7 @@ const ReferAColleague = () => {
                                         Salutation
                                     </label>
                                     <select
-                                        className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                        className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 spacing"
                                         required
                                     >
                                         <option value="Mr.">Mr.</option>
@@ -102,7 +102,7 @@ const ReferAColleague = () => {
                         </div>
 
                         {/* Security Code */}
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             <label className="block text-sm font-medium text-gray-700">
                                 Security Code
                             </label>
@@ -125,7 +125,7 @@ const ReferAColleague = () => {
                                     Try new code
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Submit Button */}
                         <div className="mt-6">
