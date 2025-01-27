@@ -29,7 +29,8 @@ export const Dashboard = () => {
           arr.push(order.submit_date)
           arr.push(order.delivery_date)
           arr.push(order.status)
-          arr.push(<button onClick={()=> console.log('hii')}>Pay Now</button>)
+          arr.push(order.total_price)
+          arr.push(<button className="PaynOwww" onClick={()=> console.log('hii')}>Pay Now</button>)
           
 
           return arr
@@ -38,7 +39,7 @@ export const Dashboard = () => {
       }
     },[fetchOrder])
 
-    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status','Pay Now'];
+    const headers: string[] = ['Order Id', 'Service Type', 'Submit Date', 'Delivery Date', 'Payment Status','price'  , 'Pay Now'];
     const data: (string | React.ReactNode)[][] = tableData;
     return (
 
