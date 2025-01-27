@@ -3,7 +3,7 @@
 import { SelectedServicesProps } from "@/app/utils/interfaces/types";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { use, useState } from "react";
 
 const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, onRemove }) => {
   const [discountCode, setDiscountCode] = useState('');
@@ -11,6 +11,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
 
   const servicesSubtotal = selectedServices.reduce((total, service) => total + service.price, 0);
   const totalCost = servicesSubtotal - discount;
+  // const [finalPrice,setFinalPrice] = useState(totalCost)
 
   const handleApplyDiscount = () => {
     if (discountCode === "DISCOUNT10") {
@@ -22,7 +23,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
   };
 
   return (
-    <div style={{ backgroundColor: '#AFD8F9' , marginTop:'100px' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
+    <div style={{ position:'fixed',backgroundColor: '#AFD8F9' , marginBottom:'50px' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
       <h2 className="text-lg md:text-xl font-semibold text-center">Selected Services</h2>
 
       <div className="space-y-2">
@@ -70,7 +71,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
           />
           <button
             // onClick={handleApplyDiscount}
-            onClick={() => {}}
+            onClick={handleApplyDiscount}
             className="bg-green-500 text-white px-4 py-2 text-sm md:text-base rounded-r-lg hover:bg-green-600"
           >
             Apply
@@ -78,12 +79,12 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
         </div>
       </div>
 
-      <button
+      {/* <button
         className="w-full bg-green-500 text-white py-2 rounded-lg mt-4 hover:bg-green-600 flex items-center justify-center text-sm md:text-base"
       >
         Proceed
         <span className="ml-2">→</span>
-      </button>
+      </button> */}
     </div>
   );
 };
