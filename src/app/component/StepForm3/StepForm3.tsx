@@ -4,12 +4,13 @@ import { useContext, useEffect, useState } from 'react';
 
 const StepForm3 = ({setCheck, setButton}: any) => {
     const { countryList, error, loading} = useManuscript()
-    const { formDataThree, setFormDataThree, setFinalCheck } = useContext(SubmitManuscriptContext)
+    const { formDataThree, setFormDataThree, setFinalCheck,totalPrice,setTotalPrice } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
         setButton(true)
+        
     },[])
-
+    // console.log({totalPrice})
     useEffect(() => {
         if(formDataThree.bill_name && formDataThree.bill_addr1 && formDataThree.bill_city && formDataThree.bill_zip && formDataThree.bill_country){
             setCheck(true)

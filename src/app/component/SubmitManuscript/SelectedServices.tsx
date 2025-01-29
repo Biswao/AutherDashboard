@@ -1,17 +1,32 @@
 "use client";
 
+import { SubmitManuscriptContext } from "@/app/context/SubmitManuscriptContext";
 import { SelectedServicesProps } from "@/app/utils/interfaces/types";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { use, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 
-const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, onRemove }) => {
-  const [discountCode, setDiscountCode] = useState('');
+
+
+const SelectedServices: React.FC<SelectedServicesProps> = ({
+  selectedServices,
+  onRemove,
+}) => {
+  const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
 
-  const servicesSubtotal = selectedServices.reduce((total, service) => total + service.price, 0);
+  const servicesSubtotal = selectedServices.reduce(
+    (total, service) => total + service.price,
+    0
+  );
+
+  // let {totalPrice,setTotalPrice} = useContext(SubmitManuscriptContext)
+  const [totalPrice, setTotalPrice] = useState<number>(0)
+  
   const totalCost = servicesSubtotal - discount;
-  // const [finalPrice,setFinalPrice] = useState(totalCost)
+
+  console.log({ totalCost,servicesSubtotal });
+
 
   const handleApplyDiscount = () => {
     if (discountCode === "DISCOUNT10") {
@@ -22,15 +37,39 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
     }
   };
 
+  
+
+useEffect(()=>{
+  setTotalPrice(totalCost)
+
+},[totalCost])
+console.log({totalPrice})
+
   return (
-    <div style={{ position:'fixed',backgroundColor: '#AFD8F9' , marginBottom:'50px' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
-      <h2 className="text-lg md:text-xl font-semibold text-center">Selected Services</h2>
+    <div
+      style={{
+        position: "fixed",
+        backgroundColor: "#AFD8F9",
+        marginBottom: "50px",
+      }}
+      className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto"
+    >
+      <h2 className="text-lg md:text-xl font-semibold text-center">
+        Selected Services
+      </h2>
 
       <div className="space-y-2">
         {selectedServices.map((service, index) => (
-          <div key={index} className="flex items-center justify-between text-sm sm:text-base md:text-lg">
+          <div
+            key={index}
+            className="flex items-center justify-between text-sm sm:text-base md:text-lg"
+          >
             <div className="flex items-center space-x-2">
-              <FontAwesomeIcon icon={faTrash} className="cursor-pointer" onClick={() => onRemove(service.name)} />
+              <FontAwesomeIcon
+                icon={faTrash}
+                className="cursor-pointer"
+                onClick={() => onRemove(service.name)}
+              />
               <span>{service.name}</span>
             </div>
             <span>${service.price.toFixed(2)}</span>
@@ -52,7 +91,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       </div>
 
       <div className="border-t border-white-300 my-2"></div>
-      
+
       <div className="flex justify-between font-semibold text-sm sm:text-base md:text-lg">
         <span>Total Cost</span>
         <span>${totalCost.toFixed(2)}</span>
@@ -60,7 +99,9 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       </div>
 
       <div className="mt-4">
-        <label className="block text-sm md:text-base font-bold text-[#274359]">Have Discount/Referral Code?</label>
+        <label className="block text-sm md:text-base font-bold text-[#274359]">
+          Have Discount/Referral Code?
+        </label>
         <div className="flex mt-1">
           <input
             type="text"

@@ -5,7 +5,7 @@ export const SubmitManuscriptContext = createContext<SubmitManuscriptContextType
     stepFormData: {},
     setStepFormData: () => { },
     totalPrice: 0,
-    setTotalPrice: () => { },
+    setTotalPrice: () => { },   
     serviceTitle: "",
     formDataOne: {
         user_id: "",

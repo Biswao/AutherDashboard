@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import SelectedServices from './SelectedServices';
 import { FormDataOne, FormDataThree, FormDataTwo, PublicationFormType, SelectedService, SubmitManuscriptRequest } from '@/app/utils/interfaces/types';
 import { servicesData } from '@/app/utils/lib/lib';
@@ -18,9 +18,11 @@ const SubmitManuscript = () => {
     const [stepFormData, setStepFormData] = useState<SubmitManuscriptRequest>()
     const [showForm, setShowForm] = useState<boolean>(false)
     const [totalPrice, setTotalPrice] = useState<number>()
+    // const { totalPrice, setTotalPrice } = useContext(SubmitManuscriptContext);
     const [serviceTitle, setServiceTitle] = useState<string>("")
     const [finalCheck, setFinalCheck] = useState<boolean>(false)
     const [selectedService, setSelecetedService] = useState<string>("")
+    
     const [formDataOne, setFormDataOne] = useState<FormDataOne>({
         user_id: typeof window !== 'undefined' ? localStorage.getItem('user_id') : "",
         order_type: "manu",
@@ -72,14 +74,13 @@ const SubmitManuscript = () => {
     const { submitQuotation, submitQuotationJournalPublicationPackage, getServiceNameById, serviceName, loading } = useManuscript()
     // const { getServiceNameById, serviceName } = useQuotation()
 
-    useEffect(() => {
-        let sum = 0
-        if (selectedServices && selectedServices.length) {
-            sum = selectedServices.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
-        }
-
-        setTotalPrice(sum)
-    }, [])
+    // useEffect(() => {
+    //     let sum = 0
+    //     if (selectedServices && selectedServices.length) {
+    //         sum = selectedServices.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+    //     }
+    //     setTotalPrice(sum)
+    // }, [])
 
 
     useEffect(() => {

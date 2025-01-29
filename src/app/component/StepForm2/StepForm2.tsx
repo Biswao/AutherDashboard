@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 
 
 const StepForm2 = ({setCheck, setButton}: any) => {
-    const { formDataTwo, setFormDataTwo } = useContext(SubmitManuscriptContext)
+    const { formDataTwo, setFormDataTwo,totalPrice,setTotalPrice  } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
         if(formDataTwo.title, formDataTwo.upld_content_file && formDataTwo.keyword){

@@ -29,11 +29,8 @@ export const Dashboard = () => {
           arr.push(order.submit_date)
           arr.push(order.delivery_date)
           arr.push(order.status)
-<<<<<<< HEAD
-=======
           arr.push(order.total_price)
           arr.push(<button className="PaynOwww" onClick={()=> console.log('hii')}>Pay Now</button>)
->>>>>>> a858985cf76117748c68fd33f38174207cf5aef8
           
 
           return arr
