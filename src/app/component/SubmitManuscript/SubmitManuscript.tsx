@@ -169,7 +169,12 @@ const SubmitManuscript = () => {
         <SubmitManuscriptContext.Provider value={formDataObject}>
             <div className="mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="lg:col-span-2 space-y-4">
-                <h2 className="title">Submit Manuscript</h2>
+                <button className={showForm ? 'submit-manuscript-next-button':''} onClick={() => setShowForm(!showForm)}>
+                    {showForm && '← Back to submit manuscript'}
+                    {/* <div className="arrow-wrapper">
+                        <div className="arrow"></div>
+                    </div> */}
+                </button>
                     {!showForm && servicesData.map((category) => (
                         <ServiceList
                             key={category.title}
@@ -186,12 +191,7 @@ const SubmitManuscript = () => {
                 </div>
             </div>
             <div style={{width: "70%",display: "flex", justifyContent: "space-between"}}>
-                <button className={showForm ? 'submit-manuscript-next-button':''} onClick={() => setShowForm(!showForm)}>
-                    {showForm && '← Go Back'}
-                    {/* <div className="arrow-wrapper">
-                        <div className="arrow"></div>
-                    </div> */}
-                </button>
+                
                 {finalCheck && (
                     <button className='submit-manuscript-next-button' onClick={handleSubmitForm}>
                         {loading ? "Loading..." : "Submit"}

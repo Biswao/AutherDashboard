@@ -32,7 +32,7 @@ const SubmitOrders = () => {
                                     <div className="col-lg-6">
                                         <div className="order-body">
                                             <p><strong>Service Category:</strong> {order.service_type}</p>
-                                            <p><strong>Service Name(s):</strong> </p>
+                                            <p><strong>Service Name(s):</strong>{order.service_cat} </p>
                                             <p><strong>Submit Time:</strong>{order.delivery_date} </p>
                                         </div>
                                     </div>

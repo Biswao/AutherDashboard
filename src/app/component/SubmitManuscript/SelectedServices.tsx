@@ -5,11 +5,17 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, onRemove }) => {
-  const [discountCode, setDiscountCode] = useState('');
+const SelectedServices: React.FC<SelectedServicesProps> = ({
+  selectedServices,
+  onRemove,
+}) => {
+  const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
 
-  const servicesSubtotal = selectedServices.reduce((total, service) => total + service.price, 0);
+  const servicesSubtotal = selectedServices.reduce(
+    (total, service) => total + service.price,
+    0
+  );
   const totalCost = servicesSubtotal - discount;
 
   const handleApplyDiscount = () => {
@@ -22,14 +28,26 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
   };
 
   return (
-    <div style={{ backgroundColor: '#AFD8F9' , marginTop:'100px' }} className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto">
-      <h2 className="text-lg md:text-xl font-semibold text-center">Selected Services</h2>
+    <div
+      style={{ backgroundColor: "#AFD8F9", marginTop: "100px" }}
+      className="p-4 sm:p-6 md:p-8 rounded-lg shadow-lg space-y-4 max-w-full md:max-w-md mx-auto"
+    >
+      <h2 className="text-lg md:text-xl font-semibold text-center">
+        Selected Services
+      </h2>
 
       <div className="space-y-2">
         {selectedServices.map((service, index) => (
-          <div key={index} className="flex items-center justify-between text-sm sm:text-base md:text-lg">
+          <div
+            key={index}
+            className="flex items-center justify-between text-sm sm:text-base md:text-lg"
+          >
             <div className="flex items-center space-x-2">
-              <FontAwesomeIcon icon={faTrash} className="cursor-pointer" onClick={() => onRemove(service.name)} />
+              <FontAwesomeIcon
+                icon={faTrash}
+                className="cursor-pointer"
+                onClick={() => onRemove(service.name)}
+              />
               <span>{service.name}</span>
             </div>
             <span>${service.price.toFixed(2)}</span>
@@ -51,7 +69,7 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       </div>
 
       <div className="border-t border-white-300 my-2"></div>
-      
+
       <div className="flex justify-between font-semibold text-sm sm:text-base md:text-lg">
         <span>Total Cost</span>
         <span>${totalCost.toFixed(2)}</span>
@@ -59,7 +77,9 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
       </div>
 
       <div className="mt-4">
-        <label className="block text-sm md:text-base font-bold text-[#274359]">Have Discount/Referral Code?</label>
+        <label className="block text-sm md:text-base font-bold text-[#274359]">
+          Have Discount/Referral Code?
+        </label>
         <div className="flex mt-1">
           <input
             type="text"
@@ -78,12 +98,13 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({ selectedServices, o
         </div>
       </div>
 
-      <button
-        className="w-full bg-green-500 text-white py-2 rounded-lg mt-4 hover:bg-green-600 flex items-center justify-center text-sm md:text-base"
+      {/* <button
+        className="w-full bg-green-500 text-white py-2 rounded-lg mt-4 flex items-center justify-center text-sm md:text-base cursor-not-allowed opacity-50"
+        disabled
       >
         Proceed
         <span className="ml-2">→</span>
-      </button>
+      </button> */}
     </div>
   );
 };

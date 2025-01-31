@@ -55,6 +55,7 @@ const Quotation = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+        console.log(formData)
     };
 
     const handleMajorSubjectType = (e: any) => {
@@ -102,6 +103,7 @@ const Quotation = () => {
                                     handleChange(e)
                                 }}
                             >
+                                    <option>Select services</option>
                                 {serviceType && serviceType.length && serviceType.map(val => (
                                     <option value={val.id}>{val.name}</option>
                                 ))}
@@ -132,6 +134,7 @@ const Quotation = () => {
                                 onChange={handleChange}
                                 name="service_name"
                             >
+                                <option>Select name</option>
                                 {serviceName && serviceName.length && serviceName.map(val => (
                                     <option value={val.id}>{val.service_name}</option>
                                 ))}
@@ -141,14 +144,14 @@ const Quotation = () => {
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
                                 Preferred Language*
                             </label>
-                            <input name="language" onChange={handleChange} type="radio"  />
+                            <input name="language" value="British English" onChange={handleChange} type="radio"  />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 American English
                             </label>
                             &nbsp;
                             &nbsp;
-                            <input name="language" onChange={handleChange} type="radio" />
+                            <input name="language" value="American English" onChange={handleChange} type="radio" />
                             &nbsp;
                             <label className="text-md mb-2 text-gray-700 cursor-pointer">
                                 British English
@@ -249,6 +252,7 @@ const Quotation = () => {
                                 onChange={handleChange}
                                 name="pay_mode"
                             >
+                                <option>Select mode of payment</option>
                                 <option value="debit">Debit</option>
                                 <option value="credit">Credit</option>
                             </select>

@@ -10,3 +10,26 @@ input{
     padding: 10px;
    
 }
+.input-field {
+    @apply mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2;
+}
+
+.submit-btn {
+    @apply w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md 
+        hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
+        transition-transform transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
