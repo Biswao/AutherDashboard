@@ -137,6 +137,11 @@ export interface MainContextType {
     setActive: React.Dispatch<React.SetStateAction<string>>;
 }
 
+export interface PendingAmountType {
+    pendingAmount: number;
+  setPendingAmount: (amount: number) => void;
+}
+
 export interface serviceType {
     id: string;
     name: string;

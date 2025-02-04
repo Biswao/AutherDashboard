@@ -10,9 +10,8 @@ import { SubmitManuscriptContext } from "@/app/context/SubmitManuscriptContext"
 
 const MainStepFormComponent = () => {
     const [check, setCheck] = useState(true)
-    const { finalCheck } = useContext(SubmitManuscriptContext)
-    const [button, setButton] = useState(true)
-
+    const {finalCheck,totalPrice} = useContext(SubmitManuscriptContext)
+    const [button,setButton] = useState(true)
     return (
         <div className="main-step-form">
             <MultiStep

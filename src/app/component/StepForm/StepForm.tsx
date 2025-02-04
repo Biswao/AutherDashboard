@@ -10,7 +10,7 @@ let journalCheckboxData = [0, 0, 0]
 const StepForm = ({ setCheck, check, setButton }: any) => {
     const [majorSubjectDropdown, setMajorSubjectDropdown] = useState<GroupedOption[]>([])
 
-    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService, setSelectedServices } = useContext(SubmitManuscriptContext)
+    const { serviceTitle, setFormDataOne, formDataOne, serviceName, selectedService, setSelectedServices,totalPrice,setTotalPrice  } = useContext(SubmitManuscriptContext)
     const { majorSubjectType } = useQuotation()
 
     const handleMajorSubjectType = (e: any) => {

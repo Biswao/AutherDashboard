@@ -2,14 +2,15 @@ import { SubmitManuscriptContext } from '@/app/context/SubmitManuscriptContext';
 import useManuscript from '@/app/hooks/authorDashboard/useManuscript';
 import { useContext, useEffect } from 'react';
 
-const StepForm3 = ({ setCheck, setButton }: any) => {
-    const { countryList } = useManuscript();
-    const { formDataThree, setFormDataThree, setFinalCheck } = useContext(SubmitManuscriptContext);
+const StepForm3 = ({setCheck, setButton}: any) => {
+    const { countryList, error, loading} = useManuscript()
+    const { formDataThree, setFormDataThree, setFinalCheck,totalPrice,setTotalPrice } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
-        setButton(true); // Ensure the "Back" button is visible
-    }, []);
-
+        setButton(true)
+        
+    },[])
+    // console.log({totalPrice})
     useEffect(() => {
         // Validate if all required fields are filled
         if (
