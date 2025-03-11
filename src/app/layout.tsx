@@ -9,8 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Sidebar from "./component/Sidebar/Sidebar";
 import { usePathname } from 'next/navigation'; 
-import PendingAmount from "./context/PendingAmount";
-
+// import PendingAmount from "./context/PendingAmount";
+   
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -37,7 +37,7 @@ export default function RootLayout({
   const hideSidebar = pathname.startsWith("/Auth");
   if(!hideSidebar){
     return (
-      <PendingAmount>
+      // <PendingAmount>
       <html lang="en">
         <head>
             <title>Author Dashboard</title>
@@ -49,18 +49,18 @@ export default function RootLayout({
         </Sidebar>)}
         </body>
       </html>
-      </PendingAmount>
+      /* </PendingAmount> */
     );
   }else{
     return (
-      <PendingAmount>
+      // <PendingAmount>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ToastContainer />
+        <ToastContainer /> 
           {children}
         </body>
       </html>
-      </PendingAmount>
+      /* </PendingAmount> */
     );
   }
 }

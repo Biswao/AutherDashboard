@@ -2,6 +2,9 @@
 import "./ReferAColleague.css";
 
 const ReferAColleague = () => {
+    const handleFormSubmit = async (e: React.FormEvent): Promise<void> => {
+        console.log('hii from submit')
+    }
     return (
         <>
             <div className="min-h-screen flex items-center justify-center py-10 px-4">
@@ -13,7 +16,7 @@ const ReferAColleague = () => {
                     {/* Your Details Section */}
                     <form className="space-y-6">
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-600">Your Details</h3>
+                            <h6 className="text-lg font-semibold text-gray-600">Enter Your Details</h6>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">
@@ -21,6 +24,7 @@ const ReferAColleague = () => {
                                     </label>
                                     <select
                                         className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 spacing"
+                                        name="ref_by_sal"
                                         required
                                     >
                                         <option value="Mr.">Mr.</option>
@@ -37,6 +41,7 @@ const ReferAColleague = () => {
                                         type="text"
                                         className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                         placeholder="Enter your name"
+                                        name="ref_by_name"
                                         required
                                     />
                                 </div>
@@ -49,6 +54,7 @@ const ReferAColleague = () => {
                                 <input
                                     type="email"
                                     className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                    name="ref_by_email"
                                     placeholder="Enter your email"
                                     required
                                 />
@@ -67,6 +73,7 @@ const ReferAColleague = () => {
                                     </label>
                                     <select
                                         className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 spacing"
+                                        name="colg_sal"
                                         required
                                     >
                                         <option value="Mr.">Mr.</option>
@@ -83,6 +90,7 @@ const ReferAColleague = () => {
                                         type="text"
                                         className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                         placeholder="Enter colleague's name"
+                                        name="colg_name"
                                         required
                                     />
                                 </div>
@@ -96,6 +104,7 @@ const ReferAColleague = () => {
                                     type="email"
                                     className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     placeholder="Enter colleague's email"
+                                    name="colg_email"
                                     required
                                 />
                             </div>
@@ -132,6 +141,7 @@ const ReferAColleague = () => {
                             <button
                                 type="submit"
                                 className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                onClick={handleFormSubmit}
                             >
                                 Submit
                             </button>
