@@ -11,7 +11,7 @@ const OrderModal = ({ modalHandler, content }: { modalHandler: () => void ,conte
     const { authorDetails } : { authorDetails: AuthorDetails | null } = useFetchAuthor(email ?? "")
 
     const chosenOrder: OrderDetails[] | null = fetchOrder && fetchOrder.length ?  fetchOrder?.filter((val)=> content === val.order_id) : []
-    console.log({content,fetchOrder})
+    // console.log({content,fetchOrder})
     return (
         <div className="modal-overlay">
             <div className="modal-container">

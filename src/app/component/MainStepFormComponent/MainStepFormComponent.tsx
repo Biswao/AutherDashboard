@@ -13,6 +13,7 @@ const MainStepFormComponent = () => {
     const [check, setCheck] = useState(true)
     const {finalCheck,totalPrice} = useContext(SubmitManuscriptContext)
     const [button,setButton] = useState(true)
+    const [nextButton,setNextButton] = useState(true)
     return (
         <div className="main-step-form">
             <MultiStep activeStep={0}
@@ -37,12 +38,13 @@ const MainStepFormComponent = () => {
                         borderRadius: '8px',
                         color: 'white',
                         cursor: 'pointer',
+                        display: nextButton ? '':'none',
                         // pointerEvents: check ? "auto" : 'none'
                     },
                 }}>
                 <StepForm setCheck={setCheck} check={check} setButton={setButton} />
-                <StepForm2 setCheck={setCheck} check={check} setButton={setButton} />
-                <StepForm3 setCheck={setCheck} check={check} setButton={setButton} />
+                <StepForm2 setCheck={setCheck} check={check} setButton={setButton}  setNextButton = {setNextButton}/>
+                <StepForm3 setCheck={setCheck} check={check} setButton={setButton} setNextButton = {setNextButton}/>
             </MultiStep>
         </div>
     )

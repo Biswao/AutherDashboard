@@ -21,10 +21,16 @@ const useManuscript = () => {
   const [error, setError] = useState<boolean | string>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
-
   const { setActive } = useContext(MainContext);
-  const { totalPrice, setTotalPrice } = useContext(SubmitManuscriptContext);
-  console.log({ totalPrice });
+  const { totalPrice } = useContext(SubmitManuscriptContext);
+  const [finalPrice, setFinalPrice] = useState(totalPrice);
+  // Update finalPrice whenever totalPrice changes
+  useEffect(() => {
+    setFinalPrice(totalPrice);
+  }, [totalPrice]); // Add totalPrice as a dependency
+
+  console.log("totalPrice from context:", totalPrice);
+  console.log("finalPrice before submission:", finalPrice);
 
   useEffect(() => {
     fetchCountryList();
@@ -109,6 +115,7 @@ const useManuscript = () => {
     formDataOne: FormDataOne,
     formDataTwo: FormDataTwo,
     formDataThree: FormDataThree,
+    totalPrice: number
   ) => {
     setLoading(true);
 
@@ -139,6 +146,8 @@ const useManuscript = () => {
             )
           : null;
 
+      console.log("Final price before sending body:", finalPrice);
+
       const requestBody = {
         user_id: formDataOne.user_id,
         order_type: "manu",
@@ -167,7 +176,7 @@ const useManuscript = () => {
         bill_zip: formDataThree.bill_zip,
         bill_country: formDataThree.bill_country,
       };
-
+      console.log("Request Body:(code from useManuscript.ts", requestBody);
       const response = await fetch(
         "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
         {
@@ -202,7 +211,9 @@ const useManuscript = () => {
     JournalPublicationFormData: PublicationFormType,
     formDataOne: FormDataOne,
     formDataTwo: FormDataTwo,
-    formDataThree: FormDataThree
+    formDataThree: FormDataThree,
+    totalPrice: number
+
   ) => {
     setLoading(true);
 
@@ -235,6 +246,7 @@ const useManuscript = () => {
             )
           : null;
 
+      console.log("Final price before sending body2:", finalPrice);
       const requestBody = {
         user_id: JournalPublicationFormData.user_id,
         order_type: "manu",

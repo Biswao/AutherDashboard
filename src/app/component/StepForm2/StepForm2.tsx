@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 
 
 
-const StepForm2 = ({setCheck, setButton}: any) => {
+const StepForm2 = ({setCheck, setButton,setNextButton}: any) => {
     const { formDataTwo, setFormDataTwo,totalPrice,setTotalPrice  } = useContext(SubmitManuscriptContext)
 
     useEffect(() => {
@@ -16,6 +16,7 @@ const StepForm2 = ({setCheck, setButton}: any) => {
     
     useEffect(() => {
         setButton(true)
+        setNextButton(true)
     },[])
 
     const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {

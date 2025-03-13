@@ -20,8 +20,8 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({
     0
   );
 
-  // let {totalPrice,setTotalPrice} = useContext(SubmitManuscriptContext)
-  const [totalPrice, setTotalPrice] = useState<number>(0)
+  let {totalPrice,setTotalPrice} = useContext(SubmitManuscriptContext)
+  // const [totalPrice, setTotalPrice] = useState<number>(0)
   
   const totalCost = servicesSubtotal - discount;
 
@@ -41,9 +41,10 @@ const SelectedServices: React.FC<SelectedServicesProps> = ({
 
 useEffect(()=>{
   setTotalPrice(totalCost)
+  console.log("total cost changed")
 
 },[totalCost])
-console.log({totalPrice})
+console.log('Total Price from Context provider',totalPrice)
 
   return (
     <div

@@ -35,19 +35,21 @@ export const Dashboard = () => {
     product: "Premium Article",
   };
   const paynowClicked = (e: any) => {
-    // Below code is to save price to local storage
-    console.log("Price saved to local storage");
-    // Example: Saving price details to localStorage in `shtest` (Author Dashboard)
-    const priceDetails = {
-      amount: 20,
-      product: "Premium Article",
-    };
 
-    // Save the data in localStorage
-    localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+    // console.log(e)
+    // // Below code is to save price to local storage
+    // console.log("Price saved to local storage");
+    // // Example: Saving price details to localStorage in `shtest` (Author Dashboard)
+    // const priceDetails = {
+    //   amount: 20,
+    //   product: "Premium Article",
+    // };
 
-    // Redirect to the checkout page on `manuscriptedit.com`
-    window.location.href = "/Checkout"; // This will redirect to the checkout page in `manuscriptedit.com`
+    // // Save the data in localStorage
+    // localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+
+    // // Redirect to the checkout page on `manuscriptedit.com`
+    // window.location.href = "/Checkout"; // This will redirect to the checkout page in `manuscriptedit.com`
   };
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export const Dashboard = () => {
           arr.push(order.status);
           arr.push(order.total_price);
           arr.push(
-            <button className="PaynOwww" onClick={paynowClicked}>
+            <button className="PaynOwww" onClick={() => paynowClicked(order.order_id)}>
               Pay Now
             </button>
           );

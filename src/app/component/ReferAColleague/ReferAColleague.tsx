@@ -3,7 +3,7 @@ import "./ReferAColleague.css";
 
 const ReferAColleague = () => {
     const handleFormSubmit = async (e: React.FormEvent): Promise<void> => {
-        console.log('hii from submit')
+        // console.log('hii from submit')
     }
     return (
         <>

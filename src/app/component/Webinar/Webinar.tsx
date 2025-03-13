@@ -11,16 +11,20 @@ const Webinar = () => {
           <h2 className="title">Upcoming Webinars/ Q&A Session</h2>
           <div className="row" style={{ gap: "61px" }}>
             {[
-              "/shtest/assets/images/A4.png",
-              "/shtest/assets/images/1600x900-2.png",
-              "/shtest/assets/images/A4 (1).png",
-              "/shtest/assets/images/A4.png",
+              "/AuthorDashboard/assets/images/A4.png",
+              "/AuthorDashboard/assets/images/1600x900-2.png",
+              "/AuthorDashboard/assets/images/A4 (1).png",
+              "/AuthorDashboard/assets/images/A4.png",
             ].map((src, index) => (
               <div className="col-lg-5" key={index}>
                 <div className="webinar-cards">
                   <img src={src} alt="Webinar" />
                   <div className="hover-content">
-                    <Link href={'https://secure.manuscriptedit.com/wregistration'}><button className="book-button">Book Webinar</button></Link>
+                    <Link
+                      href={"https://secure.manuscriptedit.com/wregistration"}
+                    >
+                      <button className="book-button">Book Webinar</button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -28,7 +32,11 @@ const Webinar = () => {
           </div>
           <div
             className="col-lg-10"
-            style={{ display: "flex", justifyContent: "end", marginTop: "10px" }}
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              marginTop: "10px",
+            }}
           >
             {/* <a href="/all-webinars" className="see-all-link">
               See All →
