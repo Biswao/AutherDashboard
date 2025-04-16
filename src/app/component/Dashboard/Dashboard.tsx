@@ -14,6 +14,7 @@ import { MainContext } from "@/app/context/MainContext";
 import ImageSlider from "../ImageSlider/ImageSlider";
 import { useRouter } from "next/navigation";
 
+
 export const Dashboard = () => {
   const [tableData, setTableData] = useState<(string | React.ReactNode)[][]>(
     []
@@ -30,26 +31,20 @@ export const Dashboard = () => {
   const { active, setActive } = useContext(MainContext);
   const router = useRouter();
 
-  const priceDetails = {
-    amount: 20,
-    product: "Premium Article",
-  };
   const paynowClicked = (e: any) => {
+    console.log(e);
+    // Below code is to save price to local storage
+    console.log("Price saved to local storage");
+    // Example: Saving price details to localStorage in `shtest` (Author Dashboard)
+    const priceDetails = e;
 
-    // console.log(e)
-    // // Below code is to save price to local storage
-    // console.log("Price saved to local storage");
-    // // Example: Saving price details to localStorage in `shtest` (Author Dashboard)
-    // const priceDetails = {
-    //   amount: 20,
-    //   product: "Premium Article",
-    // };
+    // Save the data in localStorage
+    localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
 
-    // // Save the data in localStorage
-    // localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+    console.log(priceDetails);
 
-    // // Redirect to the checkout page on `manuscriptedit.com`
-    // window.location.href = "/Checkout"; // This will redirect to the checkout page in `manuscriptedit.com`
+    // Redirect to the checkout page on `manuscriptedit.com`
+    window.location.href = "/Checkout"; // This will redirect to the checkout page in `manuscriptedit.com`
   };
 
   useEffect(() => {
@@ -65,7 +60,7 @@ export const Dashboard = () => {
           arr.push(order.status);
           arr.push(order.total_price);
           arr.push(
-            <button className="PaynOwww" onClick={() => paynowClicked(order.order_id)}>
+            <button className="PaynOwww" onClick={() => paynowClicked(order)}>
               Pay Now
             </button>
           );

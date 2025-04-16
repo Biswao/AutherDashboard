@@ -213,7 +213,6 @@ const useManuscript = () => {
     formDataTwo: FormDataTwo,
     formDataThree: FormDataThree,
     totalPrice: number
-
   ) => {
     setLoading(true);
 

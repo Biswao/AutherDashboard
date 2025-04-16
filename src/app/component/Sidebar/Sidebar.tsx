@@ -77,8 +77,8 @@ export default function Sidebar({children}: SidebarProps) {
                                 <li className="mb-2 w-full" onClick={() => {router.push("/ManuscriptSubmit");}}>
                                     <span className={`flex items-center py-2 px-4 text-left ${active === "/ManuscriptSubmit/" && "bg-teal-700"} hover:bg-gray-700 `}><FontAwesomeIcon icon={faFileUpload} className="mr-2" /><span className="flex-grow">Submit Manuscript</span></span>
                                 </li>
-                                <li className="mb-2 w-full" onClick={() => {router.push("/QuotationRequest");}}>
-                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/QuotationRequest/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>
+                                <li className="mb-2 w-full" onClick={() => {router.push("/QuotationNew");}}>
+                                    <span className={`flex items-center py-2 px-4 text-left ${active === "/QuotationNew/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faQuoteRight} className="mr-2" /><span className="flex-grow">Request a Quotation</span></span>
                                 </li>
                                 <li className="mb-2 w-full" onClick={() => {router.push("/OrderList");}}>
                                     <span className={`flex items-center py-2 px-4 text-left ${active === "/OrderList/" && "bg-teal-700"} hover:bg-gray-700 w-full`}><FontAwesomeIcon icon={faShoppingCart} className="mr-2" /><span className="flex-grow">View Orders Submitted</span></span>
