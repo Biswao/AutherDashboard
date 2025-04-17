@@ -1,16 +1,110 @@
-@media (max-width:640px){
-    .QuotationDivide{
-        display: block !important;
-    }
-}
-
-.LabelsService{
-    
-}
-
-.title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #003366;
-    margin-bottom: 16px;
+.spanGap {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-right: 40px;
   }
+  
+  .card label {
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  .card p {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .gapping {
+    padding: 16px 30px;
+    border: 1px solid rgb(82, 177, 214);
+  }
+  
+  label {
+    color: black;
+  }
+  
+  strong {
+    color: rgb(52 119 145);
+  }
+  .cardGoal {
+    height: 161px;
+  }
+  .uploadContainer {
+    text-align: center;
+    margin-top: 30px;
+    border: 2px dotted rgb(52 119 145);
+    padding: 10px;
+  }
+  
+  .shade {
+    box-shadow: 0px 4px 4px #5e8ede;
+    margin-bottom: 20px;
+  }
+  
+  .Alignments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 11px;
+    margin-top: 15px;
+  }
+  
+  .Sizy {
+    width: 30%;
+  }
+  
+  .uploadContainer h5 {
+    margin-top: 20px;
+  }
+  
+  .Decor {
+    padding: 20px;
+    border: 2px solid #3480ac;
+  }
+  
+  .summary-container {
+    position: fixed;
+    width: 350px;
+    z-index: -1;
+    box-shadow: 0px 0px 10px #3480ac;
+    border-radius: 10px;
+  }
+  
+  .card_holderHeight{
+    min-height: 20vh;
+  }
+  
+  @media (max-width: 768px) {
+    .summary-container {
+      position: relative;
+      width: 100%;
+    }
+  }
+  
+  .TableQuote {
+    color: rgb(114, 189, 246) !important;
+  }
+  
+  .distance {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .summary-container {
+    position: fixed;
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
+    height: calc(100vh - 180px); /* Leaves space for margin/padding */
+    overflow: hidden; /* Don't scroll the container itself */
+  }
+  
+  .scrollable-summary {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 6px; /* Prevent scrollbar overlapping content */
+  }
+  

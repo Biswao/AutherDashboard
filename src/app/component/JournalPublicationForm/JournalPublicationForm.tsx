@@ -10,7 +10,7 @@ const PublicationForm = () => {
 
   const { loading,submitQuotationJournalPublicationPackage } = useManuscript()
 
-  const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree, selectedService} = useContext(SubmitManuscriptContext)
+  const {publicationFormdata,setPublicationFormData,formDataOne,formDataTwo,formDataThree, selectedService,totalPrice} = useContext(SubmitManuscriptContext)
 
   const handleInputChange = (e:any) => {
     const { name, value } = e.target;
@@ -24,7 +24,7 @@ const PublicationForm = () => {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    submitQuotationJournalPublicationPackage(publicationFormdata,formDataOne,formDataTwo,formDataThree)
+    submitQuotationJournalPublicationPackage(publicationFormdata,formDataOne,formDataTwo,formDataThree,totalPrice)
   };
 
   return (

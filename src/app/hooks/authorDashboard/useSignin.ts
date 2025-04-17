@@ -10,6 +10,7 @@ const useSignin = (): UseAuthReturn => {
     const router = useRouter()
 
     const login = async (email: string, password: string): Promise<void> => {
+        
         setLoading(true);
 
         try {
@@ -19,10 +20,9 @@ const useSignin = (): UseAuthReturn => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, pswd: password })
-            });
+            });     
 
             const data: LoginResponse[] = await response.json();
-
 
             if (data[0] && data[0].Message === "Login Successfully") {
                 localStorage.setItem('email',email)
