@@ -189,10 +189,10 @@ export const Dashboard = () => {
         </div>
 
         <Table
-          mainHeader="Your Available Orders"
+          mainHeader="Your Orders List"
           headers={headers}
           data={data}
-          emptyMessage={loading ? "Loading Orders..." : "No Order Avilable"}
+          emptyMessage={loading ? "Checking For Orders..." : "No Orders Available"}
         />
       </div>
     </>
