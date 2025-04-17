@@ -7,7 +7,14 @@ import { addOnOptions } from "@/app/utils/Quote";
 import { addonturnaroundPrice } from "@/app/utils/Quote";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import {majorSubject,addOnsId,subServices,mainServices,goals,subjectsData} from "./allData"
+import {
+  majorSubject,
+  addOnsId,
+  subServices,
+  mainServices,
+  goals,
+  subjectsData,
+} from "./allData";
 
 export default function QuotationNew() {
   const [selectedGoal, setSelectedGoal] = useState<any>("");
@@ -129,8 +136,6 @@ export default function QuotationNew() {
     paymentMode: "",
   });
 
-
-
   // console.log(addOns[selectedGoal][selectedAddOns[1]])
   for (let i = 0; i < selectedAddOns.length; i++) {
     let j = selectedAddOns[i];
@@ -216,8 +221,8 @@ export default function QuotationNew() {
       file: file ? file.name : "no_file_uploaded.docs",
       name: userName,
       email: userEmail,
-      phone: "",
-      user_find: "",
+      phone: "111",
+      user_find: "111",
       total_price: String(optionTotalPrice),
     };
 
@@ -241,7 +246,7 @@ export default function QuotationNew() {
     });
     setHideGoalSection(false); // to show the goal options again
 
-    // console.log("Submitting data:", postData);
+    console.log("Submitting data:", postData);
 
     try {
       const response = await fetch(
@@ -346,7 +351,7 @@ export default function QuotationNew() {
               </h5>
             </div>
             <div style={{ display: hideGoalSection ? "none" : "" }}>
-              <h5 style={{ marginTop: "30px" }}>Select Your Goals</h5>
+              <h5 style={{ marginTop: "30px" }}>Select Category:</h5>
               <div className="row">
                 {goals.map((goal, index) => (
                   <div
@@ -379,7 +384,8 @@ export default function QuotationNew() {
 
             {selectedGoal && goalOptions[selectedGoal] && (
               <div className="mt-3">
-                <h5>Choose a Service for {selectedGoal} :</h5>
+                {/* <h5>Choose a Service for {selectedGoal} :</h5> */}
+                <h5>Choose a Service:</h5>
 
                 {/* Show all services if none selected */}
                 {!selectedOption &&
@@ -702,7 +708,7 @@ export default function QuotationNew() {
                   </select>
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  Submit & Register
+                  Submit
                 </button>
               </form>
             </div>
