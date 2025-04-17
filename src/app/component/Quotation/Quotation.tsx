@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import "../QuotationNew/quotationNew.css";
+import '@/app/(OpenPages)/QuotationNew/quotationNew.css'
 import { goalOptions } from "@/app/utils/Quote";
 import { addOnOptions } from "@/app/utils/Quote";
 import { addonturnaroundPrice } from "@/app/utils/Quote";
