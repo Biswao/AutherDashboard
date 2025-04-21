@@ -295,34 +295,52 @@ export default function QuotationNew() {
               <strong>Submit your project details for an exact quote.</strong>
             </h5>
             <div className="uploadContainer">
-              <span className="Alignments">
-                <h4 style={{ marginBottom: "0px" }}>Enter the word count *</h4>
-              </span>
+              <div className="row Alignments">
+                <div className="col-lg-4">
+                  <strong>
+                    <p style={{ marginBottom: "0px" }}>
+                      Enter the word count *
+                    </p>
+                  </strong>
+                </div>
 
-              <input
-                type="number"
-                name="wordCount"
-                className="form-control"
-                placeholder="Enter word count *" // <-- set a placeholder text or leave it blank
-                value={wordCount}
-                onChange={(e) => setWordCount(e.target.value)}
-                required
-              />
+                <div className="col-lg-7">
+                  <input
+                    type="number"
+                    name="wordCount"
+                    className="form-control"
+                    placeholder="Enter word count *" // <-- set a placeholder text or leave it blank
+                    value={wordCount}
+                    onChange={(e) => setWordCount(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
 
-              <select
-                className="form-control"
-                name="WrdCnt"
-                id="WrdCnt"
-                style={{ marginTop: "10px" }}
-                value={turnaround}
-                onChange={(e) => setTurnaround(e.target.value)}
-              >
-                <option value="Trn_Ar10">Turn Around Time (10days)</option>
-                <option value="Trn_Ar5">Turn Around Time (5days)</option>
-                <option value="Trn_Ar3">Turn Around Time (3days)</option>
-                <option value="Trn_Ar2">Turn Around Time (2days)</option>
-                <option value="Trn_Ar1">Turn Around Time (1day)</option>
-              </select>
+              <div className="row Alignments">
+                <div className="col-lg-4">
+                  <strong>
+                    <p style={{ marginBottom: "0px" }}>Turn Around Time *</p>
+                  </strong>
+                </div>
+
+                <div className="col-lg-7">
+                  <select
+                    className="form-control"
+                    name="WrdCnt"
+                    id="WrdCnt"
+                    style={{ marginTop: "10px" }}
+                    value={turnaround}
+                    onChange={(e) => setTurnaround(e.target.value)}
+                  >
+                    <option value="Trn_Ar10">10days</option>
+                    <option value="Trn_Ar5">5days</option>
+                    <option value="Trn_Ar3">3days</option>
+                    <option value="Trn_Ar2">2days</option>
+                    <option value="Trn_Ar1">1day</option>
+                  </select>
+                </div>
+              </div>
             </div>
             <div
               style={{
@@ -775,24 +793,37 @@ export default function QuotationNew() {
                     <p className="border p-2 rounded mt-2 text-muted">0</p>
                   )} */}
 
-                  {selectedAddOns.length > 0 && (
+                  {selectedAddOns.length > 0 ? (
                     <div className="border-top pt-3">
                       <table className="table table-sm table-borderless mt-2">
                         <tbody>
-                          <tr>
-                            <td className="fw-bold">{` ${selectedAddOns}, `}</td>
-                            {selectedGoal === "Editing & Language Services" &&
-                              (optionTotalPrice != 0 ? (
-                                <td className="text-end fw-bold text-primary">
-                                  ${totalPriceAddons.toFixed(2)}
-                                </td>
-                              ) : (
-                                ""
-                              ))}
-                          </tr>
+                          {addonturnaroundPrice
+                            .filter((addOn) =>
+                              selectedAddOns.includes(addOn.name)
+                            )
+                            .map((addOn, index) => {
+                              const isPerWord = addOn.price < 1;
+                              const calculatedPrice = isPerWord
+                                ? addOn.price * wordCount
+                                : addOn.price;
+
+                              return (
+                                <tr key={index}>
+                                  <td className="fw-bold">{addOn.name}</td>
+                                  <td className="text-end fw-bold">
+                                    ${calculatedPrice.toFixed(2)}
+                                    {isPerWord && (
+                                      <span className="text-muted"> </span>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
                         </tbody>
                       </table>
                     </div>
+                  ) : (
+                    <p className="border p-2 rounded mt-2 text-muted">0</p>
                   )}
                 </div>
                 <div>

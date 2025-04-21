@@ -70,8 +70,9 @@ export default function Signup({ setAutho }: any) {
         {data && <p className='success'>{data.Message}</p>}
       </div>
       <div className='rightSection'>
-        <h2>Don't have an Account?</h2>
-        <p>Sign up with your details</p>
+      <h2>Have an Account?</h2>
+      <p>Want to Log in with your <br/>e-mail address and your password?</p>
+        
         <button onClick={() => {
           setAutho(false)
         }}>LOGIN</button>

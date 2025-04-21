@@ -109,7 +109,7 @@ export default function Sidebar({ children }: SidebarProps) {
                     <span className="flex-grow">Dashboard</span>
                   </span>
                 </li>
-                <li
+                {/* <li
                   className="mb-2 w-full"
                   onClick={() => {
                     router.push("/ManuscriptSubmit");
@@ -123,7 +123,7 @@ export default function Sidebar({ children }: SidebarProps) {
                     <FontAwesomeIcon icon={faFileUpload} className="mr-2" />
                     <span className="flex-grow">Submit Manuscript</span>
                   </span>
-                </li>
+                </li> */}
                 <li
                   className="mb-2 w-full"
                   onClick={() => {

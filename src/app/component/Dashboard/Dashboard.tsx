@@ -106,13 +106,13 @@ export const Dashboard = () => {
                 color: "#fff",
                 padding: "22px",
               }}
-              onClick={() => router.push("/ManuscriptSubmit")}
+              onClick={() => router.push("/Referrals")}
             >
               <FontAwesomeIcon
                 icon={faFileAlt}
                 style={{ marginRight: "10px" }}
               />
-              Submit New Manuscript !
+              Refer A Colleague
             </button>
           </div>
 

@@ -33,8 +33,8 @@ const Login = ({setAutho}:any) => {
                 </form>
             </div>
             <div className="rightSection">
-                <h2>Have an Account?</h2>
-                <p>Log in with your e-mail address and your password.</p>
+            <h2>Don't have an Account?</h2>
+            <p>Sign up with your details</p>
                     <button className="signupButton" onClick={()=>{
                         setAutho(true)
                     }}>SIGN UP</button>

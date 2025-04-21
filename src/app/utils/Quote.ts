@@ -216,12 +216,12 @@ export const goalOptions: Record<string, GoalOption[]> = {
     },
   ],
   "Manuscriptedit Packages": [
-    {
-      id: "403",
-      text: "Basic Package",
-      description:
-        "Language editing, grammar correction, and journal formatting.",
-    },
+    // {
+    //   id: "403",
+    //   text: "Basic Package",
+    //   description:
+    //     "Language editing, grammar correction, and journal formatting.",
+    // },
     {
       id: "404",
       text: "Standard Package",
@@ -234,42 +234,53 @@ export const goalOptions: Record<string, GoalOption[]> = {
         "Includes Standard + journal recommendation and cover letter.",
     },
     {
-      id: "406",
-      text: "Premium Publication Package",
+      id: "343",
+      text: "Premium Package",
       description:
         "Includes Advanced + submission support and unlimited re-editing.",
     },
     {
-      id: "407",
-      text: "Reviewer Response Package",
+      id: "332",
+      text: "Premium Plus Package",
       description:
-        "Assistance in crafting detailed response to reviewer comments.",
+        "Includes Premium + submission support and unlimited re-editing.",
     },
-    {
-      id: "408",
-      text: "Fast-Track Express Package",
-      description:
-        "Accelerated editing, formatting, and expert guidance for urgent submissions.",
-    },
-    {
-      id: "409",
-      text: "Rejection Handling Package",
-      description:
-        "Expert advice and content polishing for resubmission to alternative journals.",
-    },
-    {
-      id: "410",
-      text: "Custom Publication Package",
-      description: "Fully tailored bundle based on author’s specific needs.",
-    },
-    {
-      id: "411",
-      text: "Advance Package",
-      description:
-        "Intermediate-tier bundle with editing, formatting, and basic submission tools.",
-    },
+    // {
+    //   id: "406",
+    //   text: "Premium Publication Package",
+    //   description:
+    //     "Includes Advanced + submission support and unlimited re-editing.",
+    // },
+    // {
+    //   id: "407",
+    //   text: "Reviewer Response Package",
+    //   description:
+    //     "Assistance in crafting detailed response to reviewer comments.",
+    // },
+    // {
+    //   id: "408",
+    //   text: "Fast-Track Express Package",
+    //   description:
+    //     "Accelerated editing, formatting, and expert guidance for urgent submissions.",
+    // },
+    // {
+    //   id: "409",
+    //   text: "Rejection Handling Package",
+    //   description:
+    //     "Expert advice and content polishing for resubmission to alternative journals.",
+    // },
+    // {
+    //   id: "410",
+    //   text: "Custom Publication Package",
+    //   description: "Fully tailored bundle based on author’s specific needs.",
+    // },
+    // {
+    //   id: "411",
+    //   text: "Advance Package",
+    //   description:
+    //     "Intermediate-tier bundle with editing, formatting, and basic submission tools.",
+    // },
   ],
-
   "Academic & Non-Scientific Writing": [
     {
       id: "412",
