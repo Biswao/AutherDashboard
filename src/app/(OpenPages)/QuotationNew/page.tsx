@@ -35,6 +35,8 @@ export default function QuotationNew() {
   const [userEmail, setUserEmail] = useState<any>("");
   const [userName, setUserName] = useState<any>("");
 
+  
+
   useEffect(() => {
     setUserEmail(localStorage.getItem("email"));
     setUserName(localStorage.getItem("user_id"));
@@ -205,6 +207,8 @@ export default function QuotationNew() {
   ) => {
     e.preventDefault();
 
+    //code entered for file upload section
+    
     // Prepare the data in the required format
     // mapMajorSubject(formData.majorSubject)
     const postData = {
@@ -294,6 +298,7 @@ export default function QuotationNew() {
             <h5>
               <strong>Submit your project details for an exact quote.</strong>
             </h5>
+           
             <div className="uploadContainer">
               <div className="row Alignments">
                 <div className="col-lg-4">
@@ -725,9 +730,21 @@ export default function QuotationNew() {
                     <option value="debit">Debit Card</option>
                   </select>
                 </div>
-                <button type="submit" className="btn btn-primary">
+
+                <center> <div style={{marginBottom:'1rem',border:'2px solid grey',padding:'1rem',borderRadius:'.5rem'}}>  
+                  <h6>Upload your document to be edited*</h6>
+            <p>
+              Upload manuscripts in .doc or .docx format to autocount words &
+              get an instant quote.
+            </p>
+            <input
+              type="file"
+              style={{ width: "34%" }}
+            /></div></center> 
+                
+               <center><button type="submit" className="btn btn-primary">
                   Submit
-                </button>
+                </button></center> 
               </form>
             </div>
           </div>
@@ -737,18 +754,18 @@ export default function QuotationNew() {
           className="col-md-4"
           style={{ position: "relative", zIndex: "999" }}
         >
-          <div className="summary-container">
+         {selectedGoal && <div className="summary-container">
             <div className="card border rounded shadow-sm p-3">
               <div className="card-body">
                 <h5 className="card-title border-bottom pb-2">Summary</h5>
                 <p className="mb-2">
-                  <strong>Selected Goal:</strong>
+                  <strong style={{textAlign:'left'}}>Selected Goal:</strong>
                   <br></br> {selectedGoal}
                 </p>
-                <div className="mb-3">
-                  <strong>Selected Option:</strong>
+                { selectedOption && <div className="mb-3">
+               <strong>Selected Option:</strong>
                   <p className="d-flex justify-content-between align-items-center border p-2 rounded mt-2">
-                    <span>{selectedOption || "None"}</span>
+                    <span>{selectedOption || ""}</span>
                     {selectedGoal === "Editing & Language Services" &&
                       (optionTotalPrice != 0 ? (
                         <span className="fw-bold">
@@ -757,16 +774,16 @@ export default function QuotationNew() {
                             ? goalOptions[selectedGoal]?.find(
                                 (opt: any) => opt.text === selectedOption
                               )?.price || totalPrice
-                            : "0"}
+                            : ""}
                         </span>
                       ) : (
                         ""
                       ))}
                   </p>
-                </div>
+                </div>}
                 <div className="mb-3">
-                  <strong>Selected Add-Ons:</strong>
-                  {/* {selectedAddOns.length > 0 && addOnOptions[selectedOption] ? (
+                {selectedAddOns.length > 0 && <strong>Selected Add-Ons:</strong>}
+                  {selectedAddOns.length > 0 && selectedGoal != "Editing & Language Services" && addOnOptions[selectedOption] ? (
                     <table className="table table-sm table-borderless mt-2">
                       <tbody>
                         {addOnOptions[selectedOption]
@@ -781,7 +798,7 @@ export default function QuotationNew() {
                                   `₹${addOn.price}`
                                 ) : (
                                   <h6 className="TableQuote">
-                                    Price after discussion
+                                    
                                   </h6>
                                 )}
                               </td>
@@ -789,9 +806,7 @@ export default function QuotationNew() {
                           ))}
                       </tbody>
                     </table>
-                  ) : (
-                    <p className="border p-2 rounded mt-2 text-muted">0</p>
-                  )} */}
+                  ) : ('')}
 
                   {selectedAddOns.length > 0 ? (
                     <div className="border-top pt-3">
@@ -822,9 +837,7 @@ export default function QuotationNew() {
                         </tbody>
                       </table>
                     </div>
-                  ) : (
-                    <p className="border p-2 rounded mt-2 text-muted">0</p>
-                  )}
+                  ) : ('')}
                 </div>
                 <div>
                   {selectedGoal === "Editing & Language Services" ? (
@@ -855,7 +868,7 @@ export default function QuotationNew() {
                 </div>
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>
