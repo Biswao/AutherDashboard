@@ -92,70 +92,7 @@ export const Dashboard = () => {
         }}
         className=""
       >
-        <div
-          className="row justify-content-around"
-          style={{ paddingTop: "40px" }}
-        >
-          {/* Submit New Manuscript Button */}
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <button
-              className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{
-                backgroundColor: "#688bb2",
-                borderRadius: "15px",
-                color: "#fff",
-                padding: "22px",
-              }}
-              onClick={() => router.push("/ManuscriptSubmit")}
-            >
-              <FontAwesomeIcon
-                icon={faFileAlt}
-                style={{ marginRight: "10px" }}
-              />
-              Submit New Manuscript !
-            </button>
-          </div>
-
-          {/* Request A Quote Button */}
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <button
-              className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{
-                backgroundColor: "#c7715d",
-                borderRadius: "15px",
-                color: "#fff",
-                padding: "22px",
-              }}
-              onClick={() => router.push("/QuotationRequest")}
-            >
-              <FontAwesomeIcon
-                icon={faFileInvoice}
-                style={{ marginRight: "10px" }}
-              />
-              Request A Quote !
-            </button>
-          </div>
-
-          {/* Request A Sample Button */}
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <button
-              className="btn w-100 d-flex align-items-center justify-content-center"
-              style={{
-                backgroundColor: "#84a96a",
-                borderRadius: "15px",
-                color: "#fff",
-                padding: "22px",
-              }}
-              onClick={() => router.push("/QuotationRequest")}
-            >
-              <FontAwesomeIcon
-                icon={faFileSignature}
-                style={{ marginRight: "10px" }}
-              />
-              Request A Sample !
-            </button>
-          </div>
-        </div>
+     
 
         <div
           className="row mt-4"
@@ -171,7 +108,7 @@ export const Dashboard = () => {
             {/* </div> */}
           </div>
           <div className="col-md-4">
-            <div className="card p-3">
+            {/* <div className="card p-3">
               <h5>Discount/Referral Code</h5>
               <input
                 type="text"
@@ -179,7 +116,39 @@ export const Dashboard = () => {
                 className="form-control mb-2"
               />
               <button className="btn btn-success w-100">Apply</button>
-            </div>
+            </div> */}
+             <button
+              className="btn w-100 d-flex align-items-center justify-content-center"
+              style={{
+                backgroundColor: "#688bb2",
+                borderRadius: "15px",
+                color: "#fff",
+                padding: "22px",
+              }}
+              onClick={() => router.push("/Referrals")}
+            >
+              <FontAwesomeIcon
+                icon={faFileAlt}
+                style={{ marginRight: "10px" }}
+              />
+              Refer A Colleague
+            </button>
+            <button
+              className="btn w-100 d-flex align-items-center justify-content-center mt-2"
+              style={{
+                backgroundColor: "#c7715d",
+                borderRadius: "15px",
+                color: "#fff",
+                padding: "22px",
+              }}
+              onClick={() => router.push("/QuotationNew")}
+            >
+              <FontAwesomeIcon
+                icon={faFileInvoice}
+                style={{ marginRight: "10px" }}
+              />
+              Request A Quote !
+            </button>
             <div className="mt-2">
               <button className="btn btn-secondary w-100">
                 View All Offers & Discounts

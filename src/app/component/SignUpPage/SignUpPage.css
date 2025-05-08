@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  height:90vh;
+  height:100vh;
   font-family: Arial, sans-serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -145,6 +145,6 @@ button[type="submit"]:hover {
 }
 
 
-.SignUpContain{
+/* .SignUpContain{
   margin-top: 47px;
-}
+} */

@@ -109,7 +109,25 @@ export default function Sidebar({ children }: SidebarProps) {
                     <span className="flex-grow">Dashboard</span>
                   </span>
                 </li>
+<<<<<<< HEAD
                
+=======
+                {/* <li
+                  className="mb-2 w-full"
+                  onClick={() => {
+                    router.push("/ManuscriptSubmit");
+                  }}
+                >
+                  <span
+                    className={`flex items-center py-2 px-4 text-left ${
+                      active === "/ManuscriptSubmit/" && "bg-teal-700"
+                    } hover:bg-gray-700 `}
+                  >
+                    <FontAwesomeIcon icon={faFileUpload} className="mr-2" />
+                    <span className="flex-grow">Submit Manuscript</span>
+                  </span>
+                </li> */}
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
                 <li
                   className="mb-2 w-full"
                   onClick={() => {

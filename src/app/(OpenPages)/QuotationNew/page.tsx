@@ -7,7 +7,20 @@ import { addOnOptions } from "@/app/utils/Quote";
 import { addonturnaroundPrice } from "@/app/utils/Quote";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+<<<<<<< HEAD
 export default function ProjectQuote() {
+=======
+import {
+  majorSubject,
+  addOnsId,
+  subServices,
+  mainServices,
+  goals,
+  subjectsData,
+} from "./allData";
+
+export default function QuotationNew() {
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
   const [selectedGoal, setSelectedGoal] = useState<any>("");
   const [hideGoalSection, setHideGoalSection] = useState<any>(true);
   const [selectedOption, setSelectedOption] = useState<any>("");
@@ -34,6 +47,9 @@ export default function ProjectQuote() {
     "selectedAddOns",
     selectedAddOns
   );
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
     setValFromLocalStorage(
@@ -135,6 +151,7 @@ export default function ProjectQuote() {
     paymentMode: "",
   });
 
+<<<<<<< HEAD
   const subjectsData = [
     {
       id: "1",
@@ -596,6 +613,8 @@ export default function ProjectQuote() {
     "Coronary Artery Disease": "31",
   };
 
+=======
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
   // console.log(addOns[selectedGoal][selectedAddOns[1]])
   for (let i = 0; i < selectedAddOns.length; i++) {
     let j = selectedAddOns[i];
@@ -626,7 +645,26 @@ export default function ProjectQuote() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const selectedFile = e.target.files[0];
+
+      // Validate file type
+      const validTypes = [
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+
+      if (!validTypes.includes(selectedFile.type)) {
+        alert("Please upload only .doc or .docx files");
+        return;
+      }
+
+      // Validate file size (10MB limit)
+      if (selectedFile.size > 10 * 1024 * 1024) {
+        alert("File size should be less than 10MB");
+        return;
+      }
+
+      setFile(selectedFile);
     }
   };
 
@@ -656,6 +694,7 @@ export default function ProjectQuote() {
     setSelectedAddOnsId(allSelectedAddOnsIds);
   }, [selectedAddOns]);
 
+  // Update your handleSubmit function
   const handleSubmit = async (
     e: React.FormEvent,
     selectedGoal: any,
@@ -665,6 +704,7 @@ export default function ProjectQuote() {
   ) => {
     e.preventDefault();
 
+<<<<<<< HEAD
     // Prepare the data in the required format
     // mapMajorSubject(formData.majorSubject)
     const postData = {
@@ -685,31 +725,69 @@ export default function ProjectQuote() {
       user_find: formData.HearAbt,
       total_price: String(optionTotalPrice),
     };
+=======
+    // Basic validation
+    if (!wordCount || wordCount === "0") {
+      alert("Please enter a valid word count");
+      return;
+    }
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
 
-    // 2. After successful submission — RESET EVERYTHING:
-    setSelectedGoal("");
-    setSelectedOption("");
-    setSelectedAddOns([]);
-    setWordCount("");
-    setTurnaround("Trn_Ar10"); // or your default turnaround
-    setFormData({
-      Name: "",
-      Email: "",
-      PhoneNum: "",
-      HearAbt: "",
-      majorSubject: "",
-      specificSubject: "",
-      deliveryDate: "",
-      preferredLanguage: "",
-      editorInstruction: "",
-      paymentMode: "",
-    });
-    setHideGoalSection(false); // to show the goal options again
-
-    // console.log("Submitting data:", postData);
+    if (!selectedGoal || !selectedOption) {
+      alert("Please select a goal and service option");
+      return;
+    }
 
     try {
-      const response = await fetch(
+      setIsSubmitting(true);
+      let fileUrl = "no_file_uploaded.docs";
+
+      // 1. First upload the file if exists
+      if (file) {
+        const uploadFormData = new FormData();
+        uploadFormData.append("file", file);
+
+        const uploadResponse = await fetch(
+          "https://secure.manuscriptedit.com/api/upload_file_from_form.php",
+          {
+            method: "POST",
+            body: uploadFormData,
+          }
+        );
+
+        if (!uploadResponse.ok) {
+          throw new Error("File upload failed");
+        }
+
+        const uploadData = await uploadResponse.json();
+        if (uploadData.FileUrl) {
+          // Extract just the filename from the URL
+          const urlParts = uploadData.FileUrl.split("/");
+          fileUrl = urlParts[urlParts.length - 1];
+        }
+      }
+
+      // 2. Now submit the quotation data
+      const postData = {
+        service_type: mainServices[selectedGoal],
+        service_name: subServices[selectedOption],
+        add_ons: selectedAddOnsId,
+        major_subject: formData.majorSubject,
+        specific_subject: formData.specificSubject,
+        delivery_date: formData.deliveryDate,
+        language: formData.preferredLanguage.toLowerCase().replace(" ", "_"),
+        inst_for_editor: formData.editorInstruction,
+        word_count: wordCount || "0",
+        pay_mode: formData.paymentMode,
+        file: fileUrl,
+        name: userName,
+        email: userEmail,
+        phone: "111",
+        user_find: "111",
+        total_price: String(optionTotalPrice),
+      };
+
+      const submissionResponse = await fetch(
         "https://www.secure.manuscriptedit.com/api/submit_quotation_out.php",
         {
           method: "POST",
@@ -720,22 +798,47 @@ export default function ProjectQuote() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`Error submitting quotation: ${response.statusText}`);
+      if (!submissionResponse.ok) {
+        throw new Error(
+          `Error submitting quotation: ${submissionResponse.statusText}`
+        );
       }
 
-      const { Message } = await response.json();
-      if (Message === "Data Saved Successfully") {
+      const result = await submissionResponse.json();
+      if (result.Message === "Data Saved Successfully") {
         alert("Quotation submitted successfully!");
+<<<<<<< HEAD
         window.location.href = "https://secure.manuscriptedit.com/register";
+=======
+        // Reset form
+        setSelectedGoal("");
+        setSelectedOption("");
+        setSelectedAddOns([]);
+        setWordCount("");
+        setFile(null)
+        setTurnaround("Trn_Ar10");
+        setFormData({
+          Name: "",
+          Email: "",
+          PhoneNum: "",
+          HearAbt: "",
+          majorSubject: "",
+          specificSubject: "",
+          deliveryDate: "",
+          preferredLanguage: "",
+          editorInstruction: "",
+          paymentMode: "",
+        });
+        setFile(null);
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
       } else {
-        alert("Something went wrong with the submission.");
+        alert("Submission completed but server returned unexpected response.");
       }
     } catch (err: any) {
       console.error("Error encountered:", err.message);
-      alert(
-        "Error encountered while submitting the Quotation. Please try again."
-      );
+      alert(`Error: ${err.message}`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -751,6 +854,7 @@ export default function ProjectQuote() {
             <h5>
               <strong>Submit your project details for an exact quote.</strong>
             </h5>
+
             <div className="uploadContainer">
               <div className="row Alignments">
                 <div className="col-lg-4">
@@ -826,7 +930,7 @@ export default function ProjectQuote() {
               </h5>
             </div>
             <div style={{ display: hideGoalSection ? "none" : "" }}>
-              <h5 style={{ marginTop: "30px" }}>Select Your Goals</h5>
+              <h5 style={{ marginTop: "30px" }}>Select Category:</h5>
               <div className="row">
                 {goals.map((goal, index) => (
                   <div
@@ -859,7 +963,8 @@ export default function ProjectQuote() {
 
             {selectedGoal && goalOptions[selectedGoal] && (
               <div className="mt-3">
-                <h5>Choose a Service for {selectedGoal} :</h5>
+                {/* <h5>Choose a Service for {selectedGoal} :</h5> */}
+                <h5>Choose a Service:</h5>
 
                 {/* Show all services if none selected */}
                 {!selectedOption &&
@@ -1181,14 +1286,62 @@ export default function ProjectQuote() {
                     <option value="debit">Debit Card</option>
                   </select>
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit & Register
-                </button>
+
+                <center>
+                  <div
+                    style={{
+                      marginBottom: "1rem",
+                      border: "2px solid grey",
+                      padding: "1rem",
+                      borderRadius: ".5rem",
+                    }}
+                  >
+                    <h6>Upload your document to be edited*</h6>
+                    <p>
+                      Upload manuscripts in .doc or .docx format to autocount
+                      words & get an instant quote.
+                    </p>
+                    <input
+                      type="file"
+                      onChange={handleFileChange}
+                      accept=".doc,.docx"
+                      style={{ width: "34%" }}
+                    />
+                    {file && (
+                      <p style={{ marginTop: "10px" }}>
+                        Selected file: {file.name} (
+                        {Math.round(file.size / 1024)} KB)
+                      </p>
+                    )}
+                  </div>
+                </center>
+
+                <center>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      "Submit"
+                    )}
+                  </button>
+                </center>
               </form>
             </div>
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="col-md-4">
           <div className="summary-container">
             <div className="card border rounded shadow-sm p-3 card_holderHeight scrollable-summary">
@@ -1215,31 +1368,42 @@ export default function ProjectQuote() {
                       ) : (
                         ""
                       ))}
+=======
+        <div
+          className="col-md-4"
+          style={{ position: "relative", zIndex: "999" }}
+        >
+          {selectedGoal && (
+            <div className="summary-container">
+              <div className="card border rounded shadow-sm p-3">
+                <div className="card-body">
+                  <h5 className="card-title border-bottom pb-2">Summary</h5>
+                  <p className="mb-2">
+                    <strong style={{ textAlign: "left" }}>
+                      Selected Goal:
+                    </strong>
+                    <br></br> {selectedGoal}
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
                   </p>
-                </div>
-                <div className="mb-3">
-                  <strong>Selected Add-Ons:</strong>
-                  {/* {selectedAddOns.length > 0 && addOnOptions[selectedOption] ? (
-                    <table className="table table-sm table-borderless mt-2">
-                      <tbody>
-                        {addOnOptions[selectedOption]
-                          .filter((addOn: any) =>
-                            selectedAddOns.includes(addOn.text)
-                          )
-                          .map((addOn: any, index: any) => (
-                            <tr key={index}>
-                              <td>{addOn.text}</td>
-                              <td className="text-end fw-bold">
-                                {addOn.price > 0 ? (
-                                  `₹${addOn.price}`
-                                ) : (
-                                  <h6 className="TableQuote">
-                                    Price after discussion
-                                  </h6>
-                                )}
-                              </td>
-                            </tr>
+                  {selectedOption && (
+                    <div className="mb-3">
+                      <strong>Selected Option:</strong>
+                      <p className="d-flex justify-content-between align-items-center border p-2 rounded mt-2">
+                        <span>{selectedOption || ""}</span>
+                        {selectedGoal === "Editing & Language Services" &&
+                          (optionTotalPrice != 0 ? (
+                            <span className="fw-bold">
+                              $
+                              {selectedOption
+                                ? goalOptions[selectedGoal]?.find(
+                                    (opt: any) => opt.text === selectedOption
+                                  )?.price || totalPrice
+                                : ""}
+                            </span>
+                          ) : (
+                            ""
                           ))}
+<<<<<<< HEAD
                       </tbody>
                     </table>
                   ) : (
@@ -1274,10 +1438,14 @@ export default function ProjectQuote() {
                             })}
                         </tbody>
                       </table>
+=======
+                      </p>
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
                     </div>
                   ) : (
                     <p className="border p-2 rounded mt-2 text-muted">0</p>
                   )}
+<<<<<<< HEAD
                 </div>
                 <div>
                   {selectedGoal === "Editing & Language Services" ? (
@@ -1287,28 +1455,103 @@ export default function ProjectQuote() {
                         <p className="fw-bold fs-5 text-primary mb-0">
                           ${optionTotalPrice.toFixed(2)}
                         </p>
+=======
+                  <div className="mb-3">
+                    {selectedAddOns.length > 0 && (
+                      <strong>Selected Add-Ons:</strong>
+                    )}
+                    {selectedAddOns.length > 0 &&
+                    selectedGoal != "Editing & Language Services" &&
+                    addOnOptions[selectedOption] ? (
+                      <table className="table table-sm table-borderless mt-2">
+                        <tbody>
+                          {addOnOptions[selectedOption]
+                            .filter((addOn: any) =>
+                              selectedAddOns.includes(addOn.text)
+                            )
+                            .map((addOn: any, index: any) => (
+                              <tr key={index}>
+                                <td>{addOn.text}</td>
+                                <td className="text-end fw-bold">
+                                  {addOn.price > 0 ? (
+                                    `₹${addOn.price}`
+                                  ) : (
+                                    <h6 className="TableQuote"></h6>
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    ) : (
+                      ""
+                    )}
+
+                    {selectedAddOns.length > 0 ? (
+                      <div className="border-top pt-3">
+                        <table className="table table-sm table-borderless mt-2">
+                          <tbody>
+                            {addonturnaroundPrice
+                              .filter((addOn) =>
+                                selectedAddOns.includes(addOn.name)
+                              )
+                              .map((addOn, index) => {
+                                const isPerWord = addOn.price < 1;
+                                const calculatedPrice = isPerWord
+                                  ? addOn.price * wordCount
+                                  : addOn.price;
+
+                                return (
+                                  <tr key={index}>
+                                    <td className="fw-bold">{addOn.name}</td>
+                                    <td className="text-end fw-bold">
+                                      ${calculatedPrice.toFixed(2)}
+                                      {isPerWord && (
+                                        <span className="text-muted"> </span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                          </tbody>
+                        </table>
+>>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
                       </div>
                     ) : (
-                      <div className="border-top pt-3 d-flex justify-content-between align-items-center">
-                        <p className="mb-0">
-                          Please enter word count for pricing.
-                        </p>
-                      </div>
-                    )
-                  ) : (
-                    selectedGoal && (
-                      <div className="border-top pt-3 d-flex justify-content-between align-items-center">
-                        <p className="mb-0">
-                          For the selected service, pricing depends on
-                          data/manuscript's complexity
-                        </p>
-                      </div>
-                    )
-                  )}
+                      ""
+                    )}
+                  </div>
+                  <div>
+                    {selectedGoal === "Editing & Language Services" ? (
+                      optionTotalPrice != 0 && wordCount != 0 ? (
+                        <div className="border-top pt-3 d-flex justify-content-between align-items-center">
+                          <h5 className="mb-0">Total:</h5>
+                          <p className="fw-bold fs-5 text-primary mb-0">
+                            ${optionTotalPrice.toFixed(2)}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="border-top pt-3 d-flex justify-content-between align-items-center">
+                          <p className="mb-0">
+                            Please enter word count for pricing.
+                          </p>
+                        </div>
+                      )
+                    ) : (
+                      selectedGoal && (
+                        <div className="border-top pt-3 d-flex justify-content-between align-items-center">
+                          <p className="mb-0">
+                            For the selected service, pricing depends on
+                            data/manuscript's complexity
+                          </p>
+                        </div>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
