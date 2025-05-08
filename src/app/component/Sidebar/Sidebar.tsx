@@ -109,9 +109,6 @@ export default function Sidebar({ children }: SidebarProps) {
                     <span className="flex-grow">Dashboard</span>
                   </span>
                 </li>
-<<<<<<< HEAD
-               
-=======
                 {/* <li
                   className="mb-2 w-full"
                   onClick={() => {
@@ -127,7 +124,6 @@ export default function Sidebar({ children }: SidebarProps) {
                     <span className="flex-grow">Submit Manuscript</span>
                   </span>
                 </li> */}
->>>>>>> 1ca60d2c27a76a626efac837c8ec08044416a914
                 <li
                   className="mb-2 w-full"
                   onClick={() => {
