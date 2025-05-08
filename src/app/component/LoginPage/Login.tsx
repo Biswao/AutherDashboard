@@ -1,47 +1,76 @@
 // components/Login.js
-import Link from 'next/link';
-import useSignin from '@/app/hooks/authorDashboard/useSignin';
-import { FormEvent, useState } from 'react';
-import './Login.css';
+import Link from "next/link";
+import useSignin from "@/app/hooks/authorDashboard/useSignin";
+import { FormEvent, useState } from "react";
+import "./Login.css";
+import Navbar2025 from "../HeaderManuscript/HeaderManuscript";
+import Footer from "../FooterManuscript/FooterManuscript";
+import Header from "../Header/Header";
+import Headerr from "../HeaderMobileView/HeaderMobileView";
 
-const Login = ({setAutho}:any) => {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const { login, loading, error } = useSignin();
+const Login = ({ setAutho }: any) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const { login, loading, error } = useSignin();
 
-    const handleSubmit = async (event: FormEvent) => {
-        event.preventDefault();
-        await login(email, password);
-    };
-    return (
-        <div className="container LoginContain">
-            <div className="leftSection">
-                <h2>Login</h2>
-                <form className="form" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Username or Email" className="inputField" onChange={(e) => setEmail(e.target.value)}/>
-                    <input type="password" placeholder="Password" className="inputField" onChange={(e) => setPassword(e.target.value)}/>
-                    <div className="rememberForgot">
-                        <label>
-                            <input type="checkbox" /> Remember me
-                        </label>
-                        <Link href="/forgot-password" className="forgotPassword">
-                            Forgot Password?
-                        </Link>
-                    </div>
-                    <button type="submit" className="loginButton">{loading ? 'Logging in...' : 'LOG IN'}</button>
-                    {error && <p className="errorMessage">{error}</p>}
-                </form>
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    await login(email, password);
+  };
+  return (
+    <>
+
+    <Headerr/>
+      <Navbar2025 />
+      <div className="container LoginContain">
+        <div className="leftSection">
+          <h2>Login</h2>
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Username or Email"
+              className="inputField"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="inputField"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className="rememberForgot">
+              <label>
+                <input type="checkbox" /> Remember me
+              </label>
+              <Link href="/forgot-password" className="forgotPassword">
+                Forgot Password?
+              </Link>
             </div>
-            <div className="rightSection">
-            <h2>Don't have an Account?</h2>
-            <p>Sign up with your details</p>
-                    <button className="signupButton" onClick={()=>{
-                        setAutho(true)
-                    }}>SIGN UP</button>
-                <Link href="/" className="goToHome">Go to Home ➔</Link>
-            </div>
+            <button type="submit" className="loginButton">
+              {loading ? "Logging in..." : "LOG IN"}
+            </button>
+            {error && <p className="errorMessage">{error}</p>}
+          </form>
         </div>
-    );
+        <div className="rightSection">
+          <h2>Don't have an Account?</h2>
+          <p>Sign up with your details</p>
+          <button
+            className="signupButton"
+            onClick={() => {
+              setAutho(true);
+            }}
+          >
+            SIGN UP
+          </button>
+          <Link href="/" className="goToHome">
+            Go to Home ➔
+          </Link>
+        </div>
+      </div>
+      <Footer/>
+    </>
+  );
 };
 
 export default Login;

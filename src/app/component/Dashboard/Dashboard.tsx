@@ -98,7 +98,7 @@ export const Dashboard = () => {
           className="row mt-4"
           style={{ paddingTop: "40px", paddingBottom: "40px" }}
         >
-          <div className="col-md-8">
+          <div className="col-md-8" style={{marginBottom:'40px'}}>
             {/* <div className="card testiHeight p-3" style={{ height: '191px', justifyContent: 'center', lineHeight: '33px' }}> */}
             <h5 style={{ marginBottom: "20px", fontWeight: "bold" }}>
               Author Testimonials
