@@ -83,8 +83,8 @@ export default function Sidebar({ children }: SidebarProps) {
                 className="w-20 h-20 rounded-full mb-3"
               />
               <h3 className="text-xl font-semibold">{`${
-                authorDetails?.first_name ?? "No"
-              } ${authorDetails?.last_name ?? "Name"}`}</h3>
+                authorDetails?.first_name ?? "No Name"
+              } ${authorDetails?.last_name ?? ""}`}</h3>
               <p className="text-green-500 text-sm flex items-center justify-center">
                 <i className="fa fa-check-circle mr-1"></i>{" "}
                 {authorDetails?.user_type}
