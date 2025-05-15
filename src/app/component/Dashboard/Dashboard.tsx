@@ -150,7 +150,7 @@ export const Dashboard = () => {
               Request A Quote !
             </button>
             <div className="mt-2">
-              <button className="btn btn-secondary w-100">
+              <button className="btn btn-secondary w-100" onClick={() => router.push("/Coupons")}>
                 View All Offers & Discounts
               </button>
             </div>
