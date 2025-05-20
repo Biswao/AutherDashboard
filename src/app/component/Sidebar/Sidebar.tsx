@@ -57,6 +57,8 @@ export default function Sidebar({ children }: SidebarProps) {
     authorDetails?.last_name ?? ""
   ).charAt(0)}`;
 
+
+
   return (
     <div>
       {/* Header Component */}

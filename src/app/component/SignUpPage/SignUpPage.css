@@ -27,12 +27,6 @@
   font-weight: bold;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-}
-
 form input[type="email"],
 form input[type="text"],
 form input[type="password"],

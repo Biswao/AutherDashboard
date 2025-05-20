@@ -241,7 +241,7 @@ const Quotation = () => {
                         </div>
                         <div className="w-1/2">
                             <label className="block text-md mb-2 text-gray-700 cursor-pointer">
-                                Payment Mode *          (We will not be charging you now, we just need to know your preferred mode)
+                                Payment Mode * (We will not be charging you now, we just need to know your preferred mode)
                             </label>
                             <select
                                 className="text-gray-400 border border-gray-300 rounded-md p-2 w-full mb-4 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
