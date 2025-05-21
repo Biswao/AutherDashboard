@@ -39,7 +39,7 @@ export const useFetchAuthor = (email?: string) => {
     const token : any = localStorage.getItem('token');
 
     if (!token) {
-      window.location.href='/Auth'
+      window.location.href='/AuthorDashboard/Auth'
       return;
     }},[])
 
