@@ -63,6 +63,7 @@ export interface AuthorDetails {
 export interface LoginResponse {
     Message?: string;
     user_id?: string;
+    token?: string;
 }
 
 export interface UseAuthReturn {
