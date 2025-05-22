@@ -57,7 +57,6 @@ export const Dashboard = () => {
           arr.push(order.service_type);
           arr.push(order.submit_date);
           arr.push(order.delivery_date);
-          arr.push(order.status);
           arr.push(order.total_price);
           arr.push(
             <button className="PaynOwww" onClick={() => paynowClicked(order)}>
@@ -77,7 +76,6 @@ export const Dashboard = () => {
     "Service Type",
     "Submit Date",
     "Delivery Date",
-    "Payment Status",
     "price",
     "Pay Now",
   ];
@@ -87,7 +85,6 @@ export const Dashboard = () => {
       <div
         style={{
           margin: "auto",
-          padding: "20px",
           fontFamily: "Arial, sans-serif",
         }}
         className=""
@@ -96,7 +93,7 @@ export const Dashboard = () => {
 
         <div
           className="row mt-4"
-          style={{ paddingTop: "40px", paddingBottom: "40px" }}
+          style={{paddingBottom: "40px" }}
         >
           <div className="col-md-8" style={{marginBottom:'40px'}}>
             {/* <div className="card testiHeight p-3" style={{ height: '191px', justifyContent: 'center', lineHeight: '33px' }}> */}
