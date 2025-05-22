@@ -57,8 +57,6 @@ export default function Sidebar({ children }: SidebarProps) {
     authorDetails?.last_name ?? ""
   ).charAt(0)}`;
 
-
-
   return (
     <div>
       {/* Header Component */}
@@ -85,7 +83,7 @@ export default function Sidebar({ children }: SidebarProps) {
                 className="w-20 h-20 rounded-full mb-3"
               />
               <h3 className="text-xl font-semibold">{`${
-                authorDetails?.first_name ?? "No Name"
+                authorDetails?.first_name ?? ""
               } ${authorDetails?.last_name ?? ""}`}</h3>
               <p className="text-green-500 text-sm flex items-center justify-center">
                 <i className="fa fa-check-circle mr-1"></i>{" "}

@@ -1,11 +1,17 @@
-import { AuthorDetails, updateAuthorDetailsResponse } from '@/app/utils/interfaces/types';
-import { useState, useEffect } from 'react';
+import {
+  AuthorDetails,
+  updateAuthorDetailsResponse,
+} from "@/app/utils/interfaces/types";
+import { useState, useEffect } from "react";
 // import { useRouter } from 'next/router';
 
 export const useFetchAuthor = (email?: string) => {
-  const [authorDetails, setAuthorDetails] = useState<AuthorDetails | null>(null);
+  const [authorDetails, setAuthorDetails] = useState<AuthorDetails | null>(
+    null
+  );
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  let token: any;
 
   // const router = useRouter();
 
@@ -13,22 +19,20 @@ export const useFetchAuthor = (email?: string) => {
     fetchAuthorDetails();
   }, [email]);
 
-
-
   // const fetchAuthorDetails = async () => {
   //   try {
   //     const response = await fetch(`https://www.secure.manuscriptedit.com/api/author_details.php?email_id=${email}`,{cache: 'no-store'});
   //     if (!response.ok) {
   //       throw new Error('Failed to fetch author details');
   //     }
- 
+
   //     const data = await response.json();
   //     if (data && data.length > 0) {
   //       setAuthorDetails(data[0]);
   //     } else {
   //       setAuthorDetails(null);
   //     }
-  //   }  catch (err) { 
+  //   }  catch (err) {
   //     setError((err as Error).message);
   //   } finally {
   //     setLoading(false);
@@ -36,12 +40,13 @@ export const useFetchAuthor = (email?: string) => {
   // };
 
   useEffect(() => {
-    const token : any = localStorage.getItem('token');
+    token = localStorage.getItem("token");
 
     if (!token) {
-      window.location.href='/AuthorDashboard/Auth'
+      window.location.href = "/AuthorDashboard/Auth";
       return;
-    }},[])
+    }
+  }, []);
 
   const fetchAuthorDetails = async () => {
     try {
@@ -56,11 +61,17 @@ export const useFetchAuthor = (email?: string) => {
           },
         }
       );
+
       if (!response.ok) {
+        console.log("Failed to fetch author details");
         throw new Error("Failed to fetch author details");
       }
 
       const data = await response.json();
+
+      // localStorage.setItem('DataValue',data[0].first_name)
+      // console.log(data[0].first_name)
+
       if (data && data.length > 0) {
         setAuthorDetails(data[0]);
       } else {
@@ -73,30 +84,31 @@ export const useFetchAuthor = (email?: string) => {
     }
   };
 
-  const updateAuthorDetails = async(data: any) =>  {
-    setLoading(true)
+  const updateAuthorDetails = async (data: any) => {
+    setLoading(true);
     try {
-      const res = await fetch('https://www.secure.manuscriptedit.com/api/update_user_details.php',{
-        method:"POST",
-        headers:{"Content-type":"application/json"},
-        body: JSON.stringify(data)
-      })
-  
+      const res = await fetch(
+        "https://www.secure.manuscriptedit.com/api/update_user_details.php",
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+
       const response: updateAuthorDetailsResponse[] = await res.json();
 
-      if(response[0].status){
-        fetchAuthorDetails()
-      }else{
-        fetchAuthorDetails()
+      if (response[0].status) {
+        fetchAuthorDetails();
+      } else {
+        fetchAuthorDetails();
       }
     } catch (error) {
-      setError((error as Error).message)
+      setError((error as Error).message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-
-
-  }
+  };
 
   return { authorDetails, error, loading, updateAuthorDetails };
 };
