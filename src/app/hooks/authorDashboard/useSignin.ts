@@ -26,6 +26,8 @@ const useSignin = (): UseAuthReturn => {
 
       const data: LoginResponse[] = await response.json();
 
+      console.log(data)
+
       if (data[0] && data[0].Message === "Login Successfully") {
         console.log(data[0].Message);
         localStorage.setItem("token", data[0].token|| "");

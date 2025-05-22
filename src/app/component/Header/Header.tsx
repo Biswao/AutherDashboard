@@ -17,6 +17,7 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const logoutHandler = () => {
+    localStorage.removeItem('token');
     localStorage.clear()
     router.push('/Auth')
   }
