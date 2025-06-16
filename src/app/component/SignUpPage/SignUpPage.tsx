@@ -121,30 +121,35 @@ export default function Signup({ setAutho }: any) {
               name="email"
               placeholder="Enter your email address"
               onChange={handleChange}
+              required
             />
             <input
               type="text"
               name="fname"
               placeholder="Enter your first name"
               onChange={handleChange}
+              required
             />
             <input
               type="text"
               name="lname"
               placeholder="Enter your last name"
               onChange={handleChange}
+              required
             />
             <input
               type="password"
               name="pswd"
               placeholder="Enter your Password"
               onChange={handleChange}
+              required
             />
             <input
               type="tel"
               name="phone_no"
               placeholder="Enter your Phone Number"
               onChange={handleChange}
+              required
             />
             <select name="country" onChange={handleChange}>
               <option>-Select a Country-</option>
@@ -325,7 +330,7 @@ export default function Signup({ setAutho }: any) {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
