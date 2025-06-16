@@ -44,7 +44,7 @@ export default function RootLayout({
         <head>
             <title>Author Dashboard</title>
         </head>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={`${geistSans.variable} ${geistMono.variable}`} >
         <ToastContainer />
         {!hideSidebar && (<Sidebar>
           {children}
@@ -56,7 +56,7 @@ export default function RootLayout({
   }else{
     return (
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={`${geistSans.variable} ${geistMono.variable}`} >
         <ToastContainer /> 
           {children}
         </body>

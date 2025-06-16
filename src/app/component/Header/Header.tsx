@@ -26,13 +26,15 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
     <div className="container-fluid p-2" style={{ background: "#364D60" }}>
       <div className="row align-items-center justify-content-between">
         <div className="col-lg-4 d-flex align-items-center" style={{gap:'35px'}}>
-          <img src={logo.src} style={{ width: '248px' , background:'white' , padding:'8px'}} alt="Logo" />
+          
           <button
             onClick={toggleSidebar}
             className="text-white btn p-0 ms-2"
           >
             <FaBars size={24} />
           </button>
+
+          <img src={logo.src} style={{width:"200px" ,  background:'white' , padding:'8px'}} alt="Logo" />
         </div>
 
         <div className="col-lg-8 d-flex justify-content-end align-items-center">

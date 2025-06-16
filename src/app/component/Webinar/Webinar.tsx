@@ -1,7 +1,7 @@
 "use client";
-import Sidebar from "@/app/component/Sidebar/Sidebar";
+
 import "./Webinar.css";
-import Link from "next/link";
+
 
 const Webinar = () => {
   return (
@@ -10,25 +10,9 @@ const Webinar = () => {
         <div className="webinar-container">
           <h2 className="title">Upcoming Webinars/ Q&A Session</h2>
           <div className="row" style={{ gap: "61px" }}>
-            {[
-              "/AuthorDashboard/assets/images/A4.png",
-              "/AuthorDashboard/assets/images/1600x900-2.png",
-              "/AuthorDashboard/assets/images/A4 (1).png",
-              "/AuthorDashboard/assets/images/A4.png",
-            ].map((src, index) => (
-              <div className="col-lg-5" key={index}>
-                <div className="webinar-cards">
-                  <img src={src} alt="Webinar" />
-                  <div className="hover-content">
-                    <Link
-                      href={"https://secure.manuscriptedit.com/wregistration"}
-                    >
-                      <button className="book-button">Book Webinar</button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="main-center">
+              <h4>No webinar found</h4>
+            </div>
           </div>
           <div
             className="col-lg-10"
