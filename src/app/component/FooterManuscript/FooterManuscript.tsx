@@ -532,16 +532,16 @@ export default function Footer() {
             <div className="col-lg-8 col-md-8">
               <div className="footer-bottom-right">
                 <div className="footer-bottom-right-text">
-                  <Link className="absod" href={"/RefundAndCancellation"}>
+                  <Link className="absod" href={"https://manuscriptedit.com/RefundAndCancellation/"}>
                     Refund & Cancellation
                   </Link>
-                  <Link className="absod" href={"/PrivacyPolicy"}>
+                  <Link className="absod" href={"https://manuscriptedit.com/PrivacyPolicy/"}>
                     Privacy Policy
                   </Link>
 
-                  <Link href={"/TermsOfService"}>Terms & Conditions</Link>
+                  <Link href={"https://manuscriptedit.com/TermsOfService/"}>Terms & Conditions</Link>
 
-                  <Link href={"/Service-Agreement"}> Service Agreement</Link>
+                  <Link href={"https://manuscriptedit.com/Service-Agreement/"}> Service Agreement</Link>
                 </div>
               </div>
             </div>
