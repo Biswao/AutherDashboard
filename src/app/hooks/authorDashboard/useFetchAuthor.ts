@@ -49,6 +49,7 @@ export const useFetchAuthor = (email?: string) => {
   }, []);
 
   const fetchAuthorDetails = async () => {
+    
     try {
       const response = await fetch(
         "https://www.secure.manuscriptedit.com/api/author_details_jwt.php",
@@ -86,6 +87,7 @@ export const useFetchAuthor = (email?: string) => {
 
   const updateAuthorDetails = async (data: any) => {
     setLoading(true);
+    
     try {
       const res = await fetch(
         "https://www.secure.manuscriptedit.com/api/update_user_details.php",

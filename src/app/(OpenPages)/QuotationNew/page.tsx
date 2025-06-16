@@ -346,10 +346,10 @@ export default function QuotationNew() {
   return (
     <div className="container sumcon">
       <div
-        className="row mt-4 sumrow"
+        className="row sumrow"
         style={{ justifyContent: "space-between" }}
       >
-        <div className="col-md-8 p-4 border bg-light shade">
+        <div className="col-md-8 border p-4">
           <div>
             <h5>
               <strong>Submit your project details for an exact quote.</strong>

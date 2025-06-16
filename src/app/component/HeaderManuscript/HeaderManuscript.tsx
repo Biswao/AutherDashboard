@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./HeaderManuscript.css";
 import menu from "@/app/component/HeaderManuscript/Menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LogoS from "@/app/utils/testi/logo16.png"
+import LogoS from "@/app/utils/testi/logo16.png";
 import {
   faFacebook,
   faTwitter,
@@ -86,7 +86,7 @@ function Navbar2025() {
     <div className="navbar2025">
       <div className="header_top_menu pt-2 pb-2 bg_color">
         <div className="container">
-          <div className="row" style={{alignItems:'center'}}>
+          <div className="row" style={{ alignItems: "center" }}>
             <div className="col-lg-7 col-sm-7">
               <div className="header_top_menu_address">
                 <div className="header_top_menu_address_inner">
@@ -113,14 +113,23 @@ function Navbar2025() {
             <div className="col-lg-3 col-sm-3">
               <div className="header_top_menu_icon">
                 <div className="header_top_menu_icon_inner">
-                  <ul style={{display:"flex" , justifyContent:"space-evenly" , marginBottom:"0rem"}}>
+                  <ul
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                      marginBottom: "0rem",
+                    }}
+                  >
                     <li>
                       <a
                         href="https://www.facebook.com/Manuscriptedit"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon style={{color:"white"}} icon={faFacebook} />
+                        <FontAwesomeIcon
+                          style={{ color: "white" }}
+                          icon={faFacebook}
+                        />
                       </a>
                     </li>
                     <li>
@@ -129,7 +138,10 @@ function Navbar2025() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon style={{color:"white"}} icon={faTwitter} />
+                        <FontAwesomeIcon
+                          style={{ color: "white" }}
+                          icon={faTwitter}
+                        />
                       </a>
                     </li>
                     <li>
@@ -138,7 +150,10 @@ function Navbar2025() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon style={{color:"white"}} icon={faInstagram} />
+                        <FontAwesomeIcon
+                          style={{ color: "white" }}
+                          icon={faInstagram}
+                        />
                       </a>
                     </li>
                     <li>
@@ -147,7 +162,10 @@ function Navbar2025() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon style={{color:"white"}} icon={faYoutube} />
+                        <FontAwesomeIcon
+                          style={{ color: "white" }}
+                          icon={faYoutube}
+                        />
                       </a>
                     </li>
                   </ul>
@@ -177,16 +195,16 @@ function Navbar2025() {
 
       <header className="nav-container">
         <div className="nav-logo logo">
-          <Link href="/">
+          <Link href="https://manuscriptedit.com">
             <img src={LogoS.src} alt="Company Logo" />
           </Link>
         </div>
 
         <nav className="nav-menu">
-          <ul className="UpDown" style={{marginBottom:'0rem'}}>
+          <ul className="UpDown" style={{ marginBottom: "0rem" }}>
             <li>
               <Link
-                href="/EditingOverview"
+                href="https://manuscriptedit.com/EditingOverview/"
                 onClick={() => {
                   setActiveTab1(menu[0].subMenu[0]?.label || "");
                   setActiveTab2(menu[0].subMenu[0]?.subMenu?.[0]?.label || "");
@@ -202,7 +220,7 @@ function Navbar2025() {
             </li>
             <li>
               <Link
-                href="/QualityDelivery"
+                href="https://manuscriptedit.com/QualityDelivery"
                 onClick={() => {
                   setActiveTab1(menu[1].subMenu[0]?.label || "");
                   setNewNavBar2(true);
@@ -217,7 +235,7 @@ function Navbar2025() {
             </li>
             <li>
               <Link
-                href="/Prices"
+                href="https://manuscriptedit.com/Prices"
                 onClick={() => {
                   setActiveTab1(menu[2].subMenu[0]?.label || "");
                   setNewNavBar2(true);
@@ -232,7 +250,7 @@ function Navbar2025() {
             </li>
             <li>
               <Link
-                href="/EditorialPanel"
+                href="https://manuscriptedit.com/EditorialPanel"
                 onClick={() => {
                   setActiveTab1(menu[3].subMenu[0]?.label || "");
                   setNewNavBar2(true);
@@ -247,7 +265,7 @@ function Navbar2025() {
             </li>
             <li>
               <Link
-                href="/About"
+                href="https://manuscriptedit.com/About"
                 onClick={() => {
                   setActiveTab1(menu[4].subMenu[0]?.label || "");
                   setNewNavBar2(true);
@@ -270,7 +288,7 @@ function Navbar2025() {
           >
             Sign Up | Sign In
           </Link>
-          <Link href="/QuotationNew" className="navButtonz">
+          <Link href="https://manuscriptedit.com/QuotationNew" className="navButtonz">
             Request A Quote
           </Link>
         </div>

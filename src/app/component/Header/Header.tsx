@@ -25,7 +25,6 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
   return (
     <div className="container-fluid p-2" style={{ background: "#364D60" }}>
       <div className="row align-items-center justify-content-between">
-        {/* Left section with logo and menu button */}
         <div className="col-lg-4 d-flex align-items-center" style={{gap:'35px'}}>
           
           <button
@@ -38,14 +37,12 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
           <img src={logo.src} style={{width:"200px" ,  background:'white' , padding:'8px'}} alt="Logo" />
         </div>
 
-        {/* Right section with wallet info and dropdown */}
         <div className="col-lg-8 d-flex justify-content-end align-items-center">
           <div className="text-white d-flex align-items-center">
             <FaWallet size={20} className="me-2" />
             <span>$ 0.00</span>
           </div>
 
-          {/* Dropdown Button */}
           <div className="position-relative ms-4">
             <button
               onClick={toggleDropdown}
@@ -56,7 +53,6 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
               <span className="ms-1">&#9662;</span>
             </button>
 
-            {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
                 <Link href={'/UpdateProfile'} style={{textDecoration:"none"}}><span className="dropdown-item"><FontAwesomeIcon icon={faUser} className="me-2" />Profile</span></Link>

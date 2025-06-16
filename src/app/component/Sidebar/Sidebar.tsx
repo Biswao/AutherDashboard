@@ -58,7 +58,7 @@ export default function Sidebar({ children }: SidebarProps) {
   ).charAt(0)}`;
 
   return (
-    <div>
+    <div style={{overflow:"hidden"}}>
       {/* Header Component */}
       <Header
         isOpen={isOpen}
