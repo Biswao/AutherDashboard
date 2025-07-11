@@ -33,9 +33,7 @@ export const Dashboard = () => {
 
   const paynowClicked = (e: any) => {
     console.log(e);
-    // Below code is to save price to local storage
-    console.log("Price saved to local storage");
-    // Example: Saving price details to localStorage in `shtest` (Author Dashboard)
+    
     const priceDetails = e;
 
     // Save the data in localStorage
