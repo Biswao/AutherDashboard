@@ -9,6 +9,7 @@ import { MainContext } from "@/app/context/MainContext";
 import Link from "next/link";
 import logo from '../../../../public/assets/images/logooForAuthor.png'
 
+
 export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const {active, setActive} = useContext(MainContext)
@@ -52,6 +53,9 @@ export default function Header({ isOpen, toggleSidebar, initials }: HeaderProps)
               {initials ?? ""}
               <span className="ms-1">&#9662;</span>
             </button>
+
+            
+
 
             {dropdownOpen && (
               <div className="dropdown-menu show position-absolute end-0 mt-2 p-2" style={{ minWidth: '100px' }}>
