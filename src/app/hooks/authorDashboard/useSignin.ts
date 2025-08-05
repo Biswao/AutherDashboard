@@ -9,12 +9,14 @@ const useSignin = (): UseAuthReturn => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  console.log("error:" , error)
+
   const login = async (email: string, password: string): Promise<void> => {
     setLoading(true);
 
     try {
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/author_signin_jwt.php",
+        "https://secure.manuscriptedit.com/api/author_signin_jwt.php",
         {
           method: "POST",
           headers: {

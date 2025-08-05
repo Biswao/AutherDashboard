@@ -27,7 +27,7 @@ const useQuotation = () => {
     const getServiceType = async () => {
         setLoading(true)
         try {
-            const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_all_service_type.php`);
+            const response = await fetch(`https://secure.manuscriptedit.com/api/get_all_service_type.php`);
             if (!response.ok) {
                 throw new Error('Failed to fetch author details');
             }
@@ -48,7 +48,7 @@ const useQuotation = () => {
     const getServiceNameById = async (id: string="1") => {
         setLoading(true)
         try {
-            const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`);
+            const response = await fetch(`https://secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch author details');
             }
@@ -69,7 +69,7 @@ const useQuotation = () => {
     const getAllMajorSubjectType = async () => {
         setLoading(true)
         try {
-            const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_all_major_subject_type.php`);
+            const response = await fetch(`https://secure.manuscriptedit.com/api/get_all_major_subject_type.php`);
             if (!response.ok) {
                 throw new Error('Failed to fetch author details');
             }
@@ -94,7 +94,7 @@ const useQuotation = () => {
             formData.append("user_id", user_id);
             formData.append("order_type", order_type);
 
-            const response = await fetch("https://www.secure.manuscriptedit.com/api/editor_order_file_upload.php", {
+            const response = await fetch("https://secure.manuscriptedit.com/api/editor_order_file_upload.php", {
                 method: "POST",
                 body: formData,
             });
@@ -145,7 +145,7 @@ const useQuotation = () => {
             };
 
             const response = await fetch(
-                "https://www.secure.manuscriptedit.com/api/submit_quotation.php",
+                "https://secure.manuscriptedit.com/api/submit_quotation.php",
                 {
                     method: "POST",
                     headers: {

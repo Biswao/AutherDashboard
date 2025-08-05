@@ -11,7 +11,7 @@ const useFetchOrder = (userId: string | null) => {
       const fetchOrderToTable = async () => {
         try {
           const orderData = await fetch(
-            `https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`,
+            `https://secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`,
             { cache: "no-store" }
           );
           if (!orderData.ok) {

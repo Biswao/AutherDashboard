@@ -52,7 +52,7 @@ export const useFetchAuthor = (email?: string) => {
     
     try {
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/author_details_jwt.php",
+        "https://secure.manuscriptedit.com/api/author_details_jwt.php",
 
         {
           method: "GET",
@@ -90,7 +90,7 @@ export const useFetchAuthor = (email?: string) => {
     
     try {
       const res = await fetch(
-        "https://www.secure.manuscriptedit.com/api/update_user_details.php",
+        "https://secure.manuscriptedit.com/api/update_user_details.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },
