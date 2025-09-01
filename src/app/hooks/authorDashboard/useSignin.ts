@@ -11,10 +11,11 @@ const useSignin = (): UseAuthReturn => {
 
   const login = async (email: string, password: string): Promise<void> => {
     setLoading(true);
+    setError(null); // Clear previous errors
 
     try {
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/author_signin_jwt.php",
+        "https://secure.manuscriptedit.com/api/author_signin_jwt.php",
         {
           method: "POST",
           headers: {
@@ -24,20 +25,29 @@ const useSignin = (): UseAuthReturn => {
         }
       );
 
-      const data: LoginResponse[] = await response.json();
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server error: ${errorText}`);
+      }
 
+      const data: LoginResponse[] = await response.json();
       console.log(data)
 
-      if (data[0] && data[0].Message === "Login Successfully") {
-        console.log(data[0].Message);
-        localStorage.setItem("token", data[0].token|| "");
+      if (
+        data[0] &&
+        data[0].Message === "Login Successfully" &&
+        data[0].token
+      ) {
+        localStorage.setItem("token", data[0].token);
         localStorage.setItem("email", email);
         localStorage.setItem("user_id", data[0].user_id || "");
+
         router.push("/");
       } else {
-        setError(data[0].Message || "Login failed");
+        setError(data[0]?.Message || "Login failed. Try again.");
       }
     } catch (err) {
+      console.error("Login error:", err);
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);

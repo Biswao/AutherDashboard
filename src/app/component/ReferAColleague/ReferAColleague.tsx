@@ -25,7 +25,7 @@ const ReferAColleague = () => {
 
     try {
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/refer_a_colleague.php",
+        "https://secure.manuscriptedit.com/api/refer_a_colleague.php",
         {
           method: "POST",
           headers: {

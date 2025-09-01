@@ -9,7 +9,7 @@ export const useFetchCountryCode = (email?: string) => {
   useEffect(() => {
     const fetchCountryCode = async () => {
       try {
-        const response = await fetch(`https://www.secure.manuscriptedit.com/api/get_all_country_list.php`);
+        const response = await fetch(`https://secure.manuscriptedit.com/api/get_all_country_list.php`);
         if (!response.ok) {
           throw new Error('Failed to fetch author details');
         }

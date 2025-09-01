@@ -40,7 +40,7 @@ const useManuscript = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://www.secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`
+        `https://secure.manuscriptedit.com/api/get_service_name.php?serv_type_id=${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch author details");
@@ -62,7 +62,7 @@ const useManuscript = () => {
   const fetchCountryList = async () => {
     try {
       const countryData = await fetch(
-        `https://www.secure.manuscriptedit.com/api/get_all_country_list.php`
+        `https://secure.manuscriptedit.com/api/get_all_country_list.php`
       );
       if (!countryData.ok) {
         throw new Error("Order Fetching Failed.");
@@ -92,7 +92,7 @@ const useManuscript = () => {
       formData.append("order_type", order_type);
 
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/editor_order_file_upload.php",
+        "https://secure.manuscriptedit.com/api/editor_order_file_upload.php",
         {
           method: "POST",
           body: formData,
@@ -178,7 +178,7 @@ const useManuscript = () => {
       };
       console.log("Request Body:(code from useManuscript.ts", requestBody);
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
+        "https://secure.manuscriptedit.com/api/submit_manuscript.php",
         {
           method: "POST",
           headers: {
@@ -276,7 +276,7 @@ const useManuscript = () => {
       };
 
       const response = await fetch(
-        "https://www.secure.manuscriptedit.com/api/submit_manuscript.php",
+        "https://secure.manuscriptedit.com/api/submit_manuscript.php",
         {
           method: "POST",
           headers: {

@@ -29,10 +29,23 @@ export interface OrderDetails {
     language: string;
     journal_name: string;
     specific_sub: string;
-    maj_serv_area: string;
+    maj_serv_area: { subject: string } | string;
     service_details:string;
     total_price:string;
+    user_name:any;
+    word_count:any;
+    content_file:any;
+    figure_file:any;
+    table_file:any;
+    cur_type:any;
+    journal_guideline:any;
+    journal_url:any;
+    turn_ar_time:any;
+    payment_link:any;
+    service_name:any;
 }
+
+
 
 export interface AuthorDetails {
     id: string;

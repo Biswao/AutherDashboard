@@ -15,10 +15,15 @@ import ImageSlider from "../ImageSlider/ImageSlider";
 import { useRouter } from "next/navigation";
 
 
+
+
 export const Dashboard = () => {
   const [tableData, setTableData] = useState<(string | React.ReactNode)[][]>(
     []
   );
+  
+
+  console.log("tableData:" , tableData)
 
   const userId: string | null =
     typeof window !== "undefined" ? localStorage.getItem("user_id") : null;
@@ -31,19 +36,73 @@ export const Dashboard = () => {
   const { active, setActive } = useContext(MainContext);
   const router = useRouter();
 
-  const paynowClicked = (e: any) => {
-    console.log(e);
+  // const paynowClicked = (e: any) => {
+  //   console.log(e);
     
-    const priceDetails = e;
+  //   const priceDetails = e;
 
-    // Save the data in localStorage
-    localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+    
+  //   localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
 
-    console.log(priceDetails);
+  //   console.log("priceDetails" , priceDetails);
 
-    // Redirect to the checkout page on `manuscriptedit.com`
-    window.location.href = "/Checkout"; // This will redirect to the checkout page in `manuscriptedit.com`
-  };
+    
+  //   window.location.href = "/Checkout"; 
+  // };
+ 
+
+
+
+const paynowClicked = (order: OrderDetails) => {
+  const BASE_URL = "https://secure.manuscriptedit.com/";
+  
+
+  const priceDetails = {
+    order_id: order.order_id,
+    user_name:order.user_name,
+    service_cat: order.service_cat,
+    service_type: order.service_type,
+    specific_sub: order.specific_sub,
+    status: order.status,
+    submit_date: order.submit_date,
+    delivery_date: order.delivery_date,
+    total_price: order.total_price,
+    word_count: order.word_count,
+
+    // Fix: convert object -> string
+    // maj_serv_area:
+    //   typeof order.maj_serv_area === "object"
+    //     ? order.maj_serv_area.subject
+    //     : order.maj_serv_area || "",
+
+    
+
+    // Fix: prepend domain if relative
+    content_file: order.content_file
+      ? `${BASE_URL}${order.content_file.replace(/^(\.\.\/)+/, "")}`
+      : null,
+    figure_file: order.figure_file
+      ? `${BASE_URL}${order.figure_file.replace(/^(\.\.\/)+/, "")}`
+      : null,
+    table_file: order.table_file
+      ? `${BASE_URL}${order.table_file.replace(/^(\.\.\/)+/, "")}`
+      : null,
+
+    // Other optional fields
+    cur_type: order.cur_type || null,
+    inst_for_editor: order.inst_for_editor || "",
+    journal_guideline: order.journal_guideline || null,
+    journal_name: order.journal_name || null,
+    journal_url: order.journal_url || null,
+    language: order.language || "English",
+    turn_ar_time: order.turn_ar_time || "",
+    payment_link: order.payment_link || "",
+  } 
+  
+  localStorage.setItem("priceDetails", JSON.stringify(priceDetails));
+  window.location.href = "/Checkout"; 
+};
+
 
   useEffect(() => {
     if (fetchOrder && fetchOrder.length) {
@@ -62,11 +121,13 @@ export const Dashboard = () => {
             </button>
           );
 
+          console.log("arr" , arr)
           return arr;
         }
       );
       setTableData(table_data);
     }
+    
   }, [fetchOrder]);
 
   const headers: string[] = [
@@ -78,6 +139,14 @@ export const Dashboard = () => {
     "Pay Now",
   ];
   const data: (string | React.ReactNode)[][] = tableData;
+
+
+console.log("userId:", userId);
+console.log("fetchOrder from hook:", fetchOrder);
+console.log("loading:", loading);
+console.log("error:", error);
+
+
   return (
     <>
       <div

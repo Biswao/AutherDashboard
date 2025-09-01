@@ -289,7 +289,7 @@ export default function QuotationNew() {
       };
 
       const submissionResponse = await fetch(
-        "https://www.secure.manuscriptedit.com/api/submit_quotation_out.php",
+        "https://secure.manuscriptedit.com/api/submit_quotation_out.php",
         {
           method: "POST",
           headers: {
@@ -306,6 +306,9 @@ export default function QuotationNew() {
       }
 
       const result = await submissionResponse.json();
+
+      console.log("rseaultsss:" , result)
+
       if (result.Message === "Data Saved Successfully") {
         alert("Quotation submitted successfully!");
         // Reset form
@@ -854,7 +857,7 @@ export default function QuotationNew() {
                     <strong style={{ textAlign: "left" }}>
                       Selected Goal:
                     </strong>
-                    <br></br> {selectedGoal}
+                    <br /> {selectedGoal}
                   </p>
                   {selectedOption && (
                     <div className="mb-3">

@@ -11,13 +11,15 @@ const useFetchOrder = (userId: string | null) => {
       const fetchOrderToTable = async () => {
         try {
           const orderData = await fetch(
-            `https://www.secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`,
+            `https://secure.manuscriptedit.com/api/get_order_details_by_user.php?user_id=${userId}`,
             { cache: "no-store" }
           );
           if (!orderData.ok) {
             throw new Error("Order Fetching Failed.");
           }
           const dataRcvd = await orderData.json();
+          console.log("Order API Response:", dataRcvd);
+
           if (dataRcvd && dataRcvd.length > 0) {
             setFetchOrder(dataRcvd);
             localStorage.setItem("OrderList", JSON.stringify(dataRcvd || []));
@@ -40,5 +42,3 @@ const useFetchOrder = (userId: string | null) => {
 };
 
 export default useFetchOrder;
-
-
