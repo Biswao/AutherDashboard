@@ -46,6 +46,10 @@ export default function Signup({ setAutho }: any) {
     user_find: "",
   });
 
+  console.log("formData" , formData)
+
+ 
+
   // const captchaImg = {};
 
   const handleChange = (
@@ -88,6 +92,7 @@ export default function Signup({ setAutho }: any) {
     }
     await signup(formData);
   };
+  
 
   const handleCheckboxChange = (e: any) => {
     if (e.target.checked) {
@@ -157,7 +162,7 @@ export default function Signup({ setAutho }: any) {
                 countryCode.length &&
                 countryCode.map((country) => {
                   return (
-                    <option key={country.id} value={country.country}>
+                    <option key={country.id} value={country.id}>
                       {country.country}
                     </option>
                   );

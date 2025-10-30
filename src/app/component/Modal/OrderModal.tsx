@@ -65,12 +65,12 @@ const OrderModal = ({
               ? chosenOrder[0].service_name
               : ""}
           </p>
-          <p>
+          {/* <p>
             <strong>Service Details:</strong>{" "}
             {chosenOrder && chosenOrder.length
               ? chosenOrder[0].service_details
               : ""}
-          </p>
+          </p> */}
 
           {/* <p>
             <strong>Major Service Area:</strong>{" "}
@@ -99,12 +99,12 @@ const OrderModal = ({
               ? chosenOrder[0].delivery_date
               : ""}
           </p>
-          <p>
+          {/* <p>
             <strong>Journal Name:</strong>{" "}
             {chosenOrder && chosenOrder.length
               ? chosenOrder[0].journal_name
               : ""}
-          </p>
+          </p> */}
           <p>
             <strong>Language:</strong>
             {chosenOrder && chosenOrder.length ? chosenOrder[0].language : ""}

@@ -9,6 +9,8 @@ export const useSignup = (setAutho: any) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<SignupResponse | null>(null);
 
+ 
+
   const router = useRouter()
 
   const signup = async (signupData: SignupData) => {
@@ -29,6 +31,7 @@ export const useSignup = (setAutho: any) => {
       }
 
       const result: SignupResponse = await response.json();
+
       setData(result);
       setAutho(false)
     } catch (err) {
@@ -37,6 +40,8 @@ export const useSignup = (setAutho: any) => {
       setLoading(false);
     }
   };
+
+  
 
   return { signup, loading, error, data };
 };
