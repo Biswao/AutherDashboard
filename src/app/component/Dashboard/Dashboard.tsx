@@ -54,7 +54,7 @@ export const Dashboard = () => {
 
 
 const paynowClicked = (order: OrderDetails) => {
-  const BASE_URL = "https://secure.manuscriptedit.com/";
+  const BASE_URL = "https://secure.tst.manuscriptedit.com/";
   
 
   const priceDetails = {

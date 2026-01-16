@@ -249,7 +249,7 @@ export default function QuotationNew() {
         uploadFormData.append("file", file);
 
         const uploadResponse = await fetch(
-          "https://secure.manuscriptedit.com/api/upload_file_from_form.php",
+          "https://secure.tst.manuscriptedit.com/api/upload_file_from_form.php",
           {
             method: "POST",
             body: uploadFormData,
@@ -289,7 +289,7 @@ export default function QuotationNew() {
       };
 
       const submissionResponse = await fetch(
-        "https://secure.manuscriptedit.com/api/submit_quotation_out.php",
+        "https://secure.tst.manuscriptedit.com/api/submit_quotation_out.php",
         {
           method: "POST",
           headers: {

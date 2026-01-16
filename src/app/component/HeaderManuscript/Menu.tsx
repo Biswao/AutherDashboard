@@ -116,7 +116,7 @@ interface SubMenuItem {
       { label: "Quality & Delivery", link: "https://manuscriptedit.com/QualityDelivery/" },
       {
         label: "Request a Sample Editing",
-        link: "https://secure.manuscriptedit.com/samplework",
+        link: "https://secure.tst.manuscriptedit.com/samplework",
       },
       { label: "FAQs", link: "https://manuscriptedit.com/FAQ/" },
       { label: "How We Work", link: "https://manuscriptedit.com/Process/" },
@@ -137,7 +137,7 @@ interface SubMenuItem {
       },
       {
         label: "Quotation",
-        link: "https://www.secure.manuscriptedit.com/quotation",
+        link: "https://secure.tst.manuscriptedit.com/quotation",
       },
       { label: "Payment Method", link: "https://manuscriptedit.com/PaymentMethod/" },
       { label: "Discount & Offers", link: "https://manuscriptedit.com/Discount/" },
@@ -154,7 +154,7 @@ interface SubMenuItem {
       },
       {
         label: "Editor Login",
-        link: "https://secure.manuscriptedit.com/logineditor",
+        link: "https://secure.tst.manuscriptedit.com/logineditor",
       },
       { label: "Careers", link: "https://manuscriptedit.com/Career/" },
     ],
@@ -174,7 +174,7 @@ interface SubMenuItem {
       { label: "Global Partner Program", link: "https://manuscriptedit.com/GlobalPartner2/" },
       {
         label: "Webinar Registration",
-        link: "https://secure.manuscriptedit.com/wregistration",
+        link: "https://secure.tst.manuscriptedit.com/wregistration",
       },
       {
         label: "Scholar Hangout",
@@ -291,7 +291,7 @@ interface SubMenuItem {
       { label: "Quality & Delivery", link: "https://manuscriptedit.com/QualityDelivery/" },
       {
         label: "Request a Sample Editing",
-        link: "https://secure.manuscriptedit.com/samplework",
+        link: "https://secure.tst.manuscriptedit.com/samplework",
       },
       { label: "FAQs", link: "https://manuscriptedit.com/FAQ/" },
       { label: "How We Work", link: "https://manuscriptedit.com/Process/" },
@@ -312,7 +312,7 @@ interface SubMenuItem {
       },
       {
         label: "Quotation",
-        link: "https://www.secure.manuscriptedit.com/quotation",
+        link: "https://secure.tst.manuscriptedit.com/quotation",
       },
       { label: "Payment Method", link: "https://manuscriptedit.com/PaymentMethod/" },
       { label: "Discount & Offers", link: "https://manuscriptedit.com/Discount/" },
@@ -329,7 +329,7 @@ interface SubMenuItem {
       },
       {
         label: "Editor Login",
-        link: "https://secure.manuscriptedit.com/logineditor",
+        link: "https://secure.tst.manuscriptedit.com/logineditor",
       },
       { label: "Careers", link: "https://manuscriptedit.com/Career/" },
     ],
@@ -349,7 +349,7 @@ interface SubMenuItem {
       { label: "Global Partner Program", link: "https://manuscriptedit.com/GlobalPartner2/" },
       {
         label: "Webinar Registration",
-        link: "https://secure.manuscriptedit.com/wregistration",
+        link: "https://secure.tst.manuscriptedit.com/wregistration",
       },
       {
         label: "Scholar Hangout",

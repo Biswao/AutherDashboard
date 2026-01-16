@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export default function ClientAgreementPage() {
+export default function ServiceAgreement() {
   return (
     <main style={{ padding: "2rem" }}>
       <div

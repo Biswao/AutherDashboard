@@ -23,7 +23,7 @@ const SubmitOrders = () => {
 
   // ✅ Same logic from Dashboard
   const paynowClicked = (order: OrderDetails) => {
-    const BASE_URL = "https://secure.manuscriptedit.com/";
+    const BASE_URL = "https://secure.tst.manuscriptedit.com/";
 
     const priceDetails = {
       order_id: order.order_id,

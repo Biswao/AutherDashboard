@@ -22,7 +22,7 @@ const usePostTalkExpert = () => {
 
     try {
       const response = await fetch(
-        "https://secure.manuscriptedit.com/api/talk_to_an_expert.php",
+        "https://secure.tst.manuscriptedit.com/api/talk_to_an_expert.php",
         {
           method: "POST",
           headers: {

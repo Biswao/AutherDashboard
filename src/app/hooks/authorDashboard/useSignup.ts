@@ -18,7 +18,7 @@ export const useSignup = (setAutho: any) => {
     setError(null);
 
     try {
-      const response = await fetch('https://secure.manuscriptedit.com/api/author_signup.php', {
+      const response = await fetch('https://secure.tst.manuscriptedit.com/api/author_signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

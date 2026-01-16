@@ -15,7 +15,7 @@ const useSignin = (): UseAuthReturn => {
 
     try {
       const response = await fetch(
-        "https://secure.manuscriptedit.com/api/author_signin_jwt.php",
+        "https://secure.tst.manuscriptedit.com/api/author_signin_jwt.php",
         {
           method: "POST",
           headers: {

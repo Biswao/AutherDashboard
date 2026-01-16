@@ -30,7 +30,7 @@ export const useFetchAuthor = (email?: string) => {
   const fetchAuthorDetails = async (jwtToken: string) => {
     try {
       const response = await fetch(
-        "https://secure.manuscriptedit.com/api/author_details_jwt.php",
+        "https://secure.tst.manuscriptedit.com/api/author_details_jwt.php",
         {
           method: "GET",
           cache: "no-store",
@@ -62,7 +62,7 @@ export const useFetchAuthor = (email?: string) => {
     setLoading(true);
     try {
       const res = await fetch(
-        "https://secure.manuscriptedit.com/api/update_user_details.php",
+        "https://secure.tst.manuscriptedit.com/api/update_user_details.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },
